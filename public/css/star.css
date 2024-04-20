@@ -1,0 +1,49 @@
+/* css narbet */
+
+.narbet {
+    background-color: #9E0202;
+}
+
+
+/* css footer */
+
+.footer {
+    height: 90px;
+    width: 100%;
+    background-color: #9E0202;
+}
+
+.b1 {
+    margin: auto;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.box1 {
+    width: 25%;
+    margin-top: 20px;
+}
+
+.koh {
+    color: #fff;
+    text-align: center;
+}
+
+
+/* CSS Dropdow */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.tu {
+    list-style: none;
+}

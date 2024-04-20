@@ -1,0 +1,33 @@
+<?php
+
+namespace Modules\Auth\Controllers;
+
+use App\Controllers\BaseController;
+use Modules\Auth\Models\AuthModel;
+use Modules\Personel\Models\CommonModel;
+
+/**
+ *
+ */
+class Auth extends BaseController
+{
+  public function index()
+  {
+    return view('Modules\Auth\Views\original.php');
+  }
+  public function login()
+  {
+    $input = $this->request->getPost();
+    $AuthModel = new AuthModel();
+    $checkLogin = $AuthModel->CheckLogin($input);
+    if (!empty($checkLogin)) {
+      return redirect()->to(base_url('/home'));
+    } else {
+      return redirect()->to(base_url('/login'));
+    }
+  }
+  public function test()
+  {
+    return view('Modules\Auth\Views\test.php');
+  }
+}
