@@ -50,7 +50,7 @@ class StudentModel extends Model
              WHERE
                 teachertitle.teacherTitle_id = std.teacherTitle
             )as std_teacherTitle');
-        $table->join('typepeople', 'typepeople.typepeople_id = std.typepeople_std', 'left');
+        $table->join('typepeople', 'typepeople.typepeople_id = std.typepeople', 'left');
         $table->join('department', 'department.department_id = std.department', 'left');
         $table->join('level', 'level.level_id = std.level', 'left');
         $table->join('classroom', 'classroom.classroom_id = std.classroom', 'left');

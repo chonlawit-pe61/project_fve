@@ -1,7 +1,8 @@
 <?php $this->extend('template/layout') ?>
 
 <?php $this->section('content'); ?>
-<div>
+<div class="pt-3 px-3">
+<h1 class="mt-0"><u><b>ค้นหารายชื่อ</b></u> นักเรียนนักศึกษา Pre-Ved Fve</h1>
     <div class="px-3 py-3">
         <table class="table " id="myTable">
             <thead class="table-dark">
