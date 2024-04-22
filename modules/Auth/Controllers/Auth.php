@@ -17,13 +17,16 @@ class Auth extends BaseController
   }
   public function login()
   {
+    $session = session();
     $input = $this->request->getPost();
     $AuthModel = new AuthModel();
     $checkLogin = $AuthModel->CheckLogin($input);
+
     if (!empty($checkLogin)) {
       return redirect()->to(base_url('/home'));
     } else {
-      return redirect()->to(base_url('/login'));
+      $session->setFlashdata('msg', 'คุณกรอกรหัสผ่านผิด');
+      return redirect()->to(base_url('/'));
     }
   }
   public function test()

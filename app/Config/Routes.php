@@ -39,6 +39,7 @@ $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers'], funct
 $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], function ($routes) {
     $routes->get('/', 'Student::index');
     $routes->get('create', 'Student::createStd');
+    $routes->post('createStd', 'Student::insetStd');
 });
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.

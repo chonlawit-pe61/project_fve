@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 <div class="pt-3 px-3">
-<h1 class="mt-0"><u><b>ค้นหารายชื่อ</b></u> นักเรียนนักศึกษา Pre-Ved Fve</h1>
+    <h1 class="mt-0"><u><b>ค้นหารายชื่อ</b></u> นักเรียนนักศึกษา Pre-Ved Fve</h1>
     <div class="px-3 py-3">
         <table class="table " id="myTable">
             <thead class="table-dark">
@@ -54,7 +54,7 @@
                             <?php echo $st['std_teacherTitle'] . ' ' . $st['teacherName'] ?>
                         </td>
                         <td>
-                            <img src="" alt="">
+                            <img style="height: 120px; " class="img-fluid" src="<?php echo base_url('public/files/imgStd' . '/' . $st['img']) ?>" alt="">
                         </td>
                     </tr>
                 <?php
