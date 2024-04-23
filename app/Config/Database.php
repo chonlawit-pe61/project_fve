@@ -28,7 +28,7 @@ class Database extends Config
 	public $default = array(
 		'hostname' => "localhost",
 		'username' => 'root',
-		'password' => '',
+		'password' => 'root',
 		'database' => 'fve',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',

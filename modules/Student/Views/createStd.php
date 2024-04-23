@@ -9,7 +9,7 @@
         <div class="px-3">
             <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
                 <div class="">
-                    <form action="<?php echo base_url('/Student/createStd') ?>" method="post" enctype="multipart/form-data">
+                    <form id="saveForm" action="<?php echo base_url('/Student/createStd') ?>" method="post" enctype="multipart/form-data">
                         <!-- ส่วนที่ 1 -->
                         <h3><u><b>ส่วนที่ 1</b></u> ข้อมูลนักศึกษา</h3>
                         <hr style="border: none; height: 2px; background-color: #030100;">
@@ -17,12 +17,13 @@
                             <div class="col-lg-3">
                                 <div class="mb-3">
                                     เลขบัตรประจำตัวประชาชน:
-                                    <input class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeople" required>
+                                    <input id="numberpeople" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeople" required>
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <label>เลือกประเภทบัตร</label>
-                                <select id="typepeople" class="form-select" style="text-align: start;" name="typepeople">
+                                <select id="typepeople" id="typepeople" class="form-select" style="text-align: start;" name="typepeople">
+                                    <option value="0">กรุณาเลือกบัตรประชน</option>
                                     <?php
                                     foreach ($typepeople as $pe) {
                                     ?>
@@ -422,7 +423,7 @@
                                 เบอร์ติดต่อผู้ปกครอง: <input class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
                             </div>
                         </div>
-                        <h3><u><b><input type="submit" value="บันทึกข้อมูล" class="btn btn-success">
+                        <h3><u><b><input onclick="saveData()" type="button" value="บันทึกข้อมูล" class="btn btn-success">
                                     <h3><u><b><input type="reset" value="ยกเลิก" class="btn btn-danger">
                     </form>
                 </div>
@@ -518,6 +519,30 @@
             }
         })
     }
+
+    function saveData(value) {
+        text_alert = '';
+        if ($('#numberpeople')) {
+            if ($('#numberpeople').val() == '') {
+                text_alert = text_alert + '- เลขบัตรประจำตัวประชาชน <br/>';
+            }
+        }
+        if ($('#typepeople')) {
+            if ($('#typepeople').val() == 0) {
+                text_alert = text_alert + '- เลือกประเภทบัตร <br/>';
+            }
+        }
+        if (text_alert != '') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'กรุณากรอกข้อมูลต่อไปนี้',
+                html: '<div style="text-align:left;">' + text_alert + '</div>',
+            });
+            return false;
+        } else {
+            $('#saveForm').submit();
+        }
+    }
 </script>
 <?php if (session()->getFlashdata('success') != null) : ?>
     <script type="text/javascript">
@@ -533,18 +558,6 @@
     </script>
 <?php endif; ?>
 
-<?php if (session()->getFlashdata('error') != null) : ?>
-    <script type="text/javascript">
-        Swal.fire({
-            icon: 'error',
-            title: '<?= session()->getFlashdata('error') ?>',
-            timer: 2000,
-        }).then(() => {
-            setTimeout(() => {
-                window.location.href = '<?php echo base_url('Student/create') ?>';
-            }, 2000)
-        })
-    </script>
-<?php endif; ?>
+
 
 <?php $this->endSection() ?>
