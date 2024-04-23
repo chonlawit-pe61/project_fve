@@ -41,6 +41,13 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->get('create', 'Student::createStd');
     $routes->post('createStd', 'Student::insetStd');
 });
+$routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
+    $routes->get('/', 'Addmin::index');
+});
+$routes->group('/Addsubject', ['namespace' => '\Modules\Addsubject\Controllers'], function ($routes) {
+    $routes->get('/', 'Addsubject::index');
+});
+
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 // Dashborad

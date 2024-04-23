@@ -533,4 +533,18 @@
     </script>
 <?php endif; ?>
 
+<?php if (session()->getFlashdata('error') != null) : ?>
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'error',
+            title: '<?= session()->getFlashdata('error') ?>',
+            timer: 2000,
+        }).then(() => {
+            setTimeout(() => {
+                window.location.href = '<?php echo base_url('Student/create') ?>';
+            }, 2000)
+        })
+    </script>
+<?php endif; ?>
+
 <?php $this->endSection() ?>

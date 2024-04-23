@@ -34,39 +34,9 @@
                 </a>
             </nav>
         </header>
-        <aside class="main-sidebar">
-            <section class="sidebar">
-                <div class="user-panel">
-                    <div class="pull-left info">
-                        </a>
-                    </div>
-                </div>
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header"><b style="font-size: 20px; color: #fff;">งานทะเบียน</b></li>
-                    <li><a href="<?php echo base_url('/Student/create') ?>" class="nav-link"><i class="fa-solid fa-address-card" style="color: black; font-size: 20px;"> เพิ่มรายชื่อนักศึกษา</i></a></li>
-
-
-                    <li><a href="<?php echo base_url('/Student/') ?>" class="nav-link"><i class="fa-solid fa-magnifying-glass" style="color: black; font-size: 20px;"> ดูรายชื่อนักศึกษา</i></a></li>
-                    <li><a href="<?php echo base_url('/Addmin/') ?>"><i class="fa-solid fa-user-plus" style="color: black; font-size: 20px;"> เพิ่มเจ้าหน้าที่</i></a></li>
-                </ul>
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header"><b style="font-size: 20px; color: #fff;">งานหลักสูตร</b></li>
-                    <li><a href="<?php echo base_url('/Addsubject/') ?>" class="nav-link"><i class="fa-solid fa-pen-to-square" style="color: black; font-size: 20px;"> เพิ่มรายวิชา</i></a></li>
-                    <li><a href="" class="nav-link"><i class="fa-solid fa-magnifying-glass" style="color: black; font-size: 20px;"> ดูรายวิชา</i></a></li>
-                </ul>
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header"><b style="font-size: 20px; color: #fff;">งานวัดผล</b></li>
-                    <li><a href="" class="nav-link"><i class="fa-solid fa-pen-to-square" style="color: black; font-size: 20px;"> เพิ่มผลการเรียน</i></a></li>
-                    <li><a href=""><i class="fa-solid fa-magnifying-glass" style="color: black; font-size: 20px;"> ดูผลการเรียน</i></a></li>
-                    <li class="header"><b style="font-size: 20px; color: #fff;"></b></li>
-                    <li><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket" style="color: black; font-size: 20px;"> ออกจากระบบ</i></a></li>
-                    <li class="header"><b style="font-size: 20px; color: #fff;"></b></li>
-                </ul>
-            </section>
-        </aside>
-    </div>
-    <div class="content-wrapper">
-        <?php $this->renderSection('content'); ?>
+        <div>
+            <?php $this->renderSection('content'); ?>
+        </div>
     </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

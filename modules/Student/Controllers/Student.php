@@ -39,8 +39,8 @@ class Student extends BaseController
   {
     $session = session();
     $StudentModel = new StudentModel();
-    $input = $this->request->getPost();
-    $files = $this->request->getFiles();
+    $input = $this->request->getPost();// $_POST
+    $files = $this->request->getFiles();// $_file
     if ($files['file1']->isValid()) {
       $randomName = $files['file1']->getRandomName();
       $data['fileName'] = $files['file1']->getName();
@@ -51,6 +51,7 @@ class Student extends BaseController
       $input['file1'] = $randomName;
     }
     $session->setFlashdata('success', 'บันทึกข้อมูลสำเร็จ');
+    $session->setFlashdata('error', 'บันทึกข้อมูลไม่สำเร็จ');
     $StudentModel->insetStd($input);
     return redirect()->to(base_url('/Student/create'));
   }
