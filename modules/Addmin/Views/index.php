@@ -1,4 +1,8 @@
-<?php $this->extend('template/adminlayout') ?>
+<?php
+
+use Modules\Addmin\Controllers\Addmin;
+
+ $this->extend('template/adminlayout') ?>
 
 <?php $this->section('content'); ?>
 <div class="pt-3 px-3" style="height:100vh;">
@@ -20,7 +24,7 @@
                 <br>
                 <div class="card-body">
                     <div class="d-flex justify-content-center" style="margin-top:50px;">
-                        <form method="post" action="registerdb.php">
+                        <form method="post" action="<?php echo base_url('Addmin/Addadmin') ?>">
                             <div style="margin-top:15px;">
                                 <input class="control" type="text" placeholder="Firstname" name="fname" required>
                                 <input class="control" type="text" placeholder="Lastname" name="lname" required><br><br>
@@ -28,11 +32,13 @@
                                 <input class="control" type="password" placeholder="Password" name="pass" required><br><br>
                         <label>สถานนะ</label>
                                 <select class="t2 btn btn-danger dropdown-toggle" style="text-align: center;" name="statusstd">
-                                    <option value="0">-</option>
-                                    <option value="SP">หัวหน้างาน</option>
-                                    <option value="AD">เจ้าหน้าที่</option>
-                                    <option value="US">บุคลากรทั่วไป</option>
-                                    <option value="US">นักศึกษา</option>
+                                    <?php  
+                                        foreach($userlive as $ul){
+                                            ?>
+                                        <option value="0">-</option>
+                                    <?php
+                                        }
+                                    ?>
                                 </select>
                         <input type="submit" name="submit" value="บันทึกผู้ใช้งานใหม่" class="btn btn-success">
                         <a href="<?php echo base_url("home") ?>" class="btn btn-warning">ย้อนกลับสู่หน้าหลัก</a>

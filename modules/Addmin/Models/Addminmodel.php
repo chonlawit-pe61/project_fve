@@ -4,7 +4,7 @@ namespace Modules\Auth\Models;
 
 use CodeIgniter\Model;
 
-class AuthModel extends Model
+class Addminmodel extends Model
 {
     protected $table      = "";
     protected $primaryKey = "";
@@ -16,6 +16,13 @@ class AuthModel extends Model
         $table->select('*');
         $table->where('user', $input['user']);
         $table->where('pass', $input['pass']);
+        $data = $table->get()->getRowArray();
+        return $data;
+    }
+    public function get_userlive()
+    {
+        $table = $this->db->table('userlive');
+        $table->select('*');
         $data = $table->get()->getRowArray();
         return $data;
     }

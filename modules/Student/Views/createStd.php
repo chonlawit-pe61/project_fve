@@ -34,35 +34,35 @@
                                 </select>
                             </div>
                             <div class="col-lg-3">
-                                ชื่อ: <input type="text" class="form-control" placeholder="ชื่อไทย" name="thainamestd">
+                                ชื่อ: <input id="thainamestd" type="text" class="form-control" placeholder="ชื่อไทย" name="thainamestd">
                             </div>
                             <div class="col-lg-3">
-                                นามสกุล: <input type="text" class="form-control" placeholder="นามสกุลไทย" name="thailaststd">
+                                นามสกุล: <input id="thailaststd" type="text" class="form-control" placeholder="นามสกุลไทย" name="thailaststd">
                             </div>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    ชื่อภาษาอังกฤษ: <input type="text" class="form-control" placeholder="ชื่ออังกฤษ" name="engnamestd">
+                                    ชื่อภาษาอังกฤษ: <input id="engnamestd" type="text" class="form-control" placeholder="ชื่ออังกฤษ" name="engnamestd">
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                นามสกุลอังกฤษ: <input type="text" class="form-control" placeholder="นามสกุลอังกฤษ" name="englaststd">
+                                นามสกุลอังกฤษ: <input id="englaststd" type="text" class="form-control" placeholder="นามสกุลอังกฤษ" name="englaststd">
                             </div>
                             <div class="col-lg-3">
-                                ชื่อเล่น: <input class="form-control" placeholder="กรุณณากรอกชื่อเล่น" name="nicknamestd">
+                                ชื่อเล่น: <input id="nicknamestd" class="form-control" placeholder="กรุณณากรอกชื่อเล่น" name="nicknamestd">
                             </div>
                             <div class="col-lg-3">
-                                ที่อยู่ปัจจุบัน: <input type="text" class="form-control" placeholder="ที่อยู๋ปัจจุบัน" name="housenumber">
+                                ที่อยู่ปัจจุบัน: <input id="housenumber" type="text" class="form-control" placeholder="ที่อยู๋ปัจจุบัน" name="housenumber">
                             </div>
 
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    หมู่ที่: <input type="text" class="form-control" placeholder="หมู่ที่" name="village">
+                                    หมู่ที่: <input id="village" type="text" class="form-control" placeholder="หมู่ที่" name="village">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <label>จังหวัด</label>
-                                <select class="form-select" style="text-align: start;" name="province" onchange="getdistrict(this.value)">
-
+                                <select id="province" class="form-select" style="text-align: start;" name="province" onchange="getdistrict(this.value)">
+                                        <option value="0">กรุณาเลือกจังหวัด</option>
                                     <?php
                                     foreach ($provice as $p) {
                                     ?>
@@ -74,8 +74,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>อำเภอ</label>
-                                <select class="form-select" style="text-align: start;" name="district" id="district" onchange="getsubdistrict(this.value)">
-
+                                <select  class="form-select" style="text-align: start;" name="district" id="district" onchange="getsubdistrict(this.value)">
+                                    <option value="0">กรุณาเลือกอำเภอ</option>
                                     <?php
                                     foreach ($distic as $x) {
                                     ?>
@@ -88,7 +88,7 @@
                             <div class="col-lg-3">
                                 <label>ตำบล</label>
                                 <select class="form-select" style="text-align: start;" name="subdistrictstd" id="subdistrict">
-
+                                    <option value="0">กรุณาเลือกตำบล</option>
                                     <?php
                                     foreach ($Subdistic as $y) {
                                     ?>
@@ -101,7 +101,8 @@
                             <div class="col-lg-3">
                                 <div class="mb-3">
                                     <label>เพศ</label>
-                                    <select class="form-select" style="text-align: start;" name="gender">
+                                    <select class="form-select" style="text-align: start;" name="gender" id="gender">
+                                    <option value="0">กรุณาเลือกเพศ</option>
                                         <?php
                                         foreach ($typegender as $x) {
                                         ?>
@@ -114,7 +115,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>ศาสนา</label>
-                                <select class="form-select" style="text-align: start;" name="religion">
+                                <select class="form-select" style="text-align: start;" name="religion" id="religion">
+                                <option value="0">กรุณาเลือกศาสนา</option>
                                     <?php
                                     foreach ($religion as $x) {
                                     ?>
@@ -128,16 +130,17 @@
                                 ความสามารถพิเศษ: <input class="form-control" placeholder="ความสามารถพิเศษ" name="special_ability">
                             </div>
                             <div class="col-lg-3">
-                                น้ำหนัก: <input type="text" class="form-control" maxlength="3" placeholder="กรุณณากรอกน้ำหนัก" name="weight_kg">
+                                น้ำหนัก: <input id="weight_kg" type="text" class="form-control" maxlength="3" placeholder="กรุณณากรอกน้ำหนัก" name="weight_kg">
                             </div>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    ส่วนสูง: <input type="text" class="form-control" maxlength="3" placeholder="กรุณณากรอกส่วนสูง" name="height_cm">
+                                    ส่วนสูง: <input id="height_cm" type="text" class="form-control" maxlength="3" placeholder="กรุณณากรอกส่วนสูง" name="height_cm">
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <label>หมู่เลือด</label>
-                                <select class="form-select" style="text-align: start;" name="blood_type">
+                                <select class="form-select" style="text-align: start;" name="blood_type" id="blood_type">
+                                    <option value="0">กรุณาเลือกหมู่เลือด</option>
                                     <?php
                                     foreach ($special_ability as $x) {
                                     ?>
@@ -155,16 +158,16 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    เบอร์ติดต่อนักศึกษา: <input type="number" class="form-control" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของนักศึกษา" name="student_phone_number">
+                                    เบอร์ติดต่อนักศึกษา: <input id="student_phone_number" type="number" class="form-control" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของนักศึกษา" name="student_phone_number">
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                สถานศึกษาเดิม: <input class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="schoolName">
+                                สถานศึกษาเดิม: <input id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="schoolName">
                             </div>
                             <div class="col-lg-3">
                                 <label>จบการศึกษาระดับ</label>
-                                <select class="form-select" style="text-align: start;" name="level">
-                                    <option value="">-</option>
+                                <select class="form-select" style="text-align: start;" name="level" id="level">
+                                    <option value="0">กรุณาเลือกจบการศึกษาระดับ</option>
                                     <?php
                                     foreach ($level as $x) {
                                     ?>
@@ -176,7 +179,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>แผนกวิชา</label>
-                                <select class="form-select" style="text-align: start;" name="department">
+                                <select id="department" class="form-select" style="text-align: start;" name="department">
+                                    <option value="0">กรุณาเลือกแผนกวิชา</option>
                                     <?php
                                     foreach ($department as $x) {
                                     ?>
@@ -189,7 +193,8 @@
                             <div class="col-lg-3">
                                 <div class="mb-3">
                                     <label>ชั้นปี</label>
-                                    <select class="form-select" style="text-align: start;" name="year">
+                                    <select id="year" class="form-select" style="text-align: start;" name="year">
+                                        <option value="0">กรุณาเลือกชั้นปี</option>
                                         <?php
                                         foreach ($year as $x) {
                                         ?>
@@ -203,7 +208,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>ห้อง</label>
-                                <select class="form-select" style="text-align: start;" name="classroom">
+                                <select id="classroom" class="form-select" style="text-align: start;" name="classroom">
+                                    <option value="0">กรุณาเลือกห้อง</option>
                                     <?php
                                     foreach ($classroom as $x) {
                                     ?>
@@ -215,7 +221,8 @@
                             </div>
                             <div class="col-lg-3">
                                 <label>คำนำหน้าครูที่ปรึกษา</label>
-                                <select class="form-select" style="text-align: start;" name="teacherTitle">
+                                <select id="teacherTitle" class="form-select" style="text-align: start;" name="teacherTitle">
+                                    <option value="0">กรุณาเลือกคำนำหน้าครูที่ปรึกษา</option>
                                     <?php
                                     foreach ($teachertitle as $x) {
                                     ?>
@@ -226,7 +233,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-3">
-                                ครูที่ปรึกษา: <input class="form-control" type="text" placeholder="กรุณณากรอกชื่อครูที่ปรึกษา ไม่ต้องใส่คำนำหน้า" name="teacherName">
+                                ชื่อครูที่ปรึกษา: <input id="teacherName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อครูที่ปรึกษา ไม่ต้องใส่คำนำหน้า" name="teacherName">
                             </div>
                             <div class="col-lg-6">
                                 <label for="formFileLg" class="form-label"><b><u>รูปภาพของนักศึกษา</u></b></label>
@@ -236,21 +243,22 @@
                             <h3><u><b>ส่วนที่ 2</b></u> ข้อมูลของบิดา-มารดา</h3>
                             <hr style="border: none; height: 2px; background-color: #030100;">
                             <!-- ข้อมูลบิดา -->
-                            <h6><u><b>ข้อมูลบิดาร</b></u></h6>
+                            <h6><u><b>ข้อมูลบิดา</b></u></h6>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    ชื่อบิดา: <input type="text" class="form-control" placeholder="ชื่อบิดาร" name="fnamefather">
+                                    ชื่อบิดา: <input id="fnamefather" type="text" class="form-control" placeholder="ชื่อบิดา" name="fnamefather">
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                นามสกุลบิดา: <input type="text" class="form-control" placeholder="นามสกุลบิดาร" name="lnamefather">
+                                นามสกุลบิดา: <input id="lnamefather" type="text" class="form-control" placeholder="นามสกุลบิดา" name="lnamefather">
                             </div>
                             <div class="col-lg-3">
-                                เลขบัตรประจำตัวประชาชน: <input class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplefather">
+                            เลขบัตรประจำตัวประชาชนของบิดา: <input id="numberpeoplefather" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplefather">
                             </div>
                             <div class="col-lg-3">
                                 <label>เลือกประเภทบัตร</label>
-                                <select class="form-select" style="text-align: start;" name="typepeoplefather">
+                                <select id="typepeoplefather" class="form-select" style="text-align: start;" name="typepeoplefather">
+                                    <option value="0">กรุณาเลือกประเภทบัตร</option>
                                     <?php
                                     foreach ($typepeople as $pe) {
                                     ?>
@@ -263,7 +271,8 @@
                             <div class="col-lg-3">
                                 <div class="mb-3">
                                     <label>สถานภาพบิดา</label>
-                                    <select class="form-select" style="text-align: start;" name="father_status">
+                                    <select id="father_status" class="form-select" style="text-align: start;" name="father_status">
+                                        <option value="0">กรุณาเลือกสถานภาพบิดา</option>
                                         <?php
                                         foreach ($isparent as $pe) {
                                         ?>
@@ -275,7 +284,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                อาชีพของบิดาร: <input class="form-control" type="text" placeholder="อาชีพของบิดาร" name="father_occupation">
+                                อาชีพของบิดา: <input id="father_occupation" class="form-control" type="text" placeholder="อาชีพของบิดา" name="father_occupation">
                             </div>
                             <div class="col-lg-3">
                                 ประเภทความพิการ: <input class="form-control" placeholder="ประเภทความพิการ" name="father_disability_type">
@@ -285,18 +294,19 @@
                             <h6><u><b>ข้อมูลมารดา</b></u></h6>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    ชื่อมารดา: <input type="text" class="form-control" placeholder="ชื่อมารดา" name="fnamemother">
+                                    ชื่อมารดา: <input id="fnamemother" type="text" class="form-control" placeholder="ชื่อมารดา" name="fnamemother">
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                นามสกุลมารดา: <input type="text" class="form-control" placeholder="นามสกุลมารดา" name="lnamemother">
+                                นามสกุลมารดา: <input id="lnamemother" type="text" class="form-control" placeholder="นามสกุลมารดา" name="lnamemother">
                             </div>
                             <div class="col-lg-3">
-                                เลขบัตรประจำตัวประชาชน: <input class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplemother">
+                                เลขบัตรประจำตัวประชาชนของมารดา: <input id="numberpeoplemother" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplemother">
                             </div>
                             <div class="col-lg-3">
                                 <label>เลือกประเภทบัตร</label>
-                                <select class="form-select" style="text-align: start;" name="typepeoplemother">
+                                <select class="form-select" style="text-align: start;" name="typepeoplemother" id="typepeoplemother">
+                                    <option value="0">กรุณาเลือกประเภทบัตร</option>
                                     <?php
                                     foreach ($typepeople as $pe) {
                                     ?>
@@ -309,7 +319,8 @@
                             <div class="col-lg-3">
                                 <div class="mb-3">
                                     <label>สถานภาพมารดา</label>
-                                    <select class="form-select" style="text-align: start;" name="mother_status">
+                                    <select class="form-select" style="text-align: start;" name="mother_status" id="mother_status">
+                                    <option value="0">กรุณาเลือกสถานภาพมารดา</option>
                                         <?php
                                         foreach ($isparent as $pe) {
                                         ?>
@@ -321,14 +332,15 @@
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                อาชีพของมารดา: <input class="form-control" type="text" placeholder="อาชีพของมารดา" name="mother_occupation">
+                                อาชีพของมารดา: <input id="mother_occupation" class="form-control" type="text" placeholder="อาชีพของมารดา" name="mother_occupation">
                             </div>
                             <div class="col-lg-3">
                                 ประเภทความพิการ: <input class="form-control" placeholder="ประเภทความพิการมารดา" name="mother_disability_type">
                             </div>
                             <div class="col-lg-3">
                                 <label>สถานภาพการสมรสของบิดา-มารดา</label>
-                                <select class="form-select" style="text-align: start;" name="isMarried">
+                                <select class="form-select" style="text-align: start;" name="isMarried" id="isMarried">
+                                <option value="0">กรุณาเลือกสถานภาพการสมรสของบิดา-มารดา</option>
                                     <?php
                                     foreach ($ismarried as $pe) {
                                     ?>
@@ -344,18 +356,19 @@
                             <hr style="border: none; height: 2px; background-color: #030100;"><br>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    ชื่อผู้ปกครอง: <input type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
+                                    ชื่อผู้ปกครอง: <input id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                นามสกุลผู้ปกครอง: <input type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
+                                นามสกุลผู้ปกครอง: <input id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
                             </div>
                             <div class="col-lg-3">
-                                เลขบัตรประจำตัวประชาชน: <input class="form-select" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
+                                เลขบัตรประจำตัวประชาชนของผู้ปกครอง: <input id="numberpeopleguardian" class="form-select" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
                             </div>
                             <div class="col-lg-3">
                                 <label>เลือกประเภทบัตร</label>
-                                <select class="form-select" style="text-align: start;" name="typepeopleguardian">
+                                <select id="typepeopleguardian" class="form-select" style="text-align: start;" name="typepeopleguardian">
+                                    <option value="0">กรุณาเลือกประเภทบัตร</option>
                                     <?php
                                     foreach ($typepeople as $pe) {
                                     ?>
@@ -367,22 +380,23 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="mb-3">
-                                    ความสัมพันธ์: <input class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
+                                    ความสัมพันธ์: <input id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
                                 </div>
                             </div>
                             <div class="col-lg-3">
-                                อาชีพของผู้ปกครอง: <input class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
+                                อาชีพของผู้ปกครอง: <input id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
                             </div>
                             <div class="col-lg-3">
-                                ที่อยู่ปัจจุบันของผู้ปกครอง: <input type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
+                                ที่อยู่ปัจจุบันของผู้ปกครอง: <input id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
                             </div>
                             <div class="col-lg-3">
-                                หมู่ที่: <input type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
+                                หมู่ที่: <input id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
                             </div>
                             <div class="col-lg-3">
                                 <div class="mb-3">
                                     <label>จังหวัด</label>
-                                    <select class="form-select" style="text-align: start;" name="provinceguardian" onchange="getdistrictisname(this.value)">
+                                    <select id="provinceguardian" class="form-select" style="text-align: start;" name="provinceguardian" onchange="getdistrictisname(this.value)">
+                                        <option value="0">กรุณาเลือกจังหวัด</option>
                                         <?php
                                         foreach ($provice as $p) {
                                         ?>
@@ -397,6 +411,7 @@
                             <div class="col-lg-3">
                                 <label>อำเภอ</label>
                                 <select class="form-select" style="text-align: start;" name="districtguardian" id="isnamedistrict" onchange="getsubdistrictisname(this.value)">
+                                    <option value="0">กรุณาเลือกอำเภอ</option>
                                     <?php
                                     foreach ($distic as $x) {
                                     ?>
@@ -410,6 +425,7 @@
                             <div class="col-lg-3">
                                 <label>ตำบล</label>
                                 <select class="form-select" style="text-align: start;" name="subdistrictguardian" id="isnamesubdistrict">
+                                    <option value="0">กรุณาเลือกตำบล</option>
                                     <?php
                                     foreach ($Subdistic as $y) {
                                     ?>
@@ -420,7 +436,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-3">
-                                เบอร์ติดต่อผู้ปกครอง: <input class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
+                                เบอร์ติดต่อผู้ปกครอง: <input id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
                             </div>
                         </div>
                         <h3><u><b><input onclick="saveData()" type="button" value="บันทึกข้อมูล" class="btn btn-success">
@@ -530,6 +546,246 @@
         if ($('#typepeople')) {
             if ($('#typepeople').val() == 0) {
                 text_alert = text_alert + '- เลือกประเภทบัตร <br/>';
+            }
+        }
+        if ($('#thainamestd')) {
+            if ($('#thainamestd').val() == 0) {
+                text_alert = text_alert + '- ชื่อไทย <br/>';
+            }
+        }
+        if ($('#thailaststd')) {
+            if ($('#thailaststd').val() == 0) {
+                text_alert = text_alert + '- นามสกุลไทย <br/>';
+            }
+        }
+        if ($('#engnamestd')) {
+            if ($('#engnamestd').val() == 0) {
+                text_alert = text_alert + '- ชื่ออังกฤษ <br/>';
+            }
+        }
+        if ($('#englaststd')) {
+            if ($('#englaststd').val() == 0) {
+                text_alert = text_alert + '- นามสกุลอังกฤษ <br/>';
+            }
+        }
+        if ($('#nicknamestd')) {
+            if ($('#nicknamestd').val() == 0) {
+                text_alert = text_alert + '- กรุณณากรอกชื่อเล่น <br/>';
+            }
+        }
+        if ($('#housenumber')) {
+            if ($('#housenumber').val() == 0) {
+                text_alert = text_alert + '- ที่อยู๋ปัจจุบัน <br/>';
+            }
+        }
+        if ($('#village')) {
+            if ($('#village').val() == 0) {
+                text_alert = text_alert + '- หมู่ที่ <br/>';
+            }
+        }
+        if ($('#province')) {
+            if ($('#province').val() == 0) {
+                text_alert = text_alert + '- จังหวัด <br/>';
+            }
+        }
+        if ($('#district')) {
+            if ($('#district').val() == 0) {
+                text_alert = text_alert + '- อำเภอ  <br/>';
+            }
+        }
+        if ($('#subdistrict')) {
+            if ($('#subdistrict').val() == 0) {
+                text_alert = text_alert + '- ตำบล  <br/>';
+            }
+        }
+        if ($('#gender')) {
+            if ($('#gender').val() == 0) {
+                text_alert = text_alert + '- เพศ  <br/>';
+            }
+        }
+        if ($('#religion')) {
+            if ($('#religion').val() == 0) {
+                text_alert = text_alert + '- ศาสนา  <br/>';
+            }
+        }
+        if ($('#weight_kg')) {
+            if ($('#weight_kg').val() == 0) {
+                text_alert = text_alert + '- น้ำหนัก  <br/>';
+            }
+        }
+        if ($('#height_cm')) {
+            if ($('#height_cm').val() == 0) {
+                text_alert = text_alert + '- ส่วนสูง  <br/>';
+            }
+        }
+        if ($('#blood_type')) {
+            if ($('#blood_type').val() == 0) {
+                text_alert = text_alert + '- หมู่เลือด  <br/>';
+            }
+        }if ($('#student_phone_number')) {
+            if ($('#student_phone_number').val() == 0) {
+                text_alert = text_alert + '- เบอร์ติดต่อนักศึกษา  <br/>';
+            }
+        }
+         if ($('#schoolName')) {
+            if ($('#schoolName').val() == 0) {
+                text_alert = text_alert + '- สถานศึกษาเดิม  <br/>';
+            }
+        }
+        if ($('#level')) {
+            if ($('#level').val() == 0) {
+                text_alert = text_alert + '- จบการศึกษาระดับ  <br/>';
+            }
+        }
+        if ($('#department')) {
+            if ($('#department').val() == 0) {
+                text_alert = text_alert + '- แผนกวิชา  <br/>';
+            }
+        }
+        if ($('#year')) {
+            if ($('#year').val() == 0) {
+                text_alert = text_alert + '- ชั้นปี  <br/>';
+            }
+        }
+        if ($('#classroom')) {
+            if ($('#classroom').val() == 0) {
+                text_alert = text_alert + '- ห้อง  <br/>';
+            }
+        }
+        if ($('#teacherTitle')) {
+            if ($('#teacherTitle').val() == 0) {
+                text_alert = text_alert + '- คำนำหน้าครูที่ปรึกษา  <br/>';
+            }
+        }
+        if ($('#teacherName')) {
+            if ($('#teacherName').val() == 0) {
+                text_alert = text_alert + '- ชื่อครูที่ปรึกษา  <br/>';
+            }
+        }
+
+        if ($('#fnamefather')) {
+            if ($('#fnamefather').val() == 0) {
+                text_alert = text_alert + '- ชื่อบิดา  <br/>';
+            }
+        }
+        if ($('#lnamefather')) {
+            if ($('#lnamefather').val() == 0) {
+                text_alert = text_alert + '- นามสกุลบิดา  <br/>';
+            }
+        }
+        if ($('#numberpeoplefather')) {
+            if ($('#numberpeoplefather').val() == 0) {
+                text_alert = text_alert + '- เลขบัตรประจำตัวประชาชนของบิดา  <br/>';
+            }
+        }
+        if ($('#typepeoplefather')) {
+            if ($('#typepeoplefather').val() == 0) {
+                text_alert = text_alert + '-  เลือกประเภทบัตรของบิดา <br/>';
+            }
+        }
+        if ($('#father_status')) {
+            if ($('#father_status').val() == 0) {
+                text_alert = text_alert + '- สถานภาพบิดา  <br/>';
+            }
+        }
+        if ($('#father_occupation')) {
+            if ($('#father_occupation').val() == 0) {
+                text_alert = text_alert + '- อาชีพของบิดา  <br/>';
+            }
+        }
+        if ($('#fnamemother')) {
+            if ($('#fnamemother').val() == 0) {
+                text_alert = text_alert + '- ชื่อมารดา  <br/>';
+            }
+        }
+        if ($('#lnamemother')) {
+            if ($('#lnamemother').val() == 0) {
+                text_alert = text_alert + '- นามสกุลมารดา  <br/>';
+            }
+        }
+        if ($('#numberpeoplemother')) {
+            if ($('#numberpeoplemother').val() == 0) {
+                text_alert = text_alert + '- เลขบัตรประจำตัวประชาชนของมารดา  <br/>';
+            }
+        }
+        if ($('#typepeoplemother')) {
+            if ($('#typepeoplemother').val() == 0) {
+                text_alert = text_alert + '-  เลือกประเภทบัตรของมารดา <br/>';
+            }
+        }
+        if ($('#mother_status')) {
+            if ($('#mother_status').val() == 0) {
+                text_alert = text_alert + '- สถานภาพมารดา  <br/>';
+            }
+        }
+        if ($('#mother_occupation')) {
+            if ($('#mother_occupation').val() == 0) {
+                text_alert = text_alert + '- อาชีพของมารดา  <br/>';
+            }
+        }
+        if ($('#isMarried')) {
+            if ($('#isMarried').val() == 0) {
+                text_alert = text_alert + '- สถานภาพการสมรสของบิดา-มารดา  <br/>';
+            }
+        }
+        if ($('#firstnameguardian')) {
+            if ($('#firstnameguardian').val() == 0) {
+                text_alert = text_alert + '- ชื่อผู้ปกครอง  <br/>';
+            }
+        }
+        if ($('#lastnameguardian')) {
+            if ($('#lastnameguardian').val() == 0) {
+                text_alert = text_alert + '- นามสกุลผู้ปกครอง  <br/>';
+            }
+        }
+        if ($('#numberpeopleguardian')) {
+            if ($('#numberpeopleguardian').val() == 0) {
+                text_alert = text_alert + '- เลขบัตรประจำตัวประชาชนของผู้ปกครอง  <br/>';
+            }
+        }
+        if ($('#typepeopleguardian')) {
+            if ($('#typepeopleguardian').val() == 0) {
+                text_alert = text_alert + '- เลือกประเภทบัตรของผู้ปกครอง  <br/>';
+            }
+        }
+        if ($('#parentguardian')) {
+            if ($('#parentguardian').val() == 0) {
+                text_alert = text_alert + '- ความสัมพันธ์  <br/>';
+            }
+        }
+        if ($('#guardian_occupation')) {
+            if ($('#guardian_occupation').val() == 0) {
+                text_alert = text_alert + '- อาชีพของผู้ปกครอง  <br/>';
+            }
+        }
+        if ($('#housenumberguardian')) {
+            if ($('#housenumberguardian').val() == 0) {
+                text_alert = text_alert + '- ที่อยู่ปัจจุบันของผู้ปกครอง  <br/>';
+            }
+        }
+        if ($('#villageguardian')) {
+            if ($('#villageguardian').val() == 0) {
+                text_alert = text_alert + '- ข้อมูลผู้ปกครอง หมู่ที่  <br/>';
+            }
+        }
+        if ($('#provinceguardian')) {
+            if ($('#provinceguardian').val() == 0) {
+                text_alert = text_alert + '- ข้อมูลผู้ปกครอง จังหวัด  <br/>';
+            }
+        }
+        if ($('#isnamedistrict')) {
+            if ($('#isnamedistrict').val() == 0) {
+                text_alert = text_alert + '- ข้อมูลผู้ปกครอง อำเภอ  <br/>';
+            }
+        }
+        if ($('#isnamesubdistrict')) {
+            if ($('#isnamesubdistrict').val() == 0) {
+                text_alert = text_alert + '- ข้อมูลผู้ปกครอง ตำบล  <br/>';
+            }
+        }
+        if ($('#phoneguardian')) {
+            if ($('#phoneguardian').val() == 0) {
+                text_alert = text_alert + '- เบอร์ติดต่อผู้ปกครอง  <br/>';
             }
         }
         if (text_alert != '') {
