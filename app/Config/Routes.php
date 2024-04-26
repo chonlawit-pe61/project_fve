@@ -43,7 +43,8 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');
-    $routes->post('Addadmin','Addmin::Addadmin');
+    $routes->get('life', 'Addmin::index11');
+    $routes->post('Addadmin','Addmin::Addadmin'); 
 });
 $routes->group('/Addsubject', ['namespace' => '\Modules\Addsubject\Controllers'], function ($routes) {
     $routes->get('/', 'Addsubject::index');

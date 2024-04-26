@@ -26,8 +26,8 @@ use Modules\Addmin\Controllers\Addmin;
                     <div class="d-flex justify-content-center" style="margin-top:50px;">
                         <form method="post" action="<?php echo base_url('Addmin/Addadmin') ?>">
                             <div style="margin-top:15px;">
-                                <input class="control" type="text" placeholder="Firstname" name="fname" required>
-                                <input class="control" type="text" placeholder="Lastname" name="lname" required><br><br>
+                                <input class="control" type="text" placeholder="Firstname" name="firstname" required>
+                                <input class="control" type="text" placeholder="Lastname" name="lastname" required><br><br>
                                 <input class="control" type="text" placeholder="Username" name="user" required>
                                 <input class="control" type="password" placeholder="Password" name="pass" required><br><br>
                         <label>สถานนะ</label>
@@ -35,7 +35,7 @@ use Modules\Addmin\Controllers\Addmin;
                                     <?php  
                                         foreach($userlive as $ul){
                                             ?>
-                                        <option value="0">-</option>
+                                        <option value="<?php echo $ul['id'] ?>"><?php echo $ul['userlive_name'] ?></option>
                                     <?php
                                         }
                                     ?>

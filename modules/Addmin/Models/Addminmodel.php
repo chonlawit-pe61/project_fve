@@ -23,7 +23,18 @@ class Addminmodel extends Model
     {
         $table = $this->db->table('userlive');
         $table->select('*');
-        $data = $table->get()->getRowArray();
+        $data = $table->get()->getResultArray();
         return $data;
     }
+    public function createaddmin($input)
+    
+  {
+    $table = $this->db->table('user');
+    $table->set('firstname', $input['firstname']);
+    $table->set('lastname', $input['lastname']);
+    $table->set('user', $input['user']);
+    $table->set('pass', $input['pass']);
+    $table->set('statusstd', $input['statusstd']);
+    $table->insert();
+  }
 }
