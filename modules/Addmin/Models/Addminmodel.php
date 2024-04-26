@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Auth\Models;
+namespace Modules\Addmin\Models;
 
 use CodeIgniter\Model;
 
