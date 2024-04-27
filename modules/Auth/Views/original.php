@@ -31,10 +31,16 @@
                     <div class="d-flex justify-content-center" style="margin-top:50px;">
                         <form id="CheckSubmit" method="post" action="<?php echo base_url('/login') ?>">
                             <img src="<?php echo base_url('public/img/logofve.png') ?>" alt="Avatar" width="200">
+                            <h4 class="my-3">ระบบทะเบียนวิทยาลัยการอาชีพฝาง</h4>
+                            <?php if (session()->getFlashdata('msg')) : ?>
+                                <div class="alert alert-warning">
+                                    <?= session()->getFlashdata('msg') ?>
+                                </div>
+                            <?php endif; ?>
                             <div style="margin-top:15px;">
-                                <input class="control" type="text" placeholder="Username" name="user" required>
-                                <input class="control" type="password" placeholder="Password" name="pass" required><br><br>
-                                <input type="submit" name="submit" value="เข้าสู่ระบบ" class="btn btn-success">
+                                <input class="form-control my-2" type="text" placeholder="Username" name="username" required>
+                                <input class="form-control my-2" type="password" placeholder="Password" name="password" required>
+                                <input type="submit" name="submit" value="เข้าสู่ระบบ" class="btn btn-success my-4">
                                 <!-- <a href="register.php" class="btn btn-warning">สมัครสมาชิก</a> -->
                             </div>
                         </form>

@@ -28,8 +28,8 @@ class Database extends Config
 	public $default = array(
 		'hostname' => "localhost",
 		'username' => 'root',
-		'password' => '',
-		'database' => 'fve',
+		'password' => 'root',
+		'database' => 'collage',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pconnect' => true,

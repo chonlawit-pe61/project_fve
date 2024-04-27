@@ -59,7 +59,7 @@
                     <li><a href="" class="nav-link"><i class="fa-solid fa-pen-to-square" style="color: black; font-size: 20px;"> เพิ่มผลการเรียน</i></a></li>
                     <li><a href=""><i class="fa-solid fa-magnifying-glass" style="color: black; font-size: 20px;"> ดูผลการเรียน</i></a></li>
                     <li class="header"><b style="font-size: 20px; color: #fff;"></b></li>
-                    <li><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket" style="color: black; font-size: 20px;"> ออกจากระบบ</i></a></li>
+                    <li><a href="<?= base_url('/logout') ?>"><i class="fa-solid fa-arrow-right-from-bracket" style="color: black; font-size: 20px;"> ออกจากระบบ</i></a></li>
                     <li class="header"><b style="font-size: 20px; color: #fff;"></b></li>
                 </ul>
             </section>

@@ -32,8 +32,15 @@ $routes->setAutoRoute(true);
 $routes->group('/', ['namespace' => '\Modules\Auth\Controllers'], function ($routes) {
     $routes->get('/', 'Auth::index');
     $routes->post('/login', 'Auth::login');
+    $routes->get('/logout', 'Auth::logout');
 });
-$routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers'], function ($routes) {
+
+$routes->group('/users', ['namespace' => '\Modules\User\Controllers', 'filter' => 'authGuard'], function ($routes) {
+    $routes->get('/', 'User::index');
+    $routes->get('add-sp-admin', 'User::add_super_admin');
+});
+
+$routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filter' => 'authGuard'], function ($routes) {
     $routes->get('/', 'Homepages::homepage');
 });
 $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], function ($routes) {
