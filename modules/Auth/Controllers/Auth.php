@@ -18,17 +18,44 @@ class Auth extends BaseController
   public function login()
   {
     $session = session();
-    $input = $this->request->getPost();
+    $username = $this->request->getPost('username');
+    $password = $this->request->getPost('password');
     $AuthModel = new AuthModel();
-    $checkLogin = $AuthModel->CheckLogin($input);
 
-    if (!empty($checkLogin)) {
-      return redirect()->to(base_url('/home'));
-    } else {
-      $session->setFlashdata('msg', 'คุณกรอกรหัสผ่านผิด');
-      return redirect()->to(base_url('/'));
+    $user = $AuthModel->CheckLogin($username);
+
+    if ($user) {
+      $pass_hash = $user['password'];
+      $authenPassword = password_verify($password, $pass_hash);
+
+      if ($authenPassword) {
+
+        $ses_data = [
+          'user_id' => $user['id'],
+          'username' => $user['username'],
+          'role_id' => $user['role_id'],
+          'isLoggedIn' => TRUE,
+        ];
+
+        $session->set($ses_data);
+        return redirect()->to(base_url('home/'));
+      } else {
+        $session->setFlashdata('msg', 'คุณกรอกรหัสผ่านผิด');
+        return redirect()->to('/');
+      }
     }
+    $session->setFlashdata('msg', 'ไม่พบชื่อผู้ใช้งานนี้');
+    return redirect()->to('/');
   }
+
+  public function logout()
+  {
+      $session = session();
+      $session->set(array('name' => '', 'isLoggedIn' => FALSE));
+      // $session->destroy();
+      return redirect()->to(base_url('/'));
+  }
+  
   public function test()
   {
     return view('Modules\Auth\Views\test.php');

@@ -10,12 +10,11 @@ class AuthModel extends Model
     protected $primaryKey = "";
     protected $allowedFields = [];
 
-    public function CheckLogin($input = '')
+    public function CheckLogin($username)
     {
-        $table = $this->db->table('user');
+        $table = $this->db->table('users');
         $table->select('*');
-        $table->where('user', $input['user']);
-        $table->where('pass', $input['pass']);
+        $table->where('username', $username);
         $data = $table->get()->getRowArray();
         return $data;
     }
