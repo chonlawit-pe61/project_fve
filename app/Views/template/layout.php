@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pre-Ved Fve Home Page</title>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/css.css') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/style.css.map') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/font-awesome.min.css') ?>">
+
     <link rel="icon" href="img/logofve.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <! <link rel="stylesheet" href="css/fontawesome.min.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url('public/css/ionicons.min.css') ?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/css/adminlte.min.css') ?> ">
-    <link rel="stylesheet" href="<?php echo base_url('public/css/skin.min.css') ?> ">
     <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
     <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4"></script>
     <script src="https://unpkg.com/downloadjs@1.4.7"></script>
@@ -20,9 +19,103 @@
     <link rel="stylesheet" href="<?php echo base_url('public/css/dataTables.dataTables.min.css') ?>">
     <link rel="stylesheet" href="<?php echo base_url('public/css/select2.min.css') ?>">
 </head>
+<style>
+    .app-brand a {
+        height: 90px;
+    }
+</style>
 
-<body class="skin-blue">
+<body class="navbar-fixed sidebar-fixed" id="body">
+
     <div class="wrapper">
+        <aside class="left-sidebar sidebar-dark" id="left-sidebar">
+            <div id="sidebar" class="sidebar sidebar-with-footer">
+                <!-- Aplication Brand -->
+                <div class="app-brand">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="">
+                            <img class="img-fluid" src="<?php echo base_url('public/img/Header.png') ?>" alt="Mono">
+                        </a>
+
+                    </div>
+
+                </div>
+                <!-- begin sidebar scrollbar -->
+                <div class="sidebar-left" data-simplebar style="height: 100%;">
+                    <ul class="nav sidebar-inner" id="sidebar-menu">
+                        <li class="active">
+                            <a class="sidenav-item-link" href="index.html">
+                                <i class="mdi mdi-briefcase-account-outline"></i>
+                                <span class="nav-text">Business Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="section-title text-white">
+                            งานทะเบียน
+                        </li>
+                        <li>
+                            <a class="sidenav-item-link" href="<?php echo base_url('/Student/create') ?>">
+                                <!-- <i class="mdi mdi-wechat"></i> -->
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                <span class="nav-text">เพิ่มรายชื่อนักศึกษา</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sidenav-item-link" href="contacts.html">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="nav-text">ดูรายชื่อนักศึกษา</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sidenav-item-link" href="team.html">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                <span class="nav-text">เพิ่มเจ้าหน้าที่</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <span class="nav-text">ออกจากระบบ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </aside>
+        <div class="page-wrapper">
+            <header class="main-header" id="header">
+                <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+                    <div class="p-3">
+                        <i class="fa fa-align-justify" onclick="ShowNav()" style="font-size: 25px; cursor: pointer;" aria-hidden="true"></i>
+                    </div>
+                    <span class="page-title">dashboard</span>
+                    <div class="navbar-right ">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user-menu">
+                                <div class="text-center">
+                                    <img src="<?php echo base_url('public/img/User.png') ?>" class="user-image rounded-circle" alt="User Image" />
+                                    <span class="d-none d-lg-inline-block">John Doe</span>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <div class="content-wrapper">
+                <div class="content">
+                    <?php $this->renderSection('content'); ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="wrapper">
         <header class="main-header">
             <a href="<?php echo base_url('home') ?>" class="logo">
                 <span class="logo-mini" style="margin-top:5%;"><b>M-Place</b></span>
@@ -64,10 +157,7 @@
                 </ul>
             </section>
         </aside>
-    </div>
-    <div class="content-wrapper">
-        <?php $this->renderSection('content'); ?>
-    </div>
+    </div> -->
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -80,6 +170,25 @@
     <script src="<?php echo base_url('public/js/functiondeleteroom.js') ?> "></script>
 
     <?php $this->renderSection('scripts'); ?>
+    <script>
+        let show = false;
+        const ShowNav = () => {
+            if (show) {
+                $('#body').removeClass();
+                $('#body').addClass('navbar-fixed sidebar-fixed sidebar-minified-out');
+
+                show = false;
+            } else {
+                $('#body').removeClass();
+                $('#body').addClass('navbar-fixed sidebar-fixed sidebar-minified');
+                show = true;
+            }
+        }
+        const HidNav = () => {
+            $('#body').removeClass();
+            $('#body').addClass('navbar-fixed sidebar-fixed sidebar-minified');
+        }
+    </script>
 </body>
 
 </html>
