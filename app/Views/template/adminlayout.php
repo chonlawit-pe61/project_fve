@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="<?php echo base_url('public/css/select2.min.css') ?>">
 </head>
 
+<?php $this->renderSection('style'); ?>;
+
 <body class="skin-blue">
     <div class="wrapper">
         <header class="main-header">

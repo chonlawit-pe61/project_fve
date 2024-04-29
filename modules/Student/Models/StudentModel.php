@@ -3,6 +3,7 @@
 namespace Modules\Student\Models;
 
 use CodeIgniter\Model;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions\F;
 
 class StudentModel extends Model
 {
@@ -129,98 +130,98 @@ class StudentModel extends Model
         $table->insert();
     }
 
-    public function provice()
+    public function getTypeCard()
     {
-        $table = $this->db->table('th_province');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('type_card');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
-    public function distic()
+    public function getProvince()
     {
-        $table = $this->db->table('th_district');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('province');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
-    public function Subdistic()
+    public function getGender()
     {
-        $table = $this->db->table('th_subdistrict');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
-        return $data;
-    }
-    public function level()
-    {
-        $table = $this->db->table('level');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
-        return $data;
-    }
-    public function typegender()
-    {
-        $table = $this->db->table('typegender');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
-        return $data;
-    }
-    public function religion()
-    {
-        $table = $this->db->table('religion');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('gender');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
 
-    public function special_ability()
+    public function getReligion()
     {
-        $table = $this->db->table('special_ability');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('religion');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
 
-    public function classroom()
+    public function getBlood()
     {
-        $table = $this->db->table('classroom');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
-        return $data;
-    }
-    public function teachertitle()
-    {
-        $table = $this->db->table('teachertitle');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
-        return $data;
-    }
-    public function department()
-    {
-        $table = $this->db->table('department');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('blood');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
 
-    public function year()
+    public function getEducationLevel()
     {
-        $table = $this->db->table('year');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('education_level');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
-    public function isparent()
+    public function getEducationYear()
     {
-        $table = $this->db->table('isparent');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('education_year');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
         return $data;
     }
-    public function ismarried()
+
+    public function getStatusType()
     {
-        $table = $this->db->table('ismarried');
-        $table->select('*');
-        $data = $table->get()->getResultArray();
+        $builder = $this->db->table('status_type');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+
+
+    public function getPrename()
+    {
+        $builder = $this->db->table('prename');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+
+    public function getEducationRoom()
+    {
+        $builder = $this->db->table('education_room');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+
+    public function getDepartment()
+    {
+        $builder = $this->db->table('department');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+
+    public function getDistrict($province_id)
+    {
+        $builder = $this->db->table('district');
+        $builder->select('*');
+        $builder->where('pronivce_id', $province_id);
+        $data = $builder->get()->getResultArray();
         return $data;
     }
 }

@@ -19,28 +19,32 @@ class Student extends BaseController
   public function createStd()
   {
     $StudentModel = new StudentModel();
-    $data['typepeople'] = $StudentModel->getTypepeople();
-    $data['provice'] = $StudentModel->provice();
-    $data['distic'] = $StudentModel->distic();
-    $data['Subdistic'] = $StudentModel->Subdistic();
-    $data['level'] = $StudentModel->level();
-    $data['typegender'] = $StudentModel->typegender();
-    $data['religion'] = $StudentModel->religion();
-    $data['special_ability'] = $StudentModel->special_ability();
-    $data['classroom'] = $StudentModel->classroom();
-    $data['department'] = $StudentModel->department();
-    $data['year'] = $StudentModel->year();
-    $data['teachertitle'] = $StudentModel->teachertitle();
-    $data['isparent'] = $StudentModel->isparent();
-    $data['ismarried'] = $StudentModel->ismarried();
+    $data['type_card'] = $StudentModel->getTypeCard();
+    $data['provinces'] = $StudentModel->getProvince();
+    $data['genders'] = $StudentModel->getGender();
+    $data['religions'] = $StudentModel->getReligion();
+    $data['bloods'] = $StudentModel->getBlood();
+    $data['education_levels'] = $StudentModel->getEducationLevel();
+    $data['departments'] = $StudentModel->getDepartment();
+    $data['education_years'] = $StudentModel->getEducationYear();
+    $data['education_rooms'] = $StudentModel->getEducationRoom();
+    $data['prenames'] = $StudentModel->getPrename();
+    $data['status_types'] = $StudentModel->getStatusType();
+    // $data['special_ability'] = $StudentModel->special_ability();
+    // $data['classroom'] = $StudentModel->classroom();
+    // $data['department'] = $StudentModel->department();
+    // $data['year'] = $StudentModel->year();
+    // $data['teachertitle'] = $StudentModel->teachertitle();
+    // $data['isparent'] = $StudentModel->isparent();
+    // $data['ismarried'] = $StudentModel->ismarried();
     return view('Modules\Student\Views\createStd.php', $data);
   }
   public function insetStd()
   {
     $session = session();
     $StudentModel = new StudentModel();
-    $input = $this->request->getPost();// $_POST
-    $files = $this->request->getFiles();// $_file
+    $input = $this->request->getPost(); // $_POST
+    $files = $this->request->getFiles(); // $_file
     if ($files['file1']->isValid()) {
       $randomName = $files['file1']->getRandomName();
       $data['fileName'] = $files['file1']->getName();
@@ -54,5 +58,14 @@ class Student extends BaseController
     $session->setFlashdata('error', 'บันทึกข้อมูลไม่สำเร็จ');
     $StudentModel->insetStd($input);
     return redirect()->to(base_url('/Student/create'));
+  }
+
+
+  public function getDistrict()
+  {
+    $input = $this->request->getPost();
+    $StudentModel = new StudentModel();
+    $result = $StudentModel->getDistrict($input['province_id']);
+    return json_encode($result);
   }
 }
