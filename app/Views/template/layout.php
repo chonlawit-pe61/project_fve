@@ -66,10 +66,10 @@
                                 <span class="nav-text">ดูรายชื่อนักศึกษา</span>
                             </a>
                         </li>
-                        <li>
-                            <a class="sidenav-item-link" href="team.html">
+                        <li class="<?= uri_string() == 'users' ? 'active' : '' ?>">
+                            <a class="sidenav-item-link" href="<?= base_url('users') ?>">
                                 <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                <span class="nav-text">เพิ่มเจ้าหน้าที่</span>
+                                <span class="nav-text">บุคลากร</span>
                             </a>
                         </li>
                         <li>
@@ -96,7 +96,7 @@
                             <li class="dropdown user-menu">
                                 <div class="text-center">
                                     <img src="<?php echo base_url('public/img/User.png') ?>" class="user-image rounded-circle" alt="User Image" />
-                                    <span class="d-none d-lg-inline-block">John Doe</span>
+                                    <span class="d-none d-lg-inline-block"><?= session()->get('username') ?></span>
                                 </div>
 
                             </li>

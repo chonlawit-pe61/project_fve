@@ -37,7 +37,11 @@ $routes->group('/', ['namespace' => '\Modules\Auth\Controllers'], function ($rou
 
 $routes->group('/users', ['namespace' => '\Modules\User\Controllers', 'filter' => 'authGuard'], function ($routes) {
     $routes->get('/', 'User::index');
-    $routes->get('add-sp-admin', 'User::add_super_admin');
+    $routes->post('save', 'User::save');
+    $routes->get('ajax-users', 'User::ajax_users');
+    $routes->get('manage', 'User::manage');
+    $routes->get('manage/(:num)', 'User::manage/$id');
+
 });
 
 $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filter' => 'authGuard'], function ($routes) {

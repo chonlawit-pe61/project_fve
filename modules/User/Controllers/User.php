@@ -16,23 +16,48 @@ class User extends BaseController
 
   public function index()
   {
-    return "1234" ;
+    return view('Modules\User\Views\index.php') ;
   }
 
-  public function add_super_admin() 
+  public function ajax_users ()
   {
-    $data = [
-        'username' => 'admin',
-        'password' => 'P@ssw0rd',
-        'firstname' => 'Super',
-        'lastname' => 'Admin',
-        'role_id' => '1',
-        'created_at' => date('Y-m-d H:i:s'),
-        'created_by' => 'Super Admin',
-        'updated_at' => date('Y-m-d H:i:s'),
-        'updated_by' => 'Super Admin',
-    ] ;
+    $search = $this->request->getGet();
+    $data = $this->userModel->getUsers('', $search) ;
+    return json_encode(
+      [
+        'draw' => $search['draw'],
+        'recordsTotal' => count($data),
+        'recordsFiltered' => count($data),
+        'data' => $data,
+        'filter' => $search
+      ]
+    );
+  }
+
+  public function save() 
+  {
+    // $data = [
+    //     'username' => 'admin',
+    //     'password' => 'P@ssw0rd',
+    //     'firstname' => 'Super',
+    //     'lastname' => 'Admin',
+    //     'role_id' => '1',
+    //     'created_at' => date('Y-m-d H:i:s'),
+    //     'created_by' => 'Super Admin',
+    //     'updated_at' => date('Y-m-d H:i:s'),
+    //     'updated_by' => 'Super Admin',
+    // ] ;
+    $data = $this->request->getPost();
     $res = $this->userModel->saveUser($data);
-    return $res;
+    return redirect()->to(base_url('users'));
+  }
+
+  public function manage ($id='') {
+    $data['roles'] = $this->userModel->get_roles();
+
+    if($id){
+      $data['user'] = $this-> 
+    }
+    return view('Modules\User\Views\manage.php', $data) ;
   }
 }

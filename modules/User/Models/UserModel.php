@@ -11,6 +11,27 @@ class UserModel extends Model
     protected $primaryKey = "";
     protected $allowedFields = [];
 
+    function getUsers($id='', $search=array())
+    {
+        $builder = $this->db->table('users');
+
+        $builder->select('users.*, roles.name as role_name');
+
+        // Filter
+        
+        // 
+
+        // Join Table
+        $builder->join('roles', 'roles.id = users.role_id' , 'left');
+
+        if($id) {
+            $data = $builder->get()->getRowArray();
+        } else {
+            $data = $builder->get()->getResultArray();
+        }
+        return $data;
+    }
+
     function saveUser($input)
     {
         $builder = $this->db->table('users');
@@ -20,10 +41,10 @@ class UserModel extends Model
         $builder->set('firstname', $input['firstname']);
         $builder->set('lastname', $input['lastname']);
         $builder->set('role_id', $input['role_id']);
-        $builder->set('created_at', $input['created_at']);
-        $builder->set('created_by', $input['created_by']);
-        $builder->set('updated_at', $input['updated_at']);
-        $builder->set('updated_by', $input['updated_by']);
+        $builder->set('created_at', ($input['created_at']) ? $input['created_at'] : date('Y-m-d H:i:s'));
+        $builder->set('created_by', 1);
+        $builder->set('updated_at', ($input['updated_at'])? $input['updated_at'] : date('Y-m-d H:i:s'));
+        $builder->set('updated_by', 1);
 
         if(empty($input['id'])) {
             $builder->insert();
@@ -38,5 +59,14 @@ class UserModel extends Model
         ];
 
         return json_encode($res);
+    }
+
+    // MASTER DATA
+    function get_roles(){
+        $builder = $this->db->table('roles');
+        $builder->select('id, name');
+        $builder->whereNotIn('id', [3]);
+        $data = $builder->get()->getResultArray();
+        return $data ;
     }
 }
