@@ -54,7 +54,7 @@ class User extends BaseController
 
   public function manage ($id='') {
     $data['roles'] = $this->userModel->get_roles();
-
+    $data['departments'] = $this->userModel->get_departments();
     if($id){
       $data['data'] = $this->userModel->getUsers($id);
     }

@@ -34,6 +34,15 @@
                 <input type="text" name="lastname" id="" class="form-control" value="<?= @$data['lastname'] ?>">
             </div>
             <div class="col-md-3">
+                <label for="">แผนก</label>
+                <select name="department_id" id="department_id" class="form-select">
+                    <option value="">เลือก</option>
+                    <?php foreach($departments as $key => $dep) { ?>
+                        <option value="<?= $dep['department_id'] ?>" <?= (@$data['department_id'] == $dep['department_id']) ? 'selected' : '' ?>><?= $dep['department_name'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-md-3">
                 <label for="">ชื่อผู้ใช้งาน</label>
                 <input type="text" name="username" id="" class="form-control" value="<?= @$data['username'] ?>">
             </div>

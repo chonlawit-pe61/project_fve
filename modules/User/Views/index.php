@@ -77,17 +77,24 @@
                 }
             },
             {
-                data: 'lastname'
+                data: 'department_name',
             },
             {
-                data: 'role_name'
+                data: 'is_active',
+                render: function(data){
+                    if(data == 1){
+                        return '<span class="badge badge-success">ใช้งาน</span>'
+                    }else{
+                        return '<span class="badge badge-danger">ยกเลิก</span>'
+                    }
+                }
             },
             {
                 data: 'id',
                 render: function(data, row, type, meta) {
                     let btn = `
-                        <a href="<?= base_url() ?>/users/manage/${data}" class="btn btn-warning btn-sm">แก้ไข</a>
-                        <button class="btn btn-danger btn-sm" onclick="deleteUser('${data}')">ลบ</button>
+                        <a href="<?= base_url() ?>/users/manage/${data}" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUser('${data}')"><i class="fa fa-trash"></i></button>
                     `;
                     return btn;
                 }
