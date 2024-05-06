@@ -24,6 +24,7 @@ class UserModel extends Model
         // Join Table
         $builder->join('roles', 'roles.id = users.role_id' , 'left');
 
+        $builder->where('is_active', 1);
         if($id) {
             $builder->where('users.id', $id);
             $data = $builder->get()->getRowArray();
@@ -60,6 +61,19 @@ class UserModel extends Model
         ];
 
         return json_encode($res);
+    }
+
+    function deleteUser($id){
+        $builder = $this->db->table('users');
+        $builder->set('is_active', 0);
+        $builder->where('id', $id);
+        $builder->update();
+
+        $res = [
+            'status' => 200,
+            'msg' => '  Successfully'
+        ];
+        return $res ;
     }
 
     // MASTER DATA

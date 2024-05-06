@@ -60,4 +60,10 @@ class User extends BaseController
     }
     return view('Modules\User\Views\manage.php', $data) ;
   }
+
+  public function delete() {
+    $id = $this->request->getPost('id');
+    $responese = $this->userModel->deleteUser($id);
+    return json_encode($responese);
+  }
 }

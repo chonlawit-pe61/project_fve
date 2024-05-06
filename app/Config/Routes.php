@@ -41,7 +41,7 @@ $routes->group('/users', ['namespace' => '\Modules\User\Controllers', 'filter' =
     $routes->get('ajax-users', 'User::ajax_users');
     $routes->get('manage', 'User::manage');
     $routes->get('manage/(:num)', 'User::manage/$1');
-
+    $routes->post('delete', 'User::delete');
 });
 
 $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filter' => 'authGuard'], function ($routes) {
