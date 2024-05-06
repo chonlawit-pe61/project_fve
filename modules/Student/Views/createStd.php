@@ -11,9 +11,7 @@
 
 <?php $this->section('content'); ?>
 <div class="pt-1 px-3">
-    <h1 class="mt-0"><u><b>เพิ่มรายชื่อ</b></u> นักเรียนนักศึกษา Pre-Ved Fve</h1>
-
-
+    <h1 class="mt-0">เพิ่มรายชื่อนักเรียนนักศึกษา Pre-Ved Fve</h1>
     <div class="">
         <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
             <div class="">
@@ -354,7 +352,8 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            อาชีพของมารดา: <input id="mother_occupation" class="form-control" type="text" placeholder="อาชีพของมารดา" name="mother_occupation">
+                            <label>อาชีพของมารดา</label>
+                            <input id="mother_occupation" class="form-control" type="text" placeholder="อาชีพของมารดา" name="mother_occupation">
                         </div>
                         <div class="col-lg-3">
                             ประเภทความพิการ: <input class="form-control" placeholder="ประเภทความพิการมารดา" name="mother_disability_type">
@@ -374,18 +373,25 @@
                             </select>
                         </div>
                         <!-- ส่วนที่ 3 -->
-                        <h3><u><b>ส่วนที่ 3</b></u> ข้อมูลผู้ปกครอง</h3>
-                        <hr style="border: none; height: 2px; background-color: #030100;"><br>
+                        <div class="col-lg-12">
+                            <h3><u><b>ส่วนที่ 3</b></u> ข้อมูลผู้ปกครอง</h3>
+                        </div>
+                        <div class="col-lg-12">
+                            <hr style="border: none; height: 2px; background-color: #030100;">
+                        </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
-                                ชื่อผู้ปกครอง: <input id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
+                                <label>ชื่อผู้ปกครอง</label>
+                                <input id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            นามสกุลผู้ปกครอง: <input id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
+                            <label>นามสกุลผู้ปกครอง</label>
+                            <input id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
                         </div>
                         <div class="col-lg-3">
-                            เลขบัตรประจำตัวประชาชนของผู้ปกครอง: <input id="numberpeopleguardian" class="form-select" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
+                            <label>เลขบัตรประจำตัวประชาชนของผู้ปกครอง</label>
+                            <input id="numberpeopleguardian" class="form-select" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>เลือกประเภทบัตร</label>
@@ -402,17 +408,22 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
-                                ความสัมพันธ์: <input id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
+                                <label>ความสัมพันธ์</label>
+                                <input id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            อาชีพของผู้ปกครอง: <input id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
+                            <label>อาชีพของผู้ปกครอง</label>
+                            <input id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
                         </div>
                         <div class="col-lg-3">
-                            ที่อยู่ปัจจุบันของผู้ปกครอง: <input id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
+
+                            <label>ที่อยู่ปัจจุบันของผู้ปกครอง</label>
+                            <input id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
                         </div>
                         <div class="col-lg-3">
-                            หมู่ที่: <input id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
+                            <label>หมู่ที่</label>
+                            <input id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
@@ -445,11 +456,18 @@
                             </select>
                         </div>
                         <div class="col-lg-3">
-                            เบอร์ติดต่อผู้ปกครอง: <input id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
+                            <label>เบอร์ติดต่อผู้ปกครอง</label>
+                            <input id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
                         </div>
                     </div>
-                    <h3><u><b><input onclick="saveData()" type="button" value="บันทึกข้อมูล" class="btn btn-success">
-                                <h3><u><b><input type="reset" value="ยกเลิก" class="btn btn-danger">
+                    <div class="row">
+                        <div class="col-lg-12 text-center my-2">
+                            <button class="btn btn-success" onclick="saveData()">
+                                บันทึก
+                            </button>
+                            <input type="reset" value="ยกเลิก" class="btn btn-danger">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

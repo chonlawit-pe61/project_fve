@@ -18,7 +18,10 @@ class Student extends BaseController
   }
   public function createStd()
   {
+    // print_r($_SESSION);
+    // die();
     $StudentModel = new StudentModel();
+
     $data['type_card'] = $StudentModel->getTypeCard();
     $data['provinces'] = $StudentModel->getProvince();
     $data['genders'] = $StudentModel->getGender();
@@ -43,6 +46,7 @@ class Student extends BaseController
   {
     $session = session();
     $StudentModel = new StudentModel();
+    $input['users_id'] = $session['role_id'];
     $input = $this->request->getPost(); // $_POST
     $files = $this->request->getFiles(); // $_file
     if ($files['file1']->isValid()) {
@@ -59,13 +63,18 @@ class Student extends BaseController
     $StudentModel->insetStd($input);
     return redirect()->to(base_url('/Student/create'));
   }
-
-
   public function getDistrict()
   {
     $input = $this->request->getPost();
     $StudentModel = new StudentModel();
     $result = $StudentModel->getDistrict($input['province_id']);
+    return json_encode($result);
+  }
+  public function getSubdistrict()
+  {
+    $input = $this->request->getPost();
+    $StudentModel = new StudentModel();
+    $result = $StudentModel->getSubdistrict($input['subdistrict_id']);
     return json_encode($result);
   }
 }

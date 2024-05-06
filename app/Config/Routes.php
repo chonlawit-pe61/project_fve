@@ -41,7 +41,6 @@ $routes->group('/users', ['namespace' => '\Modules\User\Controllers', 'filter' =
     $routes->get('ajax-users', 'User::ajax_users');
     $routes->get('manage', 'User::manage');
     $routes->get('manage/(:num)', 'User::manage/$id');
-
 });
 
 $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filter' => 'authGuard'], function ($routes) {
@@ -51,11 +50,13 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->get('/', 'Student::index');
     $routes->get('create', 'Student::createStd');
     $routes->post('createStd', 'Student::insetStd');
+    $routes->post('getDistrict', 'Student::getDistrict');
+    $routes->post('getSubdistrict', 'Student::getSubdistrict');
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');
     $routes->get('life', 'Addmin::index11');
-    $routes->post('Addadmin','Addmin::Addadmin'); 
+    $routes->post('Addadmin', 'Addmin::Addadmin');
 });
 $routes->group('/Addsubject', ['namespace' => '\Modules\Addsubject\Controllers'], function ($routes) {
     $routes->get('/', 'Addsubject::index');

@@ -224,4 +224,12 @@ class StudentModel extends Model
         $data = $builder->get()->getResultArray();
         return $data;
     }
+    public function getSubdistrict($district_id)
+    {
+        $builder = $this->db->table('subdistrict');
+        $builder->select('*');
+        $builder->where('district_id', $district_id);
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
 }
