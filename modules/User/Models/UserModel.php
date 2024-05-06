@@ -25,6 +25,7 @@ class UserModel extends Model
         $builder->join('roles', 'roles.id = users.role_id' , 'left');
 
         if($id) {
+            $builder->where('users.id', $id);
             $data = $builder->get()->getRowArray();
         } else {
             $data = $builder->get()->getResultArray();

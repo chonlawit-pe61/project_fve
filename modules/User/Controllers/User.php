@@ -56,7 +56,7 @@ class User extends BaseController
     $data['roles'] = $this->userModel->get_roles();
 
     if($id){
-      $data['user'] = $this-> 
+      $data['data'] = $this->userModel->getUsers($id);
     }
     return view('Modules\User\Views\manage.php', $data) ;
   }

@@ -2,6 +2,7 @@
 
 <?php $this->section('content'); ?>
 <form action="<?= base_url('users/save') ?>" method="POST">
+    <input type="hidden" name="id" value="<?= @$data['id'] ?>">
     <div class="p-3 border shadow-sm">
         <div class="row">
             <div class="col-md-12">
@@ -14,7 +15,7 @@
                     <?php
                     foreach ($roles as $key => $role) {
                     ?>
-                        <option value="<?= $role['id'] ?>"><?= $role['name'] ?></option>
+                        <option value="<?= $role['id'] ?>" <?= (@$data['role_id'] == $role['id']) ? 'selected' : '' ?>><?= $role['name'] ?></option>
                     <?php
                     }
                     ?>
@@ -26,19 +27,19 @@
             </div>
             <div class="col-md-3">
                 <label for="">ชื่อ</label>
-                <input type="text" name="firstname" id="" class="form-control">
+                <input type="text" name="firstname" id="" class="form-control" value="<?= @$data['firstname'] ?>">
             </div>
             <div class="col-md-3">
                 <label for="">นามสกุล</label>
-                <input type="text" name="lastname" id="" class="form-control">
+                <input type="text" name="lastname" id="" class="form-control" value="<?= @$data['lastname'] ?>">
             </div>
             <div class="col-md-3">
                 <label for="">ชื่อผู้ใช้งาน</label>
-                <input type="text" name="username" id="" class="form-control">
+                <input type="text" name="username" id="" class="form-control" value="<?= @$data['username'] ?>">
             </div>
             <div class="col-md-3">
                 <label for="">รหัสผ่าน</label>
-                <input type="password" name="password" id="" class="form-control">
+                <input type="password" name="password" id="" class="form-control" value="<?= @$data['password'] ?>" <?= (!empty(@$data['password']) ? 'disabled' : '') ?>>
             </div>
             <div class="col-md-12 pt-3 text-center">
                 <button type="submit" class="btn btn-primary">
