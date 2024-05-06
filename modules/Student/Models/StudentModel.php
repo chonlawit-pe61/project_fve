@@ -13,51 +13,23 @@ class StudentModel extends Model
 
     public function getAllStd($input = '')
     {
-        $table = $this->db->table('std');
-        $table->select('std.*,
-        typepeople.*,
-        department.*,
-        level.*,
-        classroom.*,
+        $table = $this->db->table('student');
+        $table->select(' *,
+        department.department_name,
+        education_year.education_year_name,
+        education_room.education_room_name,
         (
         SELECT
-            th_province.province_th
-         FROM
-            th_province
-         WHERE
-            th_province.id = std.province
-        ) as std_province,
-        (
-        SELECT
-            th_district.district_th
-         FROM
-            th_district
-         WHERE
-            th_district.province_id = std.district
-        ) as std_district,
-        (
-        SELECT
-            th_subdistrict.subdistrict_th
-         FROM
-            th_subdistrict
-         WHERE
-            th_subdistrict.district_id = std.subdistrict
-        ) as std_subdistrict,
-        (
-            SELECT
-                teachertitle.teacherTitle_name
-             FROM
-                teacherTitle
-             WHERE
-                teachertitle.teacherTitle_id = std.teacherTitle
-            )as std_teacherTitle');
-        $table->join('typepeople', 'typepeople.typepeople_id = std.typepeople', 'left');
-        $table->join('department', 'department.department_id = std.department', 'left');
-        $table->join('level', 'level.level_id = std.level', 'left');
-        $table->join('classroom', 'classroom.classroom_id = std.classroom', 'left');
+           prename.prename_name
+        FROM
+           prename
+        WHERE
+           prename.prename_id = student.student_teacher_prename
+        ) as prename_student_teacher');
+        $table->join('department', 'department.department_id = student.student_department', 'left');
+        $table->join('education_year', 'education_year.education_year_id = student.student_level', 'left');
+        $table->join('education_room', 'education_room.education_room_id = student.student_room', 'left');
         $data = $table->get()->getResultArray();
-        // echo $this->db->getLastQuery();
-        // die();
         return $data;
     }
     public function getTypepeople()
@@ -72,62 +44,97 @@ class StudentModel extends Model
     public function insetStd($input = '')
     {
         // e
-        $table = $this->db->table('std');
-        $table->set('numberpeople', $input['numberpeople']);
-        $table->set('typepeople', $input['typepeople']);
-        $table->set('thainamestd', $input['thainamestd']);
-        $table->set('thailaststd', $input['thailaststd']);
-        $table->set('engnamestd', $input['engnamestd']);
-        $table->set('englaststd', $input['englaststd']);
-        $table->set('nicknamestd', $input['nicknamestd']);
-        $table->set('housenumber', $input['housenumber']);
-        $table->set('village', $input['village']);
-        $table->set('province', $input['province']);
-        $table->set('district', $input['district']);
-        $table->set('subdistrict', $input['subdistrictstd']);
-        $table->set('gender', $input['gender']);
-        $table->set('religion', $input['religion']);
-        $table->set('special_ability', $input['special_ability']);
-        $table->set('weight_kg', $input['weight_kg']);
-        $table->set('height_cm', $input['height_cm']);
-        $table->set('blood_type', $input['blood_type']);
-        $table->set('scar', $input['scar']);
-        $table->set('chronic_disease', $input['chronic_disease']);
-        $table->set('student_phone_number', $input['student_phone_number']);
-        $table->set('schoolName', $input['schoolName']);
-        $table->set('level', 1);
-        $table->set('department', 1);
-        $table->set('year', 1);
-        $table->set('classroom', 1);
-        $table->set('teacherTitle', 1);
-        $table->set('teacherName', $input['teacherName']);
-        $table->set('fnamefather', $input['fnamefather']);
-        $table->set('lnamefather', $input['lnamefather']);
-        $table->set('numberpeoplefather', $input['numberpeoplefather']);
-        $table->set('typepeoplefather', $input['typepeoplefather']);
-        $table->set('father_occupation', $input['father_occupation']);
-        $table->set('father_disability_type', $input['father_disability_type']);
-        $table->set('fnamemother', $input['fnamemother']);
-        $table->set('lnamemother', $input['lnamemother']);
-        $table->set('numberpeoplemother', $input['numberpeoplemother']);
-        $table->set('typepeoplemother', $input['typepeoplemother']);
-        $table->set('mother_status', $input['mother_status']);
-        $table->set('mother_occupation', $input['mother_occupation']);
-        $table->set('mother_disability_type', $input['mother_disability_type']);
-        $table->set('isMarried', 1);
-        $table->set('firstnameguardian', $input['firstnameguardian']);
-        $table->set('lastnameguardian', $input['lastnameguardian']);
-        $table->set('numberpeopleguardian', $input['numberpeopleguardian']);
-        $table->set('typepeopleguardian', 1);
-        $table->set('parentguardian', $input['parentguardian']);
-        $table->set('guardian_occupation', $input['guardian_occupation']);
-        $table->set('housenumberguardian', $input['housenumberguardian']);
-        $table->set('villageguardian', $input['villageguardian']);
-        $table->set('provinceguardian', $input['provinceguardian']);
-        $table->set('subdistrictguardian', $input['subdistrictguardian']);
-        $table->set('phoneguardian', $input['phoneguardian']);
-        $table->set('img', $input['file1']);
-        $table->insert();
+        // $table = $this->db->table('std');
+        $builder = $this->db->table('users');
+        $builder->set('username', $input['username']);
+        $builder->set('password', password_hash($input['password'], PASSWORD_DEFAULT));
+        $builder->set('firstname', $input['thainamestd']);
+        $builder->set('lastname', $input['thailaststd']);
+        $builder->set('department_id', $input['department']);
+        $builder->set('created_at', date('Y-m-d H:i:s'));
+        $builder->set('created_by', $input['insert_by']);
+        $builder->set('updated_at', date('Y-m-d H:i:s'));
+        $builder->set('updated_by', $input['insert_by']);
+        $builder->set('role_id', 3);
+        if (!empty($input['id_users'])) {
+            $builder->update();
+            $id = $input['id_users'];
+        } else {
+            $builder->insert();
+            $id = $this->db->insertID();
+        }
+        // echo '<pre>';
+        // print_r($input);
+        // echo $id;
+        // die();
+
+        $builderStd = $this->db->table('student');
+        $builderStd->set('users_id', $id);
+        $builderStd->set('student_id_card', $input['numberpeople']);
+        $builderStd->set('student_type_card', $input['type_card_id']);
+        $builderStd->set('student_name_th', $input['thainamestd']);
+        $builderStd->set('student_lname_th', $input['thailaststd']);
+        $builderStd->set('student_name_en', $input['engnamestd']);
+        $builderStd->set('student_lname_en', $input['englaststd']);
+        $builderStd->set('student_nickname', $input['nicknamestd']);
+        $builderStd->set('student_address', $input['housenumber']);
+        $builderStd->set('student_moo', $input['village']);
+        $builderStd->set('student_province', $input['province']);
+        $builderStd->set('student_district', $input['district']);
+        $builderStd->set('student_subdistrict', $input['subdistrictstd']);
+        $builderStd->set('student_gender', $input['gender']);
+        $builderStd->set('student_religion', $input['religion']);
+        $builderStd->set('student_ability', $input['special_ability']);
+        $builderStd->set('student_weight', $input['weight_kg']);
+        $builderStd->set('student_height', $input['height_cm']);
+        $builderStd->set('student_blood', $input['blood_type']);
+        $builderStd->set('student_defect', $input['scar']);
+        $builderStd->set('student_congenital_disease', $input['chronic_disease']);
+        $builderStd->set('student_phone', $input['student_phone_number']);
+        $builderStd->set('student_original_educational', $input['schoolName']);
+        $builderStd->set('student_graduated_level', $input['level']);
+        $builderStd->set('student_department', $input['department']);
+        $builderStd->set('student_room', $input['classroom']);
+        $builderStd->set('student_teacher_prename', $input['teacherTitle']);
+        $builderStd->set('student_teacher_name', $input['teacherName']);
+        $builderStd->set('student_img', $input['file1']);
+        $builderStd->set('student_father_name', $input['fnamefather']);
+        $builderStd->set('student_father_lname', $input['lnamefather']);
+        $builderStd->set('student_father_id_card', $input['numberpeoplefather']);
+        $builderStd->set('student_father_type_card', $input['typepeoplefather']);
+
+        $builderStd->set('student_father_status', $input['father_status']);
+        $builderStd->set('student_father_job', $input['father_occupation']);
+        $builderStd->set('student_father_disability', $input['father_disability_type']);
+        $builderStd->set('student_mather_name', $input['fnamemother']);
+        $builderStd->set('student_mather_lname', $input['lnamemother']);
+        $builderStd->set('student_mather_id_card', $input['numberpeoplemother']);
+        $builderStd->set('student_mather_type_card', $input['typepeoplemother']);
+        $builderStd->set('student_mather_status', $input['mother_status']);
+        $builderStd->set('student_mather_job', $input['mother_occupation']);
+        $builderStd->set('student_mather_disability', $input['mother_disability_type']);
+        $builderStd->set('student_fa_ma_marita_status', $input['isMarried']);
+        $builderStd->set('student_guardian_name', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_lname', $input['lastnameguardian']);
+        $builderStd->set('student_guardian_id_card', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_type_card', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_relationship', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_job', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_address', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_moo', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_province', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_district', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_subdistrict', $input['firstnameguardian']);
+        $builderStd->set('student_guardian_phone', $input['firstnameguardian']);
+        if (!empty($input['student_id'])) {
+            $builderStd->set('update_at', date('Y-m-d H:i:s'));
+            $builderStd->where('student_id', $input['student_id']);
+            $builderStd->update();
+        } else {
+            $builderStd->set('create_at', date('Y-m-d H:i:s'));
+            $builderStd->set('update_at', date('Y-m-d H:i:s'));
+            $builderStd->insert();
+        }
     }
 
     public function getTypeCard()
@@ -220,7 +227,7 @@ class StudentModel extends Model
     {
         $builder = $this->db->table('district');
         $builder->select('*');
-        $builder->where('pronivce_id', $province_id);
+        $builder->where('province_id', $province_id);
         $data = $builder->get()->getResultArray();
         return $data;
     }

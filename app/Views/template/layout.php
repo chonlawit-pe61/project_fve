@@ -43,25 +43,18 @@
                 <!-- begin sidebar scrollbar -->
                 <div class="sidebar-left" data-simplebar style="height: 100%;">
                     <ul class="nav sidebar-inner" id="sidebar-menu">
-                        <li class="active">
-                            <a class="sidenav-item-link" href="index.html">
-                                <i class="mdi mdi-briefcase-account-outline"></i>
-                                <span class="nav-text">Business Dashboard</span>
-                            </a>
-                        </li>
-
                         <li class="section-title text-white">
                             งานทะเบียน
                         </li>
-                        <li>
+                        <li class="<?php echo uri_string() == 'Student/create' ? 'active' : '' ?>">
                             <a class="sidenav-item-link" href="<?php echo base_url('/Student/create') ?>">
                                 <!-- <i class="mdi mdi-wechat"></i> -->
                                 <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                <span class="nav-text">เพิ่มรายชื่อนักศึกษา</span>
+                                <span class="nav-text">เพิ่มรายชื่อนักศึกษา </span>
                             </a>
                         </li>
-                        <li>
-                            <a class="sidenav-item-link" href="contacts.html">
+                        <li class="<?php echo uri_string() == 'Student' ? 'active' : '' ?>">
+                            <a class="sidenav-item-link" href="<?php echo base_url('Student/') ?>">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="nav-text">ดูรายชื่อนักศึกษา</span>
                             </a>

@@ -247,11 +247,19 @@
                         </div>
                         <div class="col-lg-3">
                             <label>ชื่อครูที่ปรึกษา</label>
-                            <input id="teacherName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อครูที่ปรึกษา ไม่ต้องใส่คำนำหน้า" name="teacherName">
+                            <input id="teacherName" class="form-control" type="text" placeholder="กรุณากรอกชื่อครูที่ปรึกษา ไม่ต้องใส่คำนำหน้า" name="teacherName">
                         </div>
                         <div class="col-lg-3">
                             <label for="formFileLg" class="form-label">รูปภาพของนักศึกษา</label>
                             <input class="form-control " type="file" name="file1">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="formFileLg" class="form-label">username</label>
+                            <input class="form-control" type="text" name="username" placeholder="กรุณากรอก username สำหรับใช้ในการเข้าสู่ระบบ">
+                        </div>
+                        <div class="col-lg-3">
+                            <label for="formFileLg" class="form-label">password</label>
+                            <input class="form-control" type="text" name="password" placeholder="กรุณากรอก password สำหรับใช้ในการเข้าสู่ระบบ">
                         </div>
                         <!-- ส่วนที่ 2 -->
                         <div class="col-lg-12">
@@ -266,14 +274,23 @@
                         <h6><u><b>ข้อมูลบิดา</b></u></h6>
                         <div class="col-lg-3">
                             <div class="mb-3">
-                                ชื่อบิดา: <input id="fnamefather" type="text" class="form-control" placeholder="ชื่อบิดา" name="fnamefather">
+                                <label for="">
+                                    ชื่อบิดา
+                                </label>
+                                <input id="fnamefather" type="text" class="form-control" placeholder="ชื่อบิดา" name="fnamefather">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            นามสกุลบิดา: <input id="lnamefather" type="text" class="form-control" placeholder="นามสกุลบิดา" name="lnamefather">
+                            <label for="">
+                                นามสกุลบิดา
+                            </label>
+                            <input id="lnamefather" type="text" class="form-control" placeholder="นามสกุลบิดา" name="lnamefather">
                         </div>
                         <div class="col-lg-3">
-                            เลขบัตรประจำตัวประชาชนของบิดา: <input id="numberpeoplefather" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplefather">
+                            <label for="">
+                                เลขบัตรประจำตัวประชาชนของบิดา
+                            </label>
+                            <input id="numberpeoplefather" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplefather">
                         </div>
                         <div class="col-lg-3">
                             <label>เลือกประเภทบัตร</label>
@@ -304,24 +321,29 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            อาชีพของบิดา: <input id="father_occupation" class="form-control" type="text" placeholder="อาชีพของบิดา" name="father_occupation">
+                            <label>อาชีพของบิดา</label>
+                            <input id="father_occupation" class="form-control" type="text" placeholder="อาชีพของบิดา" name="father_occupation">
                         </div>
                         <div class="col-lg-3">
-                            ประเภทความพิการ: <input class="form-control" placeholder="ประเภทความพิการ" name="father_disability_type">
+                            <label>ประเภทความพิการ</label>
+                            <input class="form-control" placeholder="ประเภทความพิการ" name="father_disability_type">
                         </div>
                         <br>
                         <!-- ข้อมู,มารดา -->
                         <h6><u><b>ข้อมูลมารดา</b></u></h6>
                         <div class="col-lg-3">
                             <div class="mb-3">
-                                ชื่อมารดา: <input id="fnamemother" type="text" class="form-control" placeholder="ชื่อมารดา" name="fnamemother">
+                                <label>ชื่อมารดา</label>
+                                <input id="fnamemother" type="text" class="form-control" placeholder="ชื่อมารดา" name="fnamemother">
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            นามสกุลมารดา: <input id="lnamemother" type="text" class="form-control" placeholder="นามสกุลมารดา" name="lnamemother">
+                            <label>นามสกุลมารดา</label>
+                            <input id="lnamemother" type="text" class="form-control" placeholder="นามสกุลมารดา" name="lnamemother">
                         </div>
                         <div class="col-lg-3">
-                            เลขบัตรประจำตัวประชาชนของมารดา: <input id="numberpeoplemother" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplemother">
+                            <label>เลขบัตรประจำตัวประชาชนของมารดา</label>
+                            <input id="numberpeoplemother" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplemother">
                         </div>
                         <div class="col-lg-3">
                             <label>เลือกประเภทบัตร</label>
@@ -356,7 +378,8 @@
                             <input id="mother_occupation" class="form-control" type="text" placeholder="อาชีพของมารดา" name="mother_occupation">
                         </div>
                         <div class="col-lg-3">
-                            ประเภทความพิการ: <input class="form-control" placeholder="ประเภทความพิการมารดา" name="mother_disability_type">
+                            <label>ประเภทความพิการ</label>
+                            <input class="form-control" placeholder="ประเภทความพิการมารดา" name="mother_disability_type">
                         </div>
                         <div class="col-lg-3">
                             <label>สถานภาพการสมรสของบิดา-มารดา</label>
@@ -391,7 +414,7 @@
                         </div>
                         <div class="col-lg-3">
                             <label>เลขบัตรประจำตัวประชาชนของผู้ปกครอง</label>
-                            <input id="numberpeopleguardian" class="form-select" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
+                            <input id="numberpeopleguardian" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>เลือกประเภทบัตร</label>
@@ -485,19 +508,20 @@
 
     function getdistrict(id) {
         $.ajax({
-            url: './district.php',
+            url: '<?php echo base_url('Student/getDistrict') ?>',
             type: 'post',
             data: {
-                idprovince: id
+                province_id: id
             },
             success: function(res) {
-                console.log(res);
+                // console.log(res);
                 let respon = JSON.parse(res);
-                console.log(respon);
+                // console.log(respon);
                 $('#district').empty();
                 $('#subdistrict').empty();
+                $('#district').append(`<option value="0">กรุณาเลือกอำเภอ</option>`);
                 for (const key in respon) {
-                    $('#district').append(`<option value='${respon[key].id}'>${respon[key].district_th}</option>`)
+                    $('#district').append(`<option value='${respon[key].id}'>${respon[key].district_th}</option>`);
                 }
             }
         })
@@ -505,16 +529,17 @@
     //อำเภอมาตำบลของนักศึกษา
     function getsubdistrict(id) {
         $.ajax({
-            url: './subdistrict.php',
+            url: '<?php echo base_url('Student/getSubdistrict') ?>',
             type: 'post',
             data: {
-                iddistrict: id
+                subdistrict_id: id
             },
             success: function(res) {
-                console.log(res);
+                // console.log(res);
                 let respon = JSON.parse(res);
-                console.log(respon);
+                // console.log(respon);
                 $('#subdistrict').empty();
+                $('#subdistrict').append(`<option value="0">กรุณาเลือกตำบล</option>`);
                 for (const key in respon) {
                     $('#subdistrict').append(`<option value='${respon[key].id}'>${respon[key].subdistrict_th}</option>`)
                 }
@@ -525,17 +550,18 @@
     // จัดหวัดมาอำเภอของผู้ปกครอง
     function getdistrictisname(id) {
         $.ajax({
-            url: './district.php',
+            url: '<?php echo base_url('Student/getDistrict') ?>',
             type: 'post',
             data: {
-                idprovince: id
+                province_id: id
             },
             success: function(res) {
-                console.log(res);
+                // console.log(res);
                 let respon = JSON.parse(res);
-                console.log(respon);
+                // console.log(respon);
                 $('#isnamedistrict').empty();
-                $('#isnamesubdistrict').empty();
+                // $('#isnamesubdistrict').empty();
+                $('#isnamedistrict').append(`<option value="0">กรุณาเลือกอำเภอ</option>`)
                 for (const key in respon) {
                     $('#isnamedistrict').append(`<option value='${respon[key].id}'>${respon[key].district_th}</option>`)
                 }
@@ -545,16 +571,17 @@
 
     function getsubdistrictisname(id) {
         $.ajax({
-            url: './subdistrict.php',
+            url: '<?php echo base_url('Student/getSubdistrict') ?>',
             type: 'post',
             data: {
-                iddistrict: id
+                subdistrict_id: id
             },
             success: function(res) {
-                console.log(res);
+                // console.log(res);
                 let respon = JSON.parse(res);
-                console.log(respon);
+                // console.log(respon);
                 $('#isnamesubdistrict').empty();
+                $('#isnamesubdistrict').append(`<option value="0">กรุณาเลือกตำบล</option>`);
                 for (const key in respon) {
                     $('#isnamesubdistrict').append(`<option value='${respon[key].id}'>${respon[key].subdistrict_th}</option>`)
                 }

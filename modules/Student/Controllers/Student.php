@@ -13,7 +13,7 @@ class Student extends BaseController
   public function index()
   {
     $StudentModel = new StudentModel();
-    $data['std'] = $StudentModel->getAllStd();
+    $data['students'] = $StudentModel->getAllStd();
     return view('Modules\Student\Views\index.php', $data);
   }
   public function createStd()
@@ -44,10 +44,15 @@ class Student extends BaseController
   }
   public function insetStd()
   {
+
     $session = session();
     $StudentModel = new StudentModel();
-    $input['users_id'] = $session['role_id'];
+    $item = $session->get();
+    // $input['users_id'] = $session['role_id'];
     $input = $this->request->getPost(); // $_POST
+    $input['username'] = 'std2';
+    $input['password'] = 'std2';
+    $input['insert_by'] = $item['user_id'];
     $files = $this->request->getFiles(); // $_file
     if ($files['file1']->isValid()) {
       $randomName = $files['file1']->getRandomName();
