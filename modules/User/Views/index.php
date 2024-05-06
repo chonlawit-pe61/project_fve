@@ -72,21 +72,29 @@
             },
             {
                 data: '',
-                render: function (data, type, row, meta) {
+                render: function(data, type, row, meta) {
                     return row.firstname + ' ' + row.lastname;
                 }
             },
             {
-                data: 'lastname'
+                data: 'department_name',
             },
             {
-                data: 'role_name'
+                data: 'is_active',
+                render: function(data){
+                    if(data == 1){
+                        return '<span class="badge badge-success">ใช้งาน</span>'
+                    }else{
+                        return '<span class="badge badge-danger">ยกเลิก</span>'
+                    }
+                }
             },
             {
                 data: 'id',
                 render: function(data, row, type, meta) {
                     let btn = `
-                        <a href="<?= base_url() ?>/users/manage/${data}" class="btn btn-warning btn-sm">แก้ไข</a>
+                        <a href="<?= base_url() ?>/users/manage/${data}" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUser('${data}')"><i class="fa fa-trash"></i></button>
                     `;
                     return btn;
                 }
@@ -95,3 +103,46 @@
     });
 </script>
 <?php $this->endSection(); ?>
+
+<?php $this->section('scripts') ?>
+<script>
+    $(document).ready(function() {
+
+    });
+
+    function deleteUser(id) {
+        console.log(id)
+        Swal.fire({
+            title: "แจ้งเตือนจากระบบ",
+            text: "คุณต้องการลบบุคลากรรายนี้หรือไม่?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "ตกลง",
+            cancelButtonText: "ยกเลิก"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: "POST",
+                    url: "<?= base_url() ?>/users/delete",
+                    data: {
+                        id : id
+                    },
+                    success: function(res) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "ทำรายการสำเร็จ",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            $('#users-tbl').DataTable().ajax.reload(null, false);
+                        })
+                    }
+                })
+            }
+        });
+    }
+</script>
+<?php $this->endSection() ?>

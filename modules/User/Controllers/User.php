@@ -54,10 +54,16 @@ class User extends BaseController
 
   public function manage ($id='') {
     $data['roles'] = $this->userModel->get_roles();
-
+    $data['departments'] = $this->userModel->get_departments();
     if($id){
-      $data['user'] = $this-> 
+      $data['data'] = $this->userModel->getUsers($id);
     }
     return view('Modules\User\Views\manage.php', $data) ;
+  }
+
+  public function delete() {
+    $id = $this->request->getPost('id');
+    $responese = $this->userModel->deleteUser($id);
+    return json_encode($responese);
   }
 }

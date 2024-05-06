@@ -15,7 +15,7 @@ class UserModel extends Model
     {
         $builder = $this->db->table('users');
 
-        $builder->select('users.*, roles.name as role_name');
+        $builder->select('users.*, roles.name as role_name, department.department_name');
 
         // Filter
         
@@ -23,8 +23,12 @@ class UserModel extends Model
 
         // Join Table
         $builder->join('roles', 'roles.id = users.role_id' , 'left');
+        $builder->join('department', 'department.department_id = users.department_id', 'left');
 
+        // $builder->where('is_active', 1);
+        $builder->whereNotIn('role_id', [1]);
         if($id) {
+            $builder->where('users.id', $id);
             $data = $builder->get()->getRowArray();
         } else {
             $data = $builder->get()->getResultArray();
@@ -41,6 +45,7 @@ class UserModel extends Model
         $builder->set('firstname', $input['firstname']);
         $builder->set('lastname', $input['lastname']);
         $builder->set('role_id', $input['role_id']);
+        $builder->set('department_id', $input['department_id']);
         $builder->set('created_at', ($input['created_at']) ? $input['created_at'] : date('Y-m-d H:i:s'));
         $builder->set('created_by', 1);
         $builder->set('updated_at', ($input['updated_at'])? $input['updated_at'] : date('Y-m-d H:i:s'));
@@ -61,6 +66,19 @@ class UserModel extends Model
         return json_encode($res);
     }
 
+    function deleteUser($id){
+        $builder = $this->db->table('users');
+        $builder->set('is_active', 0);
+        $builder->where('id', $id);
+        $builder->update();
+
+        $res = [
+            'status' => 200,
+            'msg' => '  Successfully'
+        ];
+        return $res ;
+    }
+
     // MASTER DATA
     function get_roles(){
         $builder = $this->db->table('roles');
@@ -68,5 +86,11 @@ class UserModel extends Model
         $builder->whereNotIn('id', [3]);
         $data = $builder->get()->getResultArray();
         return $data ;
+    }
+
+    function get_departments() {
+        $builder = $this->db->table('department');
+        $res = $builder->select('*')->get()->getResultArray();
+        return $res ;
     }
 }
