@@ -15,7 +15,7 @@ class UserModel extends Model
     {
         $builder = $this->db->table('users');
 
-        $builder->select('users.*, roles.name as role_name, department.department_name');
+        $builder->select('users.*, roles.name as role_name, department.department_name, prename.prename_name as prefix_name');
 
         // Filter
         
@@ -24,6 +24,7 @@ class UserModel extends Model
         // Join Table
         $builder->join('roles', 'roles.id = users.role_id' , 'left');
         $builder->join('department', 'department.department_id = users.department_id', 'left');
+        $builder->join('prename', 'prename.prename_id = users.prename_id', 'left');
 
         // $builder->where('is_active', 1);
         $builder->whereNotIn('role_id', [1]);
@@ -42,6 +43,7 @@ class UserModel extends Model
 
         $builder->set('username', $input['username']);
         $builder->set('password', password_hash($input['password'], PASSWORD_DEFAULT));
+        $builder->set('prename_id', $input['prename_id']);
         $builder->set('firstname', $input['firstname']);
         $builder->set('lastname', $input['lastname']);
         $builder->set('role_id', $input['role_id']);
@@ -86,6 +88,13 @@ class UserModel extends Model
         $builder->whereNotIn('id', [3]);
         $data = $builder->get()->getResultArray();
         return $data ;
+    }
+
+    function get_preNames() {
+        $builder = $this->db->table('prename');
+        $builder->select('*');
+        $res = $builder->get()->getResultArray();
+        return $res;
     }
 
     function get_departments() {

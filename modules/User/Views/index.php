@@ -73,7 +73,7 @@
             {
                 data: '',
                 render: function(data, type, row, meta) {
-                    return row.firstname + ' ' + row.lastname;
+                    return row.prefix_name + row.firstname + ' ' + row.lastname;
                 }
             },
             {
