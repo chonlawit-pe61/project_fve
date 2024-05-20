@@ -65,6 +65,15 @@
                                 <span class="nav-text">บุคลากร</span>
                             </a>
                         </li>
+                        <li class="<?= uri_string() == 'subjects' ? 'active' : '' ?>">
+                            <a class="dropdown-link-item" href="<?php echo base_url('subjects') ?>">
+                                <i class="fa-solid fa-book"></i>
+                                <span>รายวิชา</span>
+                            </a>
+                        </li>
+                        <li class="section-title text-white">
+                            ระบบ
+                        </li>
                         <li>
                             <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -83,7 +92,7 @@
                     <div class="p-3">
                         <i class="fa fa-align-justify" onclick="ShowNav()" style="font-size: 25px; cursor: pointer;" aria-hidden="true"></i>
                     </div>
-                    <span class="page-title">dashboard</span>
+                    <span class="page-title"></span>
                     <div class="navbar-right ">
                         <ul class="nav navbar-nav">
                             <li class="dropdown user-menu">

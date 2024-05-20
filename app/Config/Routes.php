@@ -44,6 +44,15 @@ $routes->group('/users', ['namespace' => '\Modules\User\Controllers', 'filter' =
     $routes->post('delete', 'User::delete');
 });
 
+$routes->group('/subjects', ['namespace' => '\Modules\Subject\Controllers'], function ($routes) {
+    $routes->get('/', 'Subject::index');
+    $routes->get('manage', 'Subject::manage');
+    $routes->get('manage/(:num)', 'Subject::manage/$1');
+    $routes->post('save', 'Subject::save');
+    $routes->get('ajax-subjects', 'Subject::ajax_subjects');
+    $routes->post('delete', 'Subject::delete');
+});
+
 $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filter' => 'authGuard'], function ($routes) {
     $routes->get('/', 'Homepages::homepage');
 });

@@ -23,7 +23,12 @@
             </div>
             <div class="col-md-3">
                 <label for="">คำนำหน้า</label>
-                <select name="" id="" class="form-select"></select>
+                <select name="prename_id" id="prename_id" class="form-select">
+                    <option value="">เลือก</option>
+                    <?php foreach($prenames as $row) { ?>
+                        <option value="<?= $row['prename_id'] ?>" <?= (@$data['prename_id'] == $row['prename_id']) ? 'selected' : '' ?>><?= $row['prename_name'] ?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="col-md-3">
                 <label for="">ชื่อ</label>

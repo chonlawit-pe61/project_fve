@@ -4,17 +4,17 @@
 <div class="p-3 border shadow-sm">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="float-left">บุคลากร</h3>
-            <a href="<?= base_url('users/manage'); ?>" class="btn btn-success float-right">เพิ่ม</a>
+            <h3 class="float-left">รายวิชา</h3>
+            <a href="<?= base_url('subjects/manage'); ?>" class="btn btn-success float-right">เพิ่ม</a>
         </div>
         <div class="col-md-12 mt-3">
-            <table id="users-tbl" class="table table-bordered">
+            <table id="subjects-tbl" class="table table-bordered">
                 <thead>
                     <tr>
                         <th width="5%">#</th>
-                        <th>ชื่อ-นามกสุล</th>
-                        <th width="30%">แผนก</th>
-                        <th width="10%">สถานะ</th>
+                        <th width="15%">หมวดวิชา</th>
+                        <th width="30%">ชื่อวิชา</th>
+                        <th width="10%">หน่วยกิต</th>
                         <th width="20%">เครื่องมือ</th>
                     </tr>
                 </thead>
@@ -29,7 +29,7 @@
 
 <?php $this->section('scripts'); ?>
 <script>
-    $('#users-tbl').dataTable({
+    $('#subjects-tbl').dataTable({
         "language": {
             "lengthMenu": "แสดง _MENU_ รายการ",
             "search": "ค้นหา:",
@@ -47,7 +47,7 @@
         },
         processing: true,
         serverSide: true,
-        ajax: "<?= base_url('users/ajax-users') ?>",
+        ajax: "<?= base_url('subjects/ajax-subjects') ?>",
         columnDefs: [{
                 targets: 0,
             },
@@ -71,50 +71,32 @@
                 },
             },
             {
-                data: '',
-                render: function(data, type, row, meta) {
-                    return row.prefix_name + row.firstname + ' ' + row.lastname;
-                }
+                data: 'group_id',
             },
             {
-                data: 'department_name',
+                data: 'name',
             },
             {
-                data: 'is_active',
-                render: function(data){
-                    if(data == 1){
-                        return '<span class="badge badge-success">ใช้งาน</span>'
-                    }else{
-                        return '<span class="badge badge-danger">ยกเลิก</span>'
-                    }
-                }
+                data: 'unit',
             },
             {
                 data: 'id',
                 render: function(data, row, type, meta) {
                     let btn = `
-                        <a href="<?= base_url() ?>/users/manage/${data}" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
-                        <button class="btn btn-danger btn-sm" onclick="deleteUser('${data}')"><i class="fa fa-trash"></i></button>
+                        <a href="<?= base_url() ?>/subjects/manage/${data}" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
+                        <button class="btn btn-danger btn-sm" onclick="deleteSubject('${data}')"><i class="fa fa-trash"></i></button>
                     `;
                     return btn;
                 }
             }
         ]
     });
-</script>
-<?php $this->endSection(); ?>
 
-<?php $this->section('scripts') ?>
-<script>
-    $(document).ready(function() {
-
-    });
-
-    function deleteUser(id) {
+    function deleteSubject(id) {
         console.log(id)
         Swal.fire({
             title: "แจ้งเตือนจากระบบ",
-            text: "คุณต้องการลบบุคลากรรายนี้หรือไม่?",
+            text: "คุณต้องการลบข้อมูลแถวนี้หรือไม่?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -125,7 +107,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     method: "POST",
-                    url: "<?= base_url() ?>/users/delete",
+                    url: "<?= base_url() ?>/subjects/delete",
                     data: {
                         id : id
                     },
@@ -137,7 +119,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            $('#users-tbl').DataTable().ajax.reload(null, false);
+                            $('#subjects-tbl').DataTable().ajax.reload(null, false);
                         })
                     }
                 })
@@ -145,4 +127,4 @@
         });
     }
 </script>
-<?php $this->endSection() ?>
+<?php $this->endSection(); ?>
