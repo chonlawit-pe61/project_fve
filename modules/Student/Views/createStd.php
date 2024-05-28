@@ -10,6 +10,11 @@
 <?php $this->endSection(); ?>
 
 <?php $this->section('content'); ?>
+<?php
+echo '<pre>';
+print_r($student);
+echo '</pre>';
+?>
 <div class="pt-1 px-3">
     <h1 class="mt-0">เพิ่มรายชื่อนักเรียนนักศึกษา Pre-Ved Fve</h1>
     <div class="">
@@ -17,7 +22,8 @@
             <div class="">
                 <form id="saveForm" action="<?php echo base_url('/Student/createStd') ?>" method="post" enctype="multipart/form-data">
                     <!-- ส่วนที่ 1 -->
-
+                    <input type="hidden" name="id_users" value="<?php echo $student['id'] ?>">
+                    <input type="hidden" name="student_id" value="<?php echo $student['student_id']  ?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <h3><u><b>ส่วนที่ 1</b></u> ข้อมูลนักศึกษา</h3>
@@ -28,7 +34,7 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>เลขบัตรประจำตัวประชาชน</label>
-                                <input id="numberpeople" class="form-control" type="text" maxlength="13" placeholder="กรุณากรอกเลขบัตร 13 หลัก" name="numberpeople" required>
+                                <input id="numberpeople" class="form-control" type="text" maxlength="13" placeholder="กรุณากรอกเลขบัตร 13 หลัก" name="numberpeople" required value="<?php echo $student['student_id_card'] ?>">
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -38,54 +44,62 @@
                                 <?php
                                 foreach ($type_card as $type) {
                                 ?>
-                                    <option value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
+                                    <option <?php echo $student['student_type_card'] == $type['type_card_id'] ? 'selected' : '' ?> value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="col-lg-3">
-
+                            <label>คำนำหน้า</label>
+                            <select id="typepeopleguardian" class="form-select" style="text-align: start;" name="prename">
+                                <option value="0"></option>
+                                <?php
+                                foreach ($prenames as $prename) {
+                                ?>
+                                    <option <?php echo $student['prename_id'] ==  $prename['prename_id'] ? 'selected' : '' ?> value="<?php echo $prename['prename_id'] ?>"><?php echo $prename['prename_name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
                             <label>ชื่อ</label>
-                            <input id="thainamestd" type="text" class="form-control" placeholder="ชื่อไทย" name="thainamestd">
+                            <input value="<?php echo $student['student_name_th'] ?>" id="thainamestd" type="text" class="form-control" placeholder="ชื่อไทย" name="thainamestd">
                         </div>
                         <div class="col-lg-3">
                             <label>นามสกุล</label>
-                            <input id="thailaststd" type="text" class="form-control" placeholder="นามสกุลไทย" name="thailaststd">
+                            <input value="<?php echo $student['student_lname_th'] ?>" id="thailaststd" type="text" class="form-control" placeholder="นามสกุลไทย" name="thailaststd">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>ชื่อภาษาอังกฤษ</label>
-                                <input id="engnamestd" type="text" class="form-control" placeholder="ชื่ออังกฤษ" name="engnamestd">
+                                <input value="<?php echo $student['student_name_en'] ?>" id="engnamestd" type="text" class="form-control" placeholder="ชื่ออังกฤษ" name="engnamestd">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>นามสกุลอังกฤษ</label>
-                            <input id="englaststd" type="text" class="form-control" placeholder="นามสกุลอังกฤษ" name="englaststd">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>ชื่อเล่น</label>
-                            <input id="nicknamestd" class="form-control" placeholder="กรุณณากรอกชื่อเล่น" name="nicknamestd">
+                            <input value="<?php echo $student['student_lname_en'] ?>" id="englaststd" type="text" class="form-control" placeholder="นามสกุลอังกฤษ" name="englaststd">
                         </div>
                         <div class="col-lg-3">
                             <label>ที่อยู่ปัจจุบัน</label>
-                            <input id="housenumber" type="text" class="form-control" placeholder="ที่อยู๋ปัจจุบัน" name="housenumber">
+                            <input value="<?php echo $student['student_address'] ?>" id="housenumber" type="text" class="form-control" placeholder="ที่อยู๋ปัจจุบัน" name="housenumber">
                         </div>
 
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>หมู่ที่</label>
-                                <input id="village" type="text" class="form-control" placeholder="หมู่ที่" name="village">
+                                <input value="<?php echo $student['student_moo'] ?>" id="village" type="text" class="form-control" placeholder="หมู่ที่" name="village">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>จังหวัด</label>
-                            <select id="province" class="form-select" style="text-align: start;" name="province" onchange="getdistrict(this.value)">
+                            <select id="province" class="form-select" style="text-align: start;" name="province" onchange="getdistrict('district', this.value)">
                                 <option value="0">กรุณาเลือกจังหวัด</option>
                                 <?php
                                 foreach ($provinces as $province) {
                                 ?>
-                                    <option value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
+                                    <option <?php echo $student['student_province'] == $province['id'] ? 'selected' : '' ?> value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -93,9 +107,8 @@
                         </div>
                         <div class="col-lg-3">
                             <label>อำเภอ</label>
-                            <select class="form-select" style="text-align: start;" name="district" id="district" onchange="getsubdistrict(this.value)">
+                            <select class="form-select" style="text-align: start;" name="district" id="district" onchange="getSubdistict('subdistrict', this.value)">
                                 <option value="0">กรุณาเลือกอำเภอ</option>
-
                             </select>
                         </div>
                         <div class="col-lg-3">
@@ -112,7 +125,7 @@
                                     <?php
                                     foreach ($genders as $gender) {
                                     ?>
-                                        <option value="<?php echo $gender['gender_id'] ?>"><?php echo $gender['gender_name'] ?></option>
+                                        <option <?php echo $student['student_gender'] == $gender['gender_id'] ? 'selected' : ''  ?> value="<?php echo $gender['gender_id'] ?>"><?php echo $gender['gender_name'] ?></option>
                                     <?php
                                     }
                                     ?>
@@ -126,26 +139,13 @@
                                 <?php
                                 foreach ($religions as $religion) {
                                 ?>
-                                    <option value="<?php echo $religion['religion_id'] ?>"><?php echo $religion['religion_name'] ?></option>
+                                    <option <?php echo $student['student_religion'] == $religion['religion_id'] ? 'selected' : ''  ?> value="<?php echo $religion['religion_id'] ?>"><?php echo $religion['religion_name'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
-                        <div class="col-lg-3">
-                            <label>ความสามารถพิเศษ</label>
-                            <input class="form-control" placeholder="ความสามารถพิเศษ" name="special_ability">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>น้ำหนัก</label>
-                            <input id="weight_kg" type="text" class="form-control" maxlength="3" placeholder="กรุณณากรอกน้ำหนัก" name="weight_kg">
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label>ส่วนสูง</label>
-                                <input id="height_cm" type="text" class="form-control" maxlength="3" placeholder="กรุณณากรอกส่วนสูง" name="height_cm">
-                            </div>
-                        </div>
+
                         <div class="col-lg-3">
                             <label>หมู่เลือด</label>
                             <select class="form-select" style="text-align: start;" name="blood_type" id="blood_type">
@@ -153,29 +153,25 @@
                                 <?php
                                 foreach ($bloods as $blood) {
                                 ?>
-                                    <option value="<?php echo $blood['blood_id'] ?>"><?php echo $blood['blood_name'] ?></option>
+                                    <option <?php echo $student['student_blood'] == $blood['blood_id'] ? 'selected' : ''  ?> value="<?php echo $blood['blood_id'] ?>"><?php echo $blood['blood_name'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="col-lg-3">
-                            <label>ตำหนิ</label>
-                            <input type="text" class="form-control" placeholder="กรุณณากรอกตำหนิ" name="scar">
-                        </div>
-                        <div class="col-lg-3">
                             <label>โรคประจำตัว</label>
-                            <input type="text" class="form-control" placeholder="กรุณณากรอกโรคประจำตัว" name="chronic_disease">
+                            <input value="<?php echo $student['student_congenital_disease'] ?>" type="text" class="form-control" placeholder="กรุณณากรอกโรคประจำตัว" name="chronic_disease">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>เบอร์ติดต่อนักศึกษา</label>
-                                <input id="student_phone_number" type="number" class="form-control" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของนักศึกษา" name="student_phone_number">
+                                <input value="<?php echo $student['student_phone'] ?>" id="student_phone_number" type="number" class="form-control" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของนักศึกษา" name="student_phone_number">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>สถานศึกษาเดิม</label>
-                            <input id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="schoolName">
+                            <input value="<?php echo $student['student_original_educational'] ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="schoolName">
                         </div>
                         <div class="col-lg-3">
                             <label>จบการศึกษาระดับ</label>
@@ -184,7 +180,7 @@
                                 <?php
                                 foreach ($education_levels as $education_level) {
                                 ?>
-                                    <option value="<?php echo $education_level['education_level_id'] ?>"><?php echo $education_level['education_level_name'] ?></option>
+                                    <option <?php echo $student['student_graduated_level'] == $education_level['education_level_id'] ? 'selected' : ''  ?> value="<?php echo $education_level['education_level_id'] ?>"><?php echo $education_level['education_level_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -197,207 +193,50 @@
                                 <?php
                                 foreach ($departments as $department) {
                                 ?>
-                                    <option value="<?php echo $department['department_id'] ?>"><?php echo $department['department_name'] ?></option>
+                                    <option <?php echo $student['student_department'] == $department['department_id'] ? 'selected' : ''  ?> value="<?php echo $department['department_id'] ?>"><?php echo $department['department_name'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label>ชั้นปี</label>
-                                <select id="year" class="form-select" style="text-align: start;" name="year">
-                                    <option value="0">กรุณาเลือกชั้นปี</option>
-                                    <?php
-                                    foreach ($education_years as $education_year) {
-                                    ?>
-                                        <option value="<?php echo $education_year['education_year_id'] ?>"><?php echo $education_year['education_year_name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-
-                                </select>
-                            </div>
+                        <div class="col-lg-3 mb-3">
+                            <label>ชั้นปี</label>
+                            <input value="<?php echo $student['student_level'] ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="student_level">
                         </div>
                         <div class="col-lg-3">
                             <label>ห้อง</label>
-                            <select id="classroom" class="form-select" style="text-align: start;" name="classroom">
-                                <option value="0">กรุณาเลือกห้อง</option>
-                                <?php
-                                foreach ($education_rooms as $education_room) {
-                                ?>
-                                    <option value="<?php echo $education_room['education_room_id'] ?>"><?php echo $education_room['education_room_name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
+                            <input value="<?php echo $student['student_room'] ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="student_room">
                         </div>
                         <div class="col-lg-3">
-                            <label>คำนำหน้าครูที่ปรึกษา</label>
+                            <label>ครูที่ปรึกษา</label>
                             <select id="teacherTitle" class="form-select" style="text-align: start;" name="teacherTitle">
-                                <option value="0">กรุณาเลือกคำนำหน้าครูที่ปรึกษา</option>
+                                <option value="0">กรุณาเลือกครูที่ปรึกษา</option>
                                 <?php
-                                foreach ($prenames as $prename) {
+                                foreach ($users as $user) {
                                 ?>
-                                    <option value="<?php echo $prename['prename_id'] ?>"><?php echo $prename['prename_name'] ?></option>
+                                    <option <?php echo $student['student_teacher_id'] == $user['id'] ? 'selected' : ''  ?> value="<?php echo $user['id'] ?>"><?php echo $user['firstname'] . ' ' . $user['lastname'] ?></option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         </div>
-                        <div class="col-lg-3">
-                            <label>ชื่อครูที่ปรึกษา</label>
-                            <input id="teacherName" class="form-control" type="text" placeholder="กรุณากรอกชื่อครูที่ปรึกษา ไม่ต้องใส่คำนำหน้า" name="teacherName">
-                        </div>
-                        <div class="col-lg-3">
+
+                        <div class="col-lg-3 ">
                             <label for="formFileLg" class="form-label">รูปภาพของนักศึกษา</label>
                             <input class="form-control " type="file" name="file1">
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 ">
                             <label for="formFileLg" class="form-label">username</label>
-                            <input class="form-control" type="text" name="username" placeholder="กรุณากรอก username สำหรับใช้ในการเข้าสู่ระบบ">
+                            <input value="<?php echo $student['username'] ?>" class="form-control" type="text" name="username" placeholder="กรุณากรอก username สำหรับใช้ในการเข้าสู่ระบบ">
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 ">
                             <label for="formFileLg" class="form-label">password</label>
                             <input class="form-control" type="text" name="password" placeholder="กรุณากรอก password สำหรับใช้ในการเข้าสู่ระบบ">
                         </div>
-                        <!-- ส่วนที่ 2 -->
-                        <div class="col-lg-12">
-                            <div class="mt-4">
-                                <h3><u><b>ส่วนที่ 2</b></u> ข้อมูลของบิดา-มารดา</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <hr style="border: none; height: 2px; background-color: #030100;">
-                        </div>
-                        <!-- ข้อมูลบิดา -->
-                        <h6><u><b>ข้อมูลบิดา</b></u></h6>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label for="">
-                                    ชื่อบิดา
-                                </label>
-                                <input id="fnamefather" type="text" class="form-control" placeholder="ชื่อบิดา" name="fnamefather">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">
-                                นามสกุลบิดา
-                            </label>
-                            <input id="lnamefather" type="text" class="form-control" placeholder="นามสกุลบิดา" name="lnamefather">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">
-                                เลขบัตรประจำตัวประชาชนของบิดา
-                            </label>
-                            <input id="numberpeoplefather" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplefather">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>เลือกประเภทบัตร</label>
-                            <select id="typepeoplefather" class="form-select" style="text-align: start;" name="typepeoplefather">
-                                <option value="0">กรุณาเลือกประเภทบัตร</option>
-                                <?php
-                                foreach ($type_card as $type) {
-                                ?>
-                                    <option value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label>สถานภาพบิดา</label>
-                                <select id="father_status" class="form-select" style="text-align: start;" name="father_status">
-                                    <option value="0">กรุณาเลือกสถานภาพบิดา</option>
-                                    <?php
-                                    foreach ($status_types as $status_type) {
-                                    ?>
-                                        <option value="<?php echo $status_type['status_type_id'] ?>"><?php echo $status_type['status_type_name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>อาชีพของบิดา</label>
-                            <input id="father_occupation" class="form-control" type="text" placeholder="อาชีพของบิดา" name="father_occupation">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>ประเภทความพิการ</label>
-                            <input class="form-control" placeholder="ประเภทความพิการ" name="father_disability_type">
-                        </div>
-                        <br>
-                        <!-- ข้อมู,มารดา -->
-                        <h6><u><b>ข้อมูลมารดา</b></u></h6>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label>ชื่อมารดา</label>
-                                <input id="fnamemother" type="text" class="form-control" placeholder="ชื่อมารดา" name="fnamemother">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>นามสกุลมารดา</label>
-                            <input id="lnamemother" type="text" class="form-control" placeholder="นามสกุลมารดา" name="lnamemother">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>เลขบัตรประจำตัวประชาชนของมารดา</label>
-                            <input id="numberpeoplemother" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeoplemother">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>เลือกประเภทบัตร</label>
-                            <select class="form-select" style="text-align: start;" name="typepeoplemother" id="typepeoplemother">
-                                <option value="0">กรุณาเลือกประเภทบัตร</option>
-                                <?php
-                                foreach ($type_card as $type) {
-                                ?>
-                                    <option value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="mb-3">
-                                <label>สถานภาพมารดา</label>
-                                <select class="form-select" style="text-align: start;" name="mother_status" id="mother_status">
-                                    <option value="0">กรุณาเลือกสถานภาพมารดา</option>
-                                    <?php
-                                    foreach ($status_types as $status_type) {
-                                    ?>
-                                        <option value="<?php echo $status_type['status_type_id'] ?>"><?php echo $status_type['status_type_name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <label>อาชีพของมารดา</label>
-                            <input id="mother_occupation" class="form-control" type="text" placeholder="อาชีพของมารดา" name="mother_occupation">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>ประเภทความพิการ</label>
-                            <input class="form-control" placeholder="ประเภทความพิการมารดา" name="mother_disability_type">
-                        </div>
-                        <div class="col-lg-3">
-                            <label>สถานภาพการสมรสของบิดา-มารดา</label>
-                            <select class="form-select" style="text-align: start;" name="isMarried" id="isMarried">
-                                <option value="0">กรุณาเลือกสถานภาพการสมรสของบิดา-มารดา</option>
-                                <?php
-                                foreach ($status_types as $status_type) {
-                                ?>
-                                    <option value="<?php echo $status_type['status_type_id'] ?>"><?php echo $status_type['status_type_name'] ?></option>
-                                <?php
-                                }
-                                ?>
 
-                            </select>
-                        </div>
                         <!-- ส่วนที่ 3 -->
-                        <div class="col-lg-12">
-                            <h3><u><b>ส่วนที่ 3</b></u> ข้อมูลผู้ปกครอง</h3>
+                        <div class="col-lg-12 mt-3">
+                            <h3><u><b>ส่วนที่ 2</b></u> ข้อมูลผู้ปกครอง</h3>
                         </div>
                         <div class="col-lg-12">
                             <hr style="border: none; height: 2px; background-color: #030100;">
@@ -405,16 +244,16 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>ชื่อผู้ปกครอง</label>
-                                <input id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
+                                <input value="<?php echo $student['student_guardian_name'] ?>" id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>นามสกุลผู้ปกครอง</label>
-                            <input id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
+                            <input value="<?php echo $student['student_guardian_lname'] ?>" id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>เลขบัตรประจำตัวประชาชนของผู้ปกครอง</label>
-                            <input id="numberpeopleguardian" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
+                            <input value="<?php echo $student['student_guardian_id_card'] ?>" id="numberpeopleguardian" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>เลือกประเภทบัตร</label>
@@ -423,7 +262,7 @@
                                 <?php
                                 foreach ($type_card as $type) {
                                 ?>
-                                    <option value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
+                                    <option <?php echo $student['student_guardian_type_card'] ==  $type['type_card_id'] ? 'selected' : '' ?> value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -432,31 +271,31 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>ความสัมพันธ์</label>
-                                <input id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
+                                <input value="<?php echo $student['student_guardian_relationship'] ?>" id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>อาชีพของผู้ปกครอง</label>
-                            <input id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
+                            <input value="<?php echo $student['student_guardian_job'] ?>" id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
                         </div>
                         <div class="col-lg-3">
 
                             <label>ที่อยู่ปัจจุบันของผู้ปกครอง</label>
-                            <input id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
+                            <input value="<?php echo $student['student_guardian_address'] ?>" id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>หมู่ที่</label>
-                            <input id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
+                            <input value="<?php echo $student['student_guardian_moo'] ?>" id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>จังหวัด</label>
-                                <select id="provinceguardian" class="form-select" style="text-align: start;" name="provinceguardian" onchange="getdistrictisname(this.value)">
+                                <select id="provinceguardian" class="form-select" style="text-align: start;" name="provinceguardian" onchange="getdistrict('isnamedistrict', this.value)">
                                     <option value="0">กรุณาเลือกจังหวัด</option>
                                     <?php
                                     foreach ($provinces as $province) {
                                     ?>
-                                        <option value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
+                                        <option <?php echo $student['student_guardian_province'] == $province['id'] ? 'selected' : '' ?> value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
                                     <?php
                                     }
                                     ?>
@@ -467,8 +306,6 @@
                             <label>อำเภอ</label>
                             <select class="form-select" style="text-align: start;" name="districtguardian" id="isnamedistrict" onchange="getsubdistrictisname(this.value)">
                                 <option value="0">กรุณาเลือกอำเภอ</option>
-
-
                             </select>
                         </div>
                         <div class="col-lg-3">
@@ -480,12 +317,12 @@
                         </div>
                         <div class="col-lg-3">
                             <label>เบอร์ติดต่อผู้ปกครอง</label>
-                            <input id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
+                            <input value="<?php echo $student['student_guardian_phone'] ?>" id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 text-center my-2">
-                            <button class="btn btn-success" onclick="saveData()">
+                            <button type="button" class="btn btn-success" onclick="saveData()">
                                 บันทึก
                             </button>
                             <input type="reset" value="ยกเลิก" class="btn btn-danger">
@@ -504,49 +341,74 @@
 <script>
     $(document).ready(function() {
         $('#typepeople').select2({});
+        <?php
+        if (!empty($id)) {
+        ?>
+            getdistrict('district', '<?php echo $student['student_province'] ?>', '<?php echo $student['student_district'] ?>');
+            getSubdistict('subdistrict', '<?php echo $student['student_district'] ?>', '<?php echo $student['student_subdistrict'] ?>');
+            getdistrict('isnamedistrict', '<?php echo $student['student_guardian_province'] ?>', '<?php echo $student['student_guardian_district'] ?>');
+
+            getSubdistict('isnamesubdistrict', '<?php echo $student['student_guardian_district'] ?>', '<?php echo $student['student_guardian_subdistrict'] ?>');
+
+
+
+        <?php
+        }
+        ?>
+
     })
 
-    function getdistrict(id) {
+
+    const getdistrict = (element, id, select_id = '') => {
         $.ajax({
             url: '<?php echo base_url('Student/getDistrict') ?>',
             type: 'post',
             data: {
                 province_id: id
             },
-            success: function(res) {
-                // console.log(res);
-                let respon = JSON.parse(res);
-                // console.log(respon);
-                $('#district').empty();
-                $('#subdistrict').empty();
-                $('#district').append(`<option value="0">กรุณาเลือกอำเภอ</option>`);
-                for (const key in respon) {
-                    $('#district').append(`<option value='${respon[key].id}'>${respon[key].district_th}</option>`);
+            success: function(msg) {
+                let data = JSON.parse(msg);
+                //console.log(data);
+                $(`#${element}`).empty();
+                $(`#${element}`).removeAttr("disabled");
+                $(`#${element}`).append(`<option value="">เลือกอำเภอ</option>`);
+                for (let index = 0; index < data.length; index++) {
+                    if (select_id == data[index].id) {
+                        selected = 'selected';
+                    } else {
+                        selected = '';
+                    }
+                    $(`#${element}`).append(`<option value="${data[index].id}" ${selected}>${data[index].district_th}</option>`)
                 }
             }
         })
     }
-    //อำเภอมาตำบลของนักศึกษา
-    function getsubdistrict(id) {
+
+    const getSubdistict = (element, id, select_id = '') => {
         $.ajax({
             url: '<?php echo base_url('Student/getSubdistrict') ?>',
             type: 'post',
             data: {
                 subdistrict_id: id
             },
-            success: function(res) {
-                // console.log(res);
-                let respon = JSON.parse(res);
-                // console.log(respon);
-                $('#subdistrict').empty();
-                $('#subdistrict').append(`<option value="0">กรุณาเลือกตำบล</option>`);
-                for (const key in respon) {
-                    $('#subdistrict').append(`<option value='${respon[key].id}'>${respon[key].subdistrict_th}</option>`)
+            success: function(msg) {
+                let data = JSON.parse(msg);
+                //console.log(data);
+                $(`#${element}`).empty();
+                $(`#${element}`).removeAttr("disabled");
+                $(`#${element}`).append(`<option value="">เลือกตำบล</option>`);
+                for (let index = 0; index < data.length; index++) {
+                    if (select_id == data[index].id) {
+                        selected = 'selected';
+                    } else {
+                        selected = '';
+                    }
+                    $(`#${element}`).append(`<option value ="${data[index].id}" ${selected}>${data[index].subdistrict_th}</option>`);
                 }
-
             }
         })
     }
+
     // จัดหวัดมาอำเภอของผู้ปกครอง
     function getdistrictisname(id) {
         $.ajax({
@@ -855,19 +717,6 @@
         }
     }
 </script>
-<?php if (session()->getFlashdata('success') != null) : ?>
-    <script type="text/javascript">
-        Swal.fire({
-            icon: 'success',
-            title: '<?= session()->getFlashdata('success') ?>',
-            timer: 2000,
-        }).then(() => {
-            setTimeout(() => {
-                window.location.href = '<?php echo base_url('Student') ?>';
-            }, 2000)
-        })
-    </script>
-<?php endif; ?>
 
 
 

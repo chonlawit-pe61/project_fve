@@ -71,6 +71,13 @@
                                 <span>รายวิชา</span>
                             </a>
                         </li>
+                        <li class="<?= uri_string() == 'SettingSubject' ? 'active' : '' ?>">
+                            <a class="dropdown-link-item" href="<?php echo base_url('SettingSubject') ?>">
+                                <!-- <i class="fa-solid fa-book"></i> -->
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <span>กำหนดรายวิชา</span>
+                            </a>
+                        </li>
                         <li class="section-title text-white">
                             ระบบ
                         </li>

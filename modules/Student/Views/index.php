@@ -17,10 +17,7 @@
                         แผนกวิชา
                     </td>
                     <td class="text-start" style="width: 8%;">
-                        ชั้นปี
-                    </td>
-                    <td class="text-start" style="width: 8%;">
-                        ห้อง
+                        เบอร์ติดต่อนักศึกษา
                     </td>
                     <td class="text-start" style="width: 15%;">
                         ครูที่ปรึษา
@@ -47,20 +44,18 @@
                         <td>
                             <?php echo $student['department_name'] ?>
                         </td>
+
                         <td class="text-center">
-                            <?php echo $student['education_year_name'] ?>
-                        </td>
-                        <td class="text-center">
-                            <?php echo $student['education_room_name'] ?>
+                            <?php echo $student['student_phone'] ?>
                         </td>
                         <td>
-                            <?php echo $student['prename_student_teacher'] . ' ' . $student['student_teacher_name'] ?>
+                            <?php echo $student['prename_teacher'] . ' ' . $student['firstname'] . ' ' . $student['lastname'] ?>
                         </td>
                         <td class="text-center">
                             <img style="height: 120px; " class="img-fluid" src="<?php echo base_url('public/files/imgStd' . '/' . $student['student_img']) ?>" alt="">
                         </td>
                         <td>
-                            <button class="btn btn-warning"><i class="fa fa-pen"></i></button>
+                            <a href="<?php echo base_url('Student/manage/' . $student['student_id']) ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>
                             <button class="btn btn-danger"><i class="fa fa-trash"></i> </button>
 
                         </td>

@@ -58,6 +58,7 @@ $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filte
 });
 $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], function ($routes) {
     $routes->get('/', 'Student::index');
+    $routes->get('manage/(:num)', 'Student::createStd/$1');
     $routes->get('create', 'Student::createStd');
     $routes->post('createStd', 'Student::insetStd');
     $routes->post('getDistrict', 'Student::getDistrict');
@@ -71,6 +72,12 @@ $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], functi
 $routes->group('/Addsubject', ['namespace' => '\Modules\Addsubject\Controllers'], function ($routes) {
     $routes->get('/', 'Addsubject::index');
 });
+$routes->group('/SettingSubject', ['namespace' => '\Modules\SettingSubject\Controllers'], function ($routes) {
+    $routes->get('/', 'SettingSubject::SettingSubjectList');
+    $routes->get('manage', 'SettingSubject::ManageSettingSubject');
+    $routes->post('getSubjectToTable', 'SettingSubject::getSubjectToTable');
+});
+
 
 
 // We get a performance increase by specifying the default

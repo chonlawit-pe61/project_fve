@@ -16,12 +16,11 @@ class Student extends BaseController
     $data['students'] = $StudentModel->getAllStd();
     return view('Modules\Student\Views\index.php', $data);
   }
-  public function createStd()
+  public function createStd($id = '')
   {
     // print_r($_SESSION);
     // die();
     $StudentModel = new StudentModel();
-
     $data['type_card'] = $StudentModel->getTypeCard();
     $data['provinces'] = $StudentModel->getProvince();
     $data['genders'] = $StudentModel->getGender();
@@ -33,13 +32,14 @@ class Student extends BaseController
     $data['education_rooms'] = $StudentModel->getEducationRoom();
     $data['prenames'] = $StudentModel->getPrename();
     $data['status_types'] = $StudentModel->getStatusType();
-    // $data['special_ability'] = $StudentModel->special_ability();
-    // $data['classroom'] = $StudentModel->classroom();
-    // $data['department'] = $StudentModel->department();
-    // $data['year'] = $StudentModel->year();
-    // $data['teachertitle'] = $StudentModel->teachertitle();
-    // $data['isparent'] = $StudentModel->isparent();
-    // $data['ismarried'] = $StudentModel->ismarried();
+    $data['users'] = $StudentModel->getUserType2(2);
+    if (!empty($id)) {
+      $data['student'] = $StudentModel->getStudentById($id);
+      $data['id'] = $id;
+    }
+    // echo '<pre>';
+    // print_r($data);
+    // die();
     return view('Modules\Student\Views\createStd.php', $data);
   }
   public function insetStd()
@@ -50,8 +50,8 @@ class Student extends BaseController
     $item = $session->get();
     // $input['users_id'] = $session['role_id'];
     $input = $this->request->getPost(); // $_POST
-    $input['username'] = 'std2';
-    $input['password'] = 'std2';
+    // $input['username'] = 'std2';
+    // $input['password'] = 'std2';
     $input['insert_by'] = $item['user_id'];
     $files = $this->request->getFiles(); // $_file
     if ($files['file1']->isValid()) {
@@ -63,10 +63,8 @@ class Student extends BaseController
       $files['file1']->move('public/files/imgStd', $randomName);
       $input['file1'] = $randomName;
     }
-    $session->setFlashdata('success', 'บันทึกข้อมูลสำเร็จ');
-    $session->setFlashdata('error', 'บันทึกข้อมูลไม่สำเร็จ');
     $StudentModel->insetStd($input);
-    return redirect()->to(base_url('/Student/create'));
+    return redirect()->to(base_url('/Student'));
   }
   public function getDistrict()
   {
