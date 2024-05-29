@@ -12,10 +12,35 @@
                 <thead>
                     <tr>
                         <th width="5%">#</th>
-                        <th width="15%">ชื่อแผน</th>
+                        <th width="">ชื่อแผน</th>
+                        <td style="width: 20%;">
+                            เครื่องมือ
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    foreach ($plan_education as $key => $plan) {
+                    ?>
+                        <tr>
+                            <td>
+                                <?php echo $key + 1 ?>
+                            </td>
+                            <td>
+                                <?php echo $plan['plan_education_name'] ?>
+                            </td>
+                            <td>
+                                <a href="<?php echo base_url('SettingSubject/manage/' . $plan['plan_education_id']) ?>" class="btn btn-warning">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+                                <button class="btn btn-danger">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

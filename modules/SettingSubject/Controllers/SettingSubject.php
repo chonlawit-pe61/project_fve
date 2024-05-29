@@ -13,12 +13,20 @@ class SettingSubject extends BaseController
 {
   public function SettingSubjectList()
   {
-    return view('Modules\SettingSubject\Views\SettingSubjectList.php');
+    $SettingSubjectModel = new SettingSubjectModel();
+    $data['plan_education'] = $SettingSubjectModel->getPlanEducation();
+    return view('Modules\SettingSubject\Views\SettingSubjectList.php', $data);
   }
-  public function ManageSettingSubject()
+  public function ManageSettingSubject($id = '')
   {
     $SettingSubjectModel = new SettingSubjectModel();
     $data['subjects'] = $SettingSubjectModel->getSubjects();
+    if (!empty($id)) {
+      $data['id'] = $id;
+      $data['plan_education'] = $SettingSubjectModel->getPlanEducation($id);
+      $data['plan_subjects'] = $SettingSubjectModel->getPlanSubjects($id);
+      # code...
+    }
 
     return view('Modules\SettingSubject\Views\ManageSettingSubject.php', $data);
   }
@@ -30,12 +38,26 @@ class SettingSubject extends BaseController
     $SettingSubjectModel = new SettingSubjectModel();
     if (!empty($input)) {
       $data['subjects'] = $SettingSubjectModel->getSubjectsForTB($input);
+      if (!empty($data['subjects'])) {
+        return view('Modules\SettingSubject\Views\component\tbbody_subject.php', $data);
+      } else {
+        return json_encode(1);
+      }
     }
+  }
+  public function RemoveSubject()
+  {
+    $input = $this->request->getPost();
+    $SettingSubjectModel = new SettingSubjectModel();
+    $SettingSubjectModel->RemoveSubject($input);
+    return json_encode(1);
+  }
 
-
-    // echo '<pre>';
-    // print_r($data);
-    // die();
-    return view('Modules\SettingSubject\Views\component\tbbody_subject.php', $data);
+  public function CreateUpdateSettingSubject()
+  {
+    $SettingSubjectModel = new SettingSubjectModel();
+    $input = $this->request->getPost();
+    // echo 
+    $SettingSubjectModel->CreateUpdateSettingSubject($input);
   }
 }

@@ -8,11 +8,12 @@
 
         </div>
         <div class="col-md-12 mt-3">
-            <form class="row">
+            <form class="row" method="post" action="<?php echo base_url('SettingSubject/CreateUpdateSettingSubject') ?>">
+                <input type="hidden" name="plan_education_id" value="<?php echo $plan_education['plan_education_id'] ?>">
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">ชื่อแผน</label>
-                        <input type="text" name="plan_education_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="text" name="plan_education_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $plan_education['plan_education_name'] ?>">
                     </div>
                 </div>
                 <div class="col-lg-12 text-end mb-3">
@@ -25,7 +26,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <td style="width: 20%;" class="text-center">
+                                <td style="width: 10%;" class="text-center">
                                     ลำดับ
                                 </td>
                                 <td>
@@ -37,8 +38,33 @@
                             </tr>
                         </thead>
                         <tbody id="tbl_body">
+                            <?php
+                            if (!empty($plan_subjects)) {
+                                foreach ($plan_subjects as $key => $subject) {
+                            ?>
+                                    <tr id="Subject<?php echo $key ?>">
+                                        <td class="text-center">
+                                            <?php echo $key + 1 ?>
+                                            <input type="hidden" name="subject_id[<?php echo $key ?>]" value="<?php echo $subject['subjects_id'] ?>">
+                                        </td>
+                                        <td>
+                                            <?php echo $subject['name'] ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-danger" onclick="RemoveSubject(<?php echo $subject['plan_subjects_id'] ?> ,<?php echo $key ?> )"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                            <?php
+                                }
+                            }
+                            ?>
                         </tbody>
                     </table>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <button type="submit" class="btn btn-success">
+                        บันทึก
+                    </button>
                 </div>
             </form>
 
@@ -135,6 +161,20 @@
         $('#myTable').dataTable();
     });
 
+
+    const RemoveSubject = (id, idx) => {
+        $.ajax({
+            url: "<?php echo base_url('SettingSubject/RemoveSubject') ?>",
+            type: "post",
+            data: {
+                'subject_id': id
+            },
+            success: function(res) {
+                $(`#Subject${idx}`).remove();
+            }
+        });
+    }
+
     const RemoveEl = (idx) => {
 
         $(`#Subject${idx}`).remove();
@@ -152,11 +192,20 @@
                 'subject': arrayCheck
             },
             success: function(res) {
-                $('#tbl_body').empty();
-                $('#tbl_body').html(res);
-                // $('#exampleModal').modal().hide();
-                $('#exampleModal').modal('hide');
-                // console.log(res);
+                if (res == 1) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "มีบางอย่างผิดพลาด",
+                        text: "วิชาที่เลือกซ้ำกับข้อมูลในตาราง",
+                    });
+                } else {
+                    // $('#tbl_body').empty();
+                    $('#tbl_body').append(res);
+                    // $('#exampleModal').modal().hide();
+                    $('#exampleModal').modal('hide');
+                    // console.log(res);
+                }
+
             }
         });
     }

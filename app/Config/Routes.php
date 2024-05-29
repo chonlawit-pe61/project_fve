@@ -75,7 +75,10 @@ $routes->group('/Addsubject', ['namespace' => '\Modules\Addsubject\Controllers']
 $routes->group('/SettingSubject', ['namespace' => '\Modules\SettingSubject\Controllers'], function ($routes) {
     $routes->get('/', 'SettingSubject::SettingSubjectList');
     $routes->get('manage', 'SettingSubject::ManageSettingSubject');
+    $routes->get('manage/(:num)', 'SettingSubject::ManageSettingSubject/$1');
     $routes->post('getSubjectToTable', 'SettingSubject::getSubjectToTable');
+    $routes->post('CreateUpdateSettingSubject', 'SettingSubject::CreateUpdateSettingSubject');
+    $routes->post('RemoveSubject', 'SettingSubject::RemoveSubject');
 });
 
 
