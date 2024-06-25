@@ -18,7 +18,7 @@ class Subject extends BaseController
     {
         $search = $this->request->getGet();
         $data = $this->subjectModel->getSubject();
-        
+
         return json_encode(
             [
                 'draw' => $search['draw'],
@@ -28,20 +28,19 @@ class Subject extends BaseController
                 'filter' => $search
             ]
         );
-   
     }
-
     public function index()
     {
         return view('\Modules\Subject\Views\index.php');
     }
 
-    public function manage($id='')
+    public function manage($id = '')
     {
         $data['subject_group'] = $this->subjectModel->getSubjectGroup();
-        if($id){
+        if ($id) {
             $data['data'] = $this->subjectModel->getSubject($id);
         }
+        $data['getTeacherListAll'] = $this->subjectModel->getTeacherListAll();
         return view('\Modules\Subject\Views\manage.php', $data);
     }
 
@@ -52,9 +51,10 @@ class Subject extends BaseController
         return redirect()->to(base_url('subjects'));
     }
 
-    public function delete() {
+    public function delete()
+    {
         $id = $this->request->getPost('id');
         $responese = $this->subjectModel->deleteSubject($id);
         return json_encode($responese);
-      }
+    }
 }

@@ -105,7 +105,7 @@ class StudentModel extends Model
         $builderStd->set('student_original_educational', $input['schoolName']);
         $builderStd->set('student_graduated_level', $input['level']);
         $builderStd->set('student_department', $input['department']);
-        $builderStd->set('student_room', $input['classroom']);
+        // $builderStd->set('student_room', $input['classroom']);
         $builderStd->set('student_teacher_id', $input['teacherTitle']);
         if (!empty($input['file1'])) {
             $builderStd->set('student_img', $input['file1']);
@@ -254,7 +254,55 @@ class StudentModel extends Model
         $builder->join('users', 'users.id = student.users_id', 'left');
         $builder->where('student_id', $student_id);
         $data = $builder->get()->getRowArray();
-        // 
+        echo $this->db->getLastQuery();
+        die();
+        return $data;
+    }
+    public function getStudentByUserID($student_id = '')
+    {
+        $builder = $this->db->table('student');
+        $builder->select('*,
+        users.username,
+        users.password,
+            (
+        SELECT
+            province.province_th
+        FROM
+            province
+        WHERE
+            province.id = student.student_province
+        ) as std_province,
+        (
+        SELECT
+            district.district_th
+        FROM
+            district
+        WHERE
+            district.id = student.student_district
+        ) as std_district,
+        (
+        SELECT
+            subdistrict.subdistrict_th
+        FROM
+            subdistrict
+        WHERE
+            subdistrict.id = student.student_subdistrict
+        ) as std_subdistrict');
+        $builder->join('users', 'users.id = student.users_id', 'left');
+        $builder->where('users_id', $student_id);
+        $data = $builder->get()->getRowArray();
+
+        return $data;
+    }
+    public function getStudentSubject($student_id = '', $term = '')
+    {
+        $builder = $this->db->table('plan_student');
+        $builder->select('plan_student.*,
+        subjects.*');
+        $builder->join('subjects', 'subjects.id = plan_student.subjects_id', 'left');
+        $builder->where('plan_student.plan_student_term', $term);
+        $builder->where('plan_student.users_id', $student_id);
+        $data = $builder->get()->getResultArray();
         return $data;
     }
 }

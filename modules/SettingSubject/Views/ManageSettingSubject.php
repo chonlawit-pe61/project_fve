@@ -42,7 +42,7 @@
                             if (!empty($plan_subjects)) {
                                 foreach ($plan_subjects as $key => $subject) {
                             ?>
-                                    <tr id="Subject<?php echo $key ?>">
+                                    <tr id="Subject<?php echo $key ?>" class="Subject_len">
                                         <td class="text-center">
                                             <?php echo $key + 1 ?>
                                             <input type="hidden" name="subject_id[<?php echo $key ?>]" value="<?php echo $subject['subjects_id'] ?>">
@@ -116,7 +116,7 @@
                                     <tr>
                                         <td class="text-center">
                                             <div class="form-check">
-                                                <input class="form-check-input ck_check" type="checkbox" value="<?php echo $subject['id'] ?>" id="flexCheckDefault">
+                                                <input class="form-check-input ck_check" type="checkbox" value="<?php echo $subject['id'] ?>" id="">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -199,11 +199,25 @@
                         text: "วิชาที่เลือกซ้ำกับข้อมูลในตาราง",
                     });
                 } else {
-                    // $('#tbl_body').empty();
-                    $('#tbl_body').append(res);
-                    // $('#exampleModal').modal().hide();
+                    let json_res = JSON.parse(res);
+                    json_res.map((val, idx) => {
+                        let len = $('.Subject_len').length;
+                        $('#tbl_body').append(`
+                        <tr id="Subject${len+1}" class="Subject_len">
+                                <td class="text-center">
+                                    ${len+1}
+                                    <input type="hidden" name="subject_id[ ${len+1}]" value="${val.id}">
+                                </td>
+                                <td>
+                                ${val.name}
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-danger" onclick="RemoveEl(${len+1})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
+                        `);
+                    })
                     $('#exampleModal').modal('hide');
-                    // console.log(res);
                 }
 
             }

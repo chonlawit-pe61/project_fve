@@ -25,7 +25,6 @@ class SettingSubject extends BaseController
       $data['id'] = $id;
       $data['plan_education'] = $SettingSubjectModel->getPlanEducation($id);
       $data['plan_subjects'] = $SettingSubjectModel->getPlanSubjects($id);
-      # code...
     }
 
     return view('Modules\SettingSubject\Views\ManageSettingSubject.php', $data);
@@ -39,7 +38,7 @@ class SettingSubject extends BaseController
     if (!empty($input)) {
       $data['subjects'] = $SettingSubjectModel->getSubjectsForTB($input);
       if (!empty($data['subjects'])) {
-        return view('Modules\SettingSubject\Views\component\tbbody_subject.php', $data);
+        return json_encode($data['subjects']);
       } else {
         return json_encode(1);
       }
@@ -59,5 +58,6 @@ class SettingSubject extends BaseController
     $input = $this->request->getPost();
     // echo 
     $SettingSubjectModel->CreateUpdateSettingSubject($input);
+    return redirect()->to(base_url('/SettingSubject'));
   }
 }

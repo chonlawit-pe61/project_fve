@@ -80,4 +80,17 @@ class Student extends BaseController
     $result = $StudentModel->getSubdistrict($input['subdistrict_id']);
     return json_encode($result);
   }
+
+  public function StudentSubject()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $item = $session->get();;
+    $student_id = $item['user_id'];
+    $data['student'] =  $StudentModel->getStudentByUserID($student_id);
+    $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1);
+    $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2);
+    //
+    return view('Modules\Student\Views\Student\ListStudentSubject.php', $data);
+  }
 }

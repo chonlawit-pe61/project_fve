@@ -6,9 +6,9 @@
     <div class="p-3 border shadow-sm">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <h3>เพิ่มข้อมูลบุคลากร</h3>
+                <h3>จัดการรายวิชา</h3>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
                 <label for="group_id">หมวดวิชา</label>
                 <select name="group_id" id="group_id" class="form-select">
                     <option value="">เลือก</option>
@@ -17,9 +17,28 @@
                     <?php } ?>
                 </select>
             </div>
-            <div class="col-md-8 mb-3">
+            <div class="col-md-3 mb-3">
+                <label for="">รหัสวิชา</label>
+                <input type="text" id="name" name="subjects_id" class="form-control" value="<?= @$data['subjects_id'] ?>">
+            </div>
+            <div class="col-md-3 mb-3">
                 <label for="">ชื่อวิชา</label>
                 <input type="text" id="name" name="name" class="form-control" value="<?= @$data['name'] ?>">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="">อาจารย์ผู้สอน</label>
+                <select class="form-select" name="teacher_id" aria-label="Default select example">
+                    <option value="0">เลือกอาจารย์ผู้สอน</option>
+                    <?php
+                    foreach ($getTeacherListAll as $teacher) {
+                    ?>
+                        <option <?php echo $data['teacher_id'] == $teacher['id'] ? 'selected' : '' ?> value="<?php echo $teacher['id'] ?>">
+                            <?php echo $teacher['firstname'] . ' ' . $teacher['lastname'] ?>
+                        </option>
+                    <?php
+                    }
+                    ?>
+                </select>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="">หน่วยกิต</label>

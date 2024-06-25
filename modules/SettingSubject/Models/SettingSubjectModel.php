@@ -46,21 +46,11 @@ class SettingSubjectModel extends Model
 
     public function getSubjectsForTB($input)
     {
-        $builderPlanSubjects = $this->db->table('plan_subjects');
-        $builderPlanSubjects->select('*');
-        $builderPlanSubjects->whereIn('subjects_id', $input['subject']);
-        $result = $builderPlanSubjects->get()->getResultArray();
-        // echo $this->db->getLastQuery();
-        // die();
         $builder = $this->db->table('subjects');
-        if (!empty($result)) {
-            return;
-        } else {
-            $builder->select('*');
-            $builder->whereIn('id', $input['subject']);
-            $data = $builder->get()->getResultArray();
-            return $data;
-        }
+        $builder->select('*');
+        $builder->whereIn('id', $input['subject']);
+        $data = $builder->get()->getResultArray();
+        return $data;
     }
     public function CreateUpdateSettingSubject($input)
     {

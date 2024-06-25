@@ -63,6 +63,7 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->post('createStd', 'Student::insetStd');
     $routes->post('getDistrict', 'Student::getDistrict');
     $routes->post('getSubdistrict', 'Student::getSubdistrict');
+    $routes->get('StudentSubject', 'Student::StudentSubject');
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');
@@ -80,6 +81,19 @@ $routes->group('/SettingSubject', ['namespace' => '\Modules\SettingSubject\Contr
     $routes->post('CreateUpdateSettingSubject', 'SettingSubject::CreateUpdateSettingSubject');
     $routes->post('RemoveSubject', 'SettingSubject::RemoveSubject');
 });
+
+$routes->group('ManageSubjectStd', ['namespace' => '\Modules\ManageSubjectStd\Controllers'], function ($routes) {
+    $routes->get('/', 'ManageSubjectStd::SubjectStdList');
+    $routes->post('ManageSubjectStdList', 'ManageSubjectStd::ManageSubjectStdList');
+});
+$routes->group('ManageSubjectTeacher', ['namespace' => '\Modules\ManageSubjectTeacher\Controllers'], function ($routes) {
+    $routes->get('/', 'ManageSubjectTeacher::ManageSubjectTeacherList');
+    $routes->get('Subject/Term/ListStudent', 'ManageSubjectTeacher::ManageSubjectTeacherSubject');
+    $routes->get('Subject/Term', 'ManageSubjectTeacher::ManageSubjectTeacherTerm');
+    $routes->post('ManageGradeStudent', 'ManageSubjectTeacher::ManageGradeStudent');
+});
+
+
 
 
 

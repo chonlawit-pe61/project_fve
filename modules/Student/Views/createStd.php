@@ -10,11 +10,6 @@
 <?php $this->endSection(); ?>
 
 <?php $this->section('content'); ?>
-<?php
-echo '<pre>';
-print_r($student);
-echo '</pre>';
-?>
 <div class="pt-1 px-3">
     <h1 class="mt-0">เพิ่มรายชื่อนักเรียนนักศึกษา Pre-Ved Fve</h1>
     <div class="">
