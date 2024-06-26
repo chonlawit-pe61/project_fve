@@ -312,7 +312,7 @@
                         </div>
                         <div class="col-lg-3">
                             <label>เบอร์ติดต่อผู้ปกครอง</label>
-                            <input value="<?php echo $student['student_guardian_phone'] ? $student['student_guardian_phone'] : '' ?>" id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
+                            <input value="<?php echo !empty($student['student_guardian_phone']) ? $student['student_guardian_phone'] : '' ?>" id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
                         </div>
                     </div>
                     <div class="row">
