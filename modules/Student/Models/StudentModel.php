@@ -69,10 +69,10 @@ class StudentModel extends Model
             $builder->insert();
             $id = $this->db->insertID();
         }
-        echo '<pre>';
-        print_r($input);
-        // echo $id;
-        die();
+        // echo '<pre>';
+        // print_r($input);
+        // // echo $id;
+        // die();
 
         $builderStd = $this->db->table('student');
         $builderStd->set('users_id', $id);
