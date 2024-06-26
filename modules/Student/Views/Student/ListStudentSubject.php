@@ -80,7 +80,7 @@
                                     <tbody>
                                         <?php
                                         foreach ($student_subject as $key => $row) {
-                                            $sum_unit1 += @$row['unit'];
+                                            @$sum_unit1 += @$row['unit'];
 
                                             $textGrade1 = '';
                                             if (@$row['grade_student'] > 80) {
@@ -103,7 +103,7 @@
                                                 $textGrade1 = '-';
                                             }
 
-                                            $sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
+                                            @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
                                         ?>
                                             <tr>
                                                 <td class="text-center">
@@ -207,9 +207,9 @@
                                     <tbody>
                                         <?php
                                         foreach ($student_subject2 as $key => $row) {
-                                            $sum_unit += @$row['unit'];
+                                            @$sum_unit += @$row['unit'];
 
-                                            $textGrade = '';
+                                            @$textGrade = '';
                                             if (@$row['grade_student'] > 80) {
                                                 $textGrade = '4';
                                             } else if (@$row['grade_student'] >= 75) {
@@ -229,7 +229,7 @@
                                             } else {
                                                 $textGrade = '-';
                                             }
-                                            $sum_ResutlUnit += @$textGrade * @$row['unit'];
+                                            @$sum_ResutlUnit += @$textGrade * @$row['unit'];
                                         ?>
                                             <tr>
                                                 <td class="text-center">
