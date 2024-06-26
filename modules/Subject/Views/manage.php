@@ -33,8 +33,8 @@
                     if (!empty($getTeacherListAll)) {
                         foreach ($getTeacherListAll as $teacher) {
                     ?>
-                            <option <?php echo $data['teacher_id'] == $teacher['id'] ? 'selected' : '' ?> value="<?php echo $teacher['id'] ?>">
-                                <?php echo $teacher['firstname'] . ' ' . $teacher['lastname'] ?>
+                            <option <?php echo @$data['teacher_id'] == @$teacher['id'] ? 'selected' : '' ?> value="<?php echo @$teacher['id'] ?>">
+                                <?php echo @$teacher['firstname'] . ' ' . @$teacher['lastname'] ?>
                             </option>
 
                     <?php
