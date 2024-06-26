@@ -99,7 +99,7 @@ class StudentModel extends Model
         // $builderStd->set('student_weight', $input['weight_kg']);
         // $builderStd->set('student_height', $input['height_cm']);
         $builderStd->set('student_blood', $input['blood_type']);
-        $builderStd->set('student_defect', $input['scar']);
+        // $builderStd->set('student_defect', $input['scar']);
         $builderStd->set('student_congenital_disease', $input['chronic_disease']);
         $builderStd->set('student_phone', $input['student_phone_number']);
         $builderStd->set('student_original_educational', $input['schoolName']);
