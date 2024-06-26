@@ -82,7 +82,7 @@ class StudentModel extends Model
         $builderStd->set('student_lname_th', $input['thailaststd']);
         $builderStd->set('student_name_en', $input['engnamestd']);
         $builderStd->set('student_lname_en', $input['englaststd']);
-        $builderStd->set('student_nickname', $input['nicknamestd']);
+        // $builderStd->set('student_nickname', $input['nicknamestd']);
         $builderStd->set('student_address', $input['housenumber']);
         $builderStd->set('student_moo', $input['village']);
 
@@ -254,7 +254,7 @@ class StudentModel extends Model
         $builder->join('users', 'users.id = student.users_id', 'left');
         $builder->where('student_id', $student_id);
         $data = $builder->get()->getRowArray();
-     
+
         return $data;
     }
     public function getStudentByUserID($student_id = '')
