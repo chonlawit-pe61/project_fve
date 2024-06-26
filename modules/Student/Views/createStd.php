@@ -17,8 +17,8 @@
             <div class="">
                 <form id="saveForm" action="<?php echo base_url('/Student/createStd') ?>" method="post" enctype="multipart/form-data">
                     <!-- ส่วนที่ 1 -->
-                    <input type="hidden" name="id_users" value="<?php echo $student['id'] ?>">
-                    <input type="hidden" name="student_id" value="<?php echo $student['student_id']  ?>">
+                    <input type="hidden" name="id_users" value="<?php echo $student['id'] ? $student['id'] : '' ?>">
+                    <input type="hidden" name="student_id" value="<?php echo $student['student_id'] ? $student['student_id'] : ''  ?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <h3><u><b>ส่วนที่ 1</b></u> ข้อมูลนักศึกษา</h3>
@@ -29,7 +29,7 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>เลขบัตรประจำตัวประชาชน</label>
-                                <input id="numberpeople" class="form-control" type="text" maxlength="13" placeholder="กรุณากรอกเลขบัตร 13 หลัก" name="numberpeople" required value="<?php echo $student['student_id_card'] ?>">
+                                <input id="numberpeople" class="form-control" type="text" maxlength="13" placeholder="กรุณากรอกเลขบัตร 13 หลัก" name="numberpeople" required value="<?php echo $student['student_id_card'] ? $student['student_id_card'] : '' ?>">
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -60,31 +60,31 @@
                         </div>
                         <div class="col-lg-3">
                             <label>ชื่อ</label>
-                            <input value="<?php echo $student['student_name_th'] ?>" id="thainamestd" type="text" class="form-control" placeholder="ชื่อไทย" name="thainamestd">
+                            <input value="<?php echo $student['student_name_th'] ? $student['student_name_th'] : '' ?>" id="thainamestd" type="text" class="form-control" placeholder="ชื่อไทย" name="thainamestd">
                         </div>
                         <div class="col-lg-3">
                             <label>นามสกุล</label>
-                            <input value="<?php echo $student['student_lname_th'] ?>" id="thailaststd" type="text" class="form-control" placeholder="นามสกุลไทย" name="thailaststd">
+                            <input value="<?php echo $student['student_lname_th'] ? $student['student_lname_th'] : '' ?>" id="thailaststd" type="text" class="form-control" placeholder="นามสกุลไทย" name="thailaststd">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>ชื่อภาษาอังกฤษ</label>
-                                <input value="<?php echo $student['student_name_en'] ?>" id="engnamestd" type="text" class="form-control" placeholder="ชื่ออังกฤษ" name="engnamestd">
+                                <input value="<?php echo $student['student_name_en'] ? $student['student_name_en'] : '' ?>" id="engnamestd" type="text" class="form-control" placeholder="ชื่ออังกฤษ" name="engnamestd">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>นามสกุลอังกฤษ</label>
-                            <input value="<?php echo $student['student_lname_en'] ?>" id="englaststd" type="text" class="form-control" placeholder="นามสกุลอังกฤษ" name="englaststd">
+                            <input value="<?php echo $student['student_lname_en'] ? $student['student_lname_en'] : '' ?>" id="englaststd" type="text" class="form-control" placeholder="นามสกุลอังกฤษ" name="englaststd">
                         </div>
                         <div class="col-lg-3">
                             <label>ที่อยู่ปัจจุบัน</label>
-                            <input value="<?php echo $student['student_address'] ?>" id="housenumber" type="text" class="form-control" placeholder="ที่อยู๋ปัจจุบัน" name="housenumber">
+                            <input value="<?php echo $student['student_address'] ? $student['student_address'] : '' ?>" id="housenumber" type="text" class="form-control" placeholder="ที่อยู๋ปัจจุบัน" name="housenumber">
                         </div>
 
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>หมู่ที่</label>
-                                <input value="<?php echo $student['student_moo'] ?>" id="village" type="text" class="form-control" placeholder="หมู่ที่" name="village">
+                                <input value="<?php echo $student['student_moo'] ? $student['student_moo'] : '' ?>" id="village" type="text" class="form-control" placeholder="หมู่ที่" name="village">
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -156,17 +156,17 @@
                         </div>
                         <div class="col-lg-3">
                             <label>โรคประจำตัว</label>
-                            <input value="<?php echo $student['student_congenital_disease'] ?>" type="text" class="form-control" placeholder="กรุณณากรอกโรคประจำตัว" name="chronic_disease">
+                            <input value="<?php echo $student['student_congenital_disease'] ? $student['student_congenital_disease'] : '' ?>" type="text" class="form-control" placeholder="กรุณณากรอกโรคประจำตัว" name="chronic_disease">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>เบอร์ติดต่อนักศึกษา</label>
-                                <input value="<?php echo $student['student_phone'] ?>" id="student_phone_number" type="number" class="form-control" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของนักศึกษา" name="student_phone_number">
+                                <input value="<?php echo $student['student_phone'] ? $student['student_phone'] : '' ?>" id="student_phone_number" type="number" class="form-control" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของนักศึกษา" name="student_phone_number">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>สถานศึกษาเดิม</label>
-                            <input value="<?php echo $student['student_original_educational'] ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="schoolName">
+                            <input value="<?php echo $student['student_original_educational'] ? $student['student_original_educational'] : '' ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="schoolName">
                         </div>
                         <div class="col-lg-3">
                             <label>จบการศึกษาระดับ</label>
@@ -196,11 +196,11 @@
                         </div>
                         <div class="col-lg-3 mb-3">
                             <label>ชั้นปี</label>
-                            <input value="<?php echo $student['student_level'] ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="student_level">
+                            <input value="<?php echo $student['student_level'] ?  $student['student_level'] : '' ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="student_level">
                         </div>
                         <div class="col-lg-3">
                             <label>ห้อง</label>
-                            <input value="<?php echo $student['student_room'] ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="student_room">
+                            <input value="<?php echo $student['student_room'] ? $student['student_room'] : '' ?>" id="schoolName" class="form-control" type="text" placeholder="กรุณณากรอกชื่อสถานศึกษาเดิม" name="student_room">
                         </div>
                         <div class="col-lg-3">
                             <label>ครูที่ปรึกษา</label>
@@ -222,7 +222,7 @@
                         </div>
                         <div class="col-lg-3 ">
                             <label for="formFileLg" class="form-label">username</label>
-                            <input value="<?php echo $student['username'] ?>" class="form-control" type="text" name="username" placeholder="กรุณากรอก username สำหรับใช้ในการเข้าสู่ระบบ">
+                            <input value="<?php echo $student['username'] ? $student['username'] : '' ?>" class="form-control" type="text" name="username" placeholder="กรุณากรอก username สำหรับใช้ในการเข้าสู่ระบบ">
                         </div>
                         <div class="col-lg-3 ">
                             <label for="formFileLg" class="form-label">password</label>
@@ -239,16 +239,16 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>ชื่อผู้ปกครอง</label>
-                                <input value="<?php echo $student['student_guardian_name'] ?>" id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
+                                <input value="<?php echo $student['student_guardian_name'] ? $student['student_guardian_name'] : '' ?>" id="firstnameguardian" type="text" class="form-control" placeholder="ชื่อผู้ปกครอง" name="firstnameguardian">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>นามสกุลผู้ปกครอง</label>
-                            <input value="<?php echo $student['student_guardian_lname'] ?>" id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
+                            <input value="<?php echo $student['student_guardian_lname'] ? $student['student_guardian_lname'] : '' ?>" id="lastnameguardian" type="text" class="form-control" placeholder="นามสกุลผู้ปกครอง" name="lastnameguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>เลขบัตรประจำตัวประชาชนของผู้ปกครอง</label>
-                            <input value="<?php echo $student['student_guardian_id_card'] ?>" id="numberpeopleguardian" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
+                            <input value="<?php echo $student['student_guardian_id_card'] ? $student['student_guardian_id_card'] : '' ?>" id="numberpeopleguardian" class="form-control" type="text" maxlength="13" placeholder="กรุณณากรอกเลขบัตร 13 หลัก" name="numberpeopleguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>เลือกประเภทบัตร</label>
@@ -266,21 +266,21 @@
                         <div class="col-lg-3">
                             <div class="mb-3">
                                 <label>ความสัมพันธ์</label>
-                                <input value="<?php echo $student['student_guardian_relationship'] ?>" id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
+                                <input value="<?php echo $student['student_guardian_relationship'] ? $student['student_guardian_relationship'] : '' ?>" id="parentguardian" class="form-control" type="text" class="t1" placeholder="กรุณณากรอกความสัมพันธ์" name="parentguardian">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <label>อาชีพของผู้ปกครอง</label>
-                            <input value="<?php echo $student['student_guardian_job'] ?>" id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
+                            <input value="<?php echo $student['student_guardian_job'] ? $student['student_guardian_job'] : '' ?>" id="guardian_occupation" class="form-control" type="text" placeholder="อาชีพของผู้ปกครอง" name="guardian_occupation">
                         </div>
                         <div class="col-lg-3">
 
                             <label>ที่อยู่ปัจจุบันของผู้ปกครอง</label>
-                            <input value="<?php echo $student['student_guardian_address'] ?>" id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
+                            <input value="<?php echo $student['student_guardian_address'] ? $student['student_guardian_address'] : '' ?>" id="housenumberguardian" type="text" class="form-control" placeholder="ที่อยู่ปัจจุบัน" name="housenumberguardian">
                         </div>
                         <div class="col-lg-3">
                             <label>หมู่ที่</label>
-                            <input value="<?php echo $student['student_guardian_moo'] ?>" id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
+                            <input value="<?php echo $student['student_guardian_moo'] ? $student['student_guardian_moo'] : '' ?>" id="villageguardian" type="text" class="form-control" placeholder="หมู่ที่" name="villageguardian">
                         </div>
                         <div class="col-lg-3">
                             <div class="mb-3">
@@ -312,7 +312,7 @@
                         </div>
                         <div class="col-lg-3">
                             <label>เบอร์ติดต่อผู้ปกครอง</label>
-                            <input value="<?php echo $student['student_guardian_phone'] ?>" id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
+                            <input value="<?php echo $student['student_guardian_phone'] ? $student['student_guardian_phone'] : '' ?>" id="phoneguardian" class="form-control" type="number" maxlength="13" placeholder="กรุณณากรอกเบอร์โทรของผู้ปกครอง" name="phoneguardian">
                         </div>
                     </div>
                     <div class="row">
