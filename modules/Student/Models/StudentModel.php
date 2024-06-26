@@ -69,10 +69,10 @@ class StudentModel extends Model
             $builder->insert();
             $id = $this->db->insertID();
         }
-        // echo '<pre>';
-        // print_r($input);
+        echo '<pre>';
+        print_r($input);
         // echo $id;
-        // die();
+        die();
 
         $builderStd = $this->db->table('student');
         $builderStd->set('users_id', $id);
@@ -95,9 +95,9 @@ class StudentModel extends Model
         $builderStd->set('student_subdistrict', $input['subdistrictstd']);
         $builderStd->set('student_gender', $input['gender']);
         $builderStd->set('student_religion', $input['religion']);
-        $builderStd->set('student_ability', $input['special_ability']);
-        $builderStd->set('student_weight', $input['weight_kg']);
-        $builderStd->set('student_height', $input['height_cm']);
+        // $builderStd->set('student_ability', $input['special_ability']);
+        // $builderStd->set('student_weight', $input['weight_kg']);
+        // $builderStd->set('student_height', $input['height_cm']);
         $builderStd->set('student_blood', $input['blood_type']);
         $builderStd->set('student_defect', $input['scar']);
         $builderStd->set('student_congenital_disease', $input['chronic_disease']);
