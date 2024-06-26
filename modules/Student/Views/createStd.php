@@ -17,8 +17,8 @@
             <div class="">
                 <form id="saveForm" action="<?php echo base_url('/Student/createStd') ?>" method="post" enctype="multipart/form-data">
                     <!-- ส่วนที่ 1 -->
-                    <input type="hidden" name="id_users" value="<?php echo $student['id'] ? $student['id'] : '' ?>">
-                    <input type="hidden" name="student_id" value="<?php echo $student['student_id'] ? $student['student_id'] : ''  ?>">
+                    <input type="hidden" name="id_users" value="<?php echo !empty($student['id']) ? $student['id'] : '' ?>">
+                    <input type="hidden" name="student_id" value="<?php echo !empty($student['student_id']) ? $student['student_id'] : ''  ?>">
                     <div class="row">
                         <div class="col-lg-12">
                             <h3><u><b>ส่วนที่ 1</b></u> ข้อมูลนักศึกษา</h3>
