@@ -39,7 +39,7 @@
                                 <?php
                                 foreach ($type_card as $type) {
                                 ?>
-                                    <option <?php echo $student['student_type_card'] == $type['type_card_id'] ? 'selected' : '' ?> value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
+                                    <option <?php echo @$student['student_type_card'] == $type['type_card_id'] ? 'selected' : '' ?> value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -52,7 +52,7 @@
                                 <?php
                                 foreach ($prenames as $prename) {
                                 ?>
-                                    <option <?php echo $student['prename_id'] ==  $prename['prename_id'] ? 'selected' : '' ?> value="<?php echo $prename['prename_id'] ?>"><?php echo $prename['prename_name'] ?></option>
+                                    <option <?php echo @$student['prename_id'] ==  $prename['prename_id'] ? 'selected' : '' ?> value="<?php echo $prename['prename_id'] ?>"><?php echo $prename['prename_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -94,7 +94,7 @@
                                 <?php
                                 foreach ($provinces as $province) {
                                 ?>
-                                    <option <?php echo $student['student_province'] == $province['id'] ? 'selected' : '' ?> value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
+                                    <option <?php echo @$student['student_province'] == $province['id'] ? 'selected' : '' ?> value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -120,7 +120,7 @@
                                     <?php
                                     foreach ($genders as $gender) {
                                     ?>
-                                        <option <?php echo $student['student_gender'] == $gender['gender_id'] ? 'selected' : ''  ?> value="<?php echo $gender['gender_id'] ?>"><?php echo $gender['gender_name'] ?></option>
+                                        <option <?php echo @$student['student_gender'] == $gender['gender_id'] ? 'selected' : ''  ?> value="<?php echo $gender['gender_id'] ?>"><?php echo $gender['gender_name'] ?></option>
                                     <?php
                                     }
                                     ?>
@@ -134,7 +134,7 @@
                                 <?php
                                 foreach ($religions as $religion) {
                                 ?>
-                                    <option <?php echo $student['student_religion'] == $religion['religion_id'] ? 'selected' : ''  ?> value="<?php echo $religion['religion_id'] ?>"><?php echo $religion['religion_name'] ?></option>
+                                    <option <?php echo @$student['student_religion'] == $religion['religion_id'] ? 'selected' : ''  ?> value="<?php echo $religion['religion_id'] ?>"><?php echo $religion['religion_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -148,7 +148,7 @@
                                 <?php
                                 foreach ($bloods as $blood) {
                                 ?>
-                                    <option <?php echo $student['student_blood'] == $blood['blood_id'] ? 'selected' : ''  ?> value="<?php echo $blood['blood_id'] ?>"><?php echo $blood['blood_name'] ?></option>
+                                    <option <?php echo @$student['student_blood'] == $blood['blood_id'] ? 'selected' : ''  ?> value="<?php echo $blood['blood_id'] ?>"><?php echo $blood['blood_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -175,7 +175,7 @@
                                 <?php
                                 foreach ($education_levels as $education_level) {
                                 ?>
-                                    <option <?php echo $student['student_graduated_level'] == $education_level['education_level_id'] ? 'selected' : ''  ?> value="<?php echo $education_level['education_level_id'] ?>"><?php echo $education_level['education_level_name'] ?></option>
+                                    <option <?php echo @$student['student_graduated_level'] == $education_level['education_level_id'] ? 'selected' : ''  ?> value="<?php echo $education_level['education_level_id'] ?>"><?php echo $education_level['education_level_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -188,7 +188,7 @@
                                 <?php
                                 foreach ($departments as $department) {
                                 ?>
-                                    <option <?php echo $student['student_department'] == $department['department_id'] ? 'selected' : ''  ?> value="<?php echo $department['department_id'] ?>"><?php echo $department['department_name'] ?></option>
+                                    <option <?php echo @$student['student_department'] == $department['department_id'] ? 'selected' : ''  ?> value="<?php echo $department['department_id'] ?>"><?php echo $department['department_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -209,7 +209,7 @@
                                 <?php
                                 foreach ($users as $user) {
                                 ?>
-                                    <option <?php echo $student['student_teacher_id'] == $user['id'] ? 'selected' : ''  ?> value="<?php echo $user['id'] ?>"><?php echo $user['firstname'] . ' ' . $user['lastname'] ?></option>
+                                    <option <?php echo @$student['student_teacher_id'] == $user['id'] ? 'selected' : ''  ?> value="<?php echo $user['id'] ?>"><?php echo $user['firstname'] . ' ' . $user['lastname'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -257,7 +257,7 @@
                                 <?php
                                 foreach ($type_card as $type) {
                                 ?>
-                                    <option <?php echo $student['student_guardian_type_card'] ==  $type['type_card_id'] ? 'selected' : '' ?> value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
+                                    <option <?php echo @$student['student_guardian_type_card'] ==  $type['type_card_id'] ? 'selected' : '' ?> value="<?php echo $type['type_card_id'] ?>"><?php echo $type['type_card_name'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -290,7 +290,7 @@
                                     <?php
                                     foreach ($provinces as $province) {
                                     ?>
-                                        <option <?php echo $student['student_guardian_province'] == $province['id'] ? 'selected' : '' ?> value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
+                                        <option <?php echo @$student['student_guardian_province'] == $province['id'] ? 'selected' : '' ?> value="<?php echo $province['id'] ?>"><?php echo $province['province_th'] ?></option>
                                     <?php
                                     }
                                     ?>
