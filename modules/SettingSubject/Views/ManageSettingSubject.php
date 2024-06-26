@@ -9,11 +9,11 @@
         </div>
         <div class="col-md-12 mt-3">
             <form class="row" method="post" action="<?php echo base_url('SettingSubject/CreateUpdateSettingSubject') ?>">
-                <input type="hidden" name="plan_education_id" value="<?php echo $plan_education['plan_education_id'] ?>">
+                <input type="hidden" name="plan_education_id" value="<?php echo @$plan_education['plan_education_id'] ?>">
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">ชื่อแผน</label>
-                        <input type="text" name="plan_education_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $plan_education['plan_education_name'] ?>">
+                        <input type="text" name="plan_education_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo @$plan_education['plan_education_name'] ?>">
                     </div>
                 </div>
                 <div class="col-lg-12 text-end mb-3">
