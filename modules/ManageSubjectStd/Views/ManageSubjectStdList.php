@@ -13,7 +13,7 @@
                         <?php
                         foreach ($department as $dp) {
                         ?>
-                            <option <?php echo $dp['department_id'] == $_GET['department'] ? 'selected' : '' ?> value="<?php echo $dp['department_id'] ?>"><?php echo $dp['department_name'] ?></option>
+                            <option <?php echo @$dp['department_id'] == $_GET['department'] ? 'selected' : '' ?> value="<?php echo $dp['department_id'] ?>"><?php echo $dp['department_name'] ?></option>
                         <?php
                         }
                         ?>
@@ -32,7 +32,7 @@
                         <?php
                         foreach ($education_year as $ey) {
                         ?>
-                            <option <?php echo $ey['education_year_id'] == $_GET['year'] ? 'selected' : '' ?> value="<?php echo $ey['education_year_id'] ?>"><?php echo $ey['education_year_name'] ?></option>
+                            <option <?php echo @$ey['education_year_id'] == $_GET['year'] ? 'selected' : '' ?> value="<?php echo $ey['education_year_id'] ?>"><?php echo $ey['education_year_name'] ?></option>
                         <?php
                         }
                         ?>
@@ -46,7 +46,7 @@
                         <?php
                         foreach ($education_room as $er) {
                         ?>
-                            <option <?php echo $er['education_room_id'] == $_GET['room'] ? 'selected' : '' ?> value="<?php echo $er['education_room_id'] ?>"><?php echo $er['education_room_name'] ?></option>
+                            <option <?php echo @$er['education_room_id'] == $_GET['room'] ? 'selected' : '' ?> value="<?php echo $er['education_room_id'] ?>"><?php echo $er['education_room_name'] ?></option>
                         <?php
                         }
                         ?>
@@ -158,7 +158,7 @@
                         <?php
                         foreach ($plan_education as $plan) {
                         ?>
-                            <option value="<?php echo $plan['plan_education_id'] ?>"><?php echo $plan['plan_education_name'] ?></option>
+                            <option value="<?php echo @$plan['plan_education_id'] ?>"><?php echo $plan['plan_education_name'] ?></option>
                         <?php
                         }
                         ?>
