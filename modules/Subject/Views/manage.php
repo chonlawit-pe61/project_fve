@@ -30,12 +30,15 @@
                 <select class="form-select" name="teacher_id" aria-label="Default select example">
                     <option value="0">เลือกอาจารย์ผู้สอน</option>
                     <?php
-                    foreach ($getTeacherListAll as $teacher) {
+                    if (!empty($getTeacherListAll)) {
+                        foreach ($getTeacherListAll as $teacher) {
                     ?>
-                        <option <?php echo $data['teacher_id'] == $teacher['id'] ? 'selected' : '' ?> value="<?php echo $teacher['id'] ?>">
-                            <?php echo $teacher['firstname'] . ' ' . $teacher['lastname'] ?>
-                        </option>
+                            <option <?php echo $data['teacher_id'] == $teacher['id'] ? 'selected' : '' ?> value="<?php echo $teacher['id'] ?>">
+                                <?php echo $teacher['firstname'] . ' ' . $teacher['lastname'] ?>
+                            </option>
+
                     <?php
+                        }
                     }
                     ?>
                 </select>
