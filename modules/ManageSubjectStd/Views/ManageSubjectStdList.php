@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-2">
                     <label for="">เลขบัตรประจำตัวประชาชน</label>
-                    <input type="text" class="form-control" name="id_card" value="<?php echo $_GET['id_card'] ? $_GET['id_card'] : '' ?>">
+                    <input type="text" class="form-control" name="id_card" value="<?php echo @$_GET['id_card'] ? $_GET['id_card'] : '' ?>">
                 </div>
 
                 <div class="col-lg-2">
