@@ -254,8 +254,7 @@ class StudentModel extends Model
         $builder->join('users', 'users.id = student.users_id', 'left');
         $builder->where('student_id', $student_id);
         $data = $builder->get()->getRowArray();
-        echo $this->db->getLastQuery();
-        die();
+     
         return $data;
     }
     public function getStudentByUserID($student_id = '')
