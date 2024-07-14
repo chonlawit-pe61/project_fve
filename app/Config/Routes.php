@@ -64,6 +64,13 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->post('getDistrict', 'Student::getDistrict');
     $routes->post('getSubdistrict', 'Student::getSubdistrict');
     $routes->get('StudentSubject', 'Student::StudentSubject');
+    $routes->get('exportProfileStudent', 'Student::exportProfileStudent');
+    $routes->get('SubjectStudent', 'Student::SubjectStudent');
+    $routes->post('insertSubject', 'Student::insertSubject');
+    $routes->post('deleteSubject', 'Student::deleteSubject');
+    $routes->post('DeleteStudent', 'Student::DeleteStudent');
+    
+    
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');
@@ -91,6 +98,7 @@ $routes->group('ManageSubjectTeacher', ['namespace' => '\Modules\ManageSubjectTe
     $routes->get('Subject/Term/ListStudent', 'ManageSubjectTeacher::ManageSubjectTeacherSubject');
     $routes->get('Subject/Term', 'ManageSubjectTeacher::ManageSubjectTeacherTerm');
     $routes->post('ManageGradeStudent', 'ManageSubjectTeacher::ManageGradeStudent');
+    $routes->get('exportPDFStudent', 'ManageSubjectTeacher::exportPDFStudent');
 });
 
 

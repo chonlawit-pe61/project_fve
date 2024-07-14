@@ -2,7 +2,16 @@
 
 <?php $this->section('content'); ?>
 <div class="p-3 border shadow-sm mb-2">
-    <h1 class="mt-0"><u><b>รายชื่อนักศึกษา</b></u></h1>
+
+    <div class="d-flex justify-content-between">
+        <div>
+            <h1 class="mt-0 mb-0"><u><b>รายชื่อนักศึกษา</b></u></h1>
+        </div>
+        <a href="<?php echo base_url('ManageSubjectTeacher/exportPDFStudent') ?>" target="_blank" class="btn btn-secondary">
+            PDF
+        </a>
+    </div>
+
     <div class="my-3">
         <form action="<?php echo base_url('ManageSubjectTeacher/ManageGradeStudent') ?>" method="post">
             <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">

@@ -93,4 +93,80 @@ class Student extends BaseController
     //
     return view('Modules\Student\Views\Student\ListStudentSubject.php', $data);
   }
+  public function exportProfileStudent()
+  {
+    $session = session();
+    $item = $session->get();
+    $data['date_thai'] = $this->Date_thai;
+    $mpdf = new \Mpdf\Mpdf([
+      'default_font' => 'thsarabun',
+      'default_font_size' => 13,
+      'mode' => 'utf-8',
+      'format' => 'A4',
+      'margin_top' => 10,
+      'margin_bottom' => 10,
+      'margin_left' => 10,
+      'margin_right' => 10,
+      'margin_header' => 0, // 30mm not pixel
+      'margin_footer' => 0, // 10mm
+      'orientation' => 'P', // L แนวนอน P แนวตั้งง
+    ]);
+    $this->response->setHeader('Content-Type', 'application/pdf');
+
+    $session = session();
+    $StudentModel = new StudentModel();
+    $item = $session->get();;
+    $student_id = $_GET['user_id'] ? $_GET['user_id'] : $item['user_id'];
+    $data['student'] =  $StudentModel->getStudentByUserID($student_id);
+    $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1);
+    $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2);
+    $html = view('Modules\Student\Views\exportPDF\FormPDF1.php', $data);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('pdf.pdf', 'I');
+  }
+
+  public function SubjectStudent()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $user_id = $_GET['id'];
+    $data['student'] =  $StudentModel->getStudentByUserID($user_id);
+    $data['student_subject'] = $StudentModel->getStudentSubject($user_id, 1);
+    $data['student_subject2'] = $StudentModel->getStudentSubject($user_id, 2);
+    $data['subject'] = $StudentModel->getSubject();
+
+    // echo '<pre>';
+    // print_r($student_id);
+    // die();
+    return view('Modules\Student\Views\SubjectStudent.php', $data);
+  }
+  public function insertSubject()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $input = $this->request->getPost();
+    $resutl =  $StudentModel->InsertSubject($input);
+    if ($resutl == 0) {
+      // $session->setFlashdata('msg', 'วิชาที่เลือกซ้ำ');
+      return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+    } else {
+      return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+    }
+  }
+  public function DeleteSubject()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $input = $this->request->getPost();
+    $StudentModel->DeleteSubject($input);
+    // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+  }
+  public function DeleteStudent()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $input = $this->request->getPost();
+    $StudentModel->DeleteStudent($input);
+    // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+  }
 }

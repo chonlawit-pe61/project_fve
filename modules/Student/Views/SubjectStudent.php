@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-end">
-                        <a target="_blank" href="<?php echo base_url('Student/exportProfileStudent') ?>" class="btn btn-success">PDF</a>
+                        <a target="_blank" href="<?php echo base_url('Student/exportProfileStudent?user_id=' . $_GET['id']) ?>" class="btn btn-success">PDF</a>
                     </div>
                     <div class="col-lg-12 text-center">
                         <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . $student['student_img']) ?>" alt="">
@@ -50,7 +50,6 @@
                                 </b>
                             </div>
                             <div class="col-lg-12">
-
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -81,8 +80,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <?php
                                         foreach ($student_subject as $key => $row) {
+                                            $plan1 = $row['plan_student_year'];
                                             @$sum_unit1 += @$row['unit'];
 
                                             $textGrade1 = '';
@@ -136,10 +137,39 @@
                                                 <td class="text-center">
                                                     <?php echo @$textGrade1 * @$row['unit'] ?>
                                                 </td>
+                                                <td>
+                                                    <button class="btn btn-danger" onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         <?php
                                         }
                                         ?>
+                                        <form action="<?php echo base_url('Student/insertSubject') ?>" method="post">
+                                            <tr>
+                                                <td colspan="3">
+                                                    &nbsp;
+                                                    <input type="hidden" name="plan_student_term" value="1">
+                                                    <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
+                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                </td>
+                                                <td colspan="3">
+                                                    <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                        <?php
+                                                        foreach ($subject as $row) {
+                                                        ?>
+                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                                <td colspan="3" class="text-center">
+                                                    <button class="btn btn-success">บันทึก</button>
+                                                </td>
+                                            </tr>
+                                        </form>
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -160,7 +190,6 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-
                             </div>
                         </div>
                     <?php
@@ -210,6 +239,7 @@
                                     <tbody>
                                         <?php
                                         foreach ($student_subject2 as $key => $row) {
+                                            $plan2 = $row['plan_student_year'];
                                             @$sum_unit += @$row['unit'];
 
                                             @$textGrade = '';
@@ -266,7 +296,32 @@
                                         <?php
                                         }
                                         ?>
+                                        <form action="<?php echo base_url('Student/insertSubject') ?>" method="post">
+                                            <tr>
+                                                <td colspan="3">
+                                                    &nbsp;
+                                                    <input type="hidden" name="plan_student_term" value="2">
+                                                    <input type="hidden" name="plan_student_year" value="<?php echo $plan2 ?>">
+                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                </td>
+                                                <td colspan="3">
+                                                    <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                        <?php
+                                                        foreach ($subject as $row) {
+                                                        ?>
+                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                                <td colspan="3" class="text-center">
+                                                    <button class="btn btn-success">บันทึก</button>
+                                                </td>
+                                            </tr>
+                                        </form>
                                     </tbody>
+
                                     <tfoot>
                                         <tr>
                                             <td colspan="7" class="text-end">
@@ -294,6 +349,9 @@
                     ?>
 
                 </div>
+                <div class="text-center">
+                    <a class="btn btn-secondary" href="<?php echo base_url('Student') ?>">ย้อนกลับ</a>
+                </div>
             </div>
         </div>
 
@@ -306,7 +364,38 @@
 <?php $this->endSection() ?>
 <?php $this->section('scripts') ?>
 <script>
-
+    const DeleteSubject = (id) => {
+        Swal.fire({
+            title: 'คุณต้องการลบข้อมูล?',
+            text: "คลิกตกลงเพื่อยืนยันการลบข้อมูล!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        'id': id
+                    },
+                    url: '<?= base_url('/Student/deleteSubject'); ?>',
+                    success: function(res) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ลบรายวิชาสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                })
+            }
+        })
+    }
 </script>
 
 

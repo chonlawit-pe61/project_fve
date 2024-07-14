@@ -26,9 +26,9 @@ class StudentModel extends Model
         $table->join('education_room', 'education_room.education_room_id = student.student_room', 'left');
         $table->join('users', 'users.id = student.student_teacher_id', 'left');
         $table->join('prename', 'prename.prename_id = users.prename_id', 'left');
+        $table->where('users.is_active = 1');
         $data = $table->get()->getResultArray();
-        // echo $this->db->getLastQuery();
-        // die();
+       
         return $data;
     }
     public function getTypepeople()
@@ -303,5 +303,55 @@ class StudentModel extends Model
         $builder->where('plan_student.users_id', $student_id);
         $data = $builder->get()->getResultArray();
         return $data;
+    }
+    public function getSubject()
+    {
+        $builder = $this->db->table('subjects');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+    public function DeleteSubject($input)
+    {
+        $builder = $this->db->table('plan_student');
+        $builder->where('plan_student_id', $input['id']);
+        $builder->delete();
+        // return $data;
+    }
+    public function DeleteStudent($input)
+    {
+        $builder = $this->db->table('users');
+        $builder->set('is_active', 0);
+        $builder->where('id', $input['id']);
+        $builder->update();
+        // return $data;
+        $student = $this->db->table('student');
+        $student->where('users_id', $input['id']);
+        $student->delete();
+        // return 1;
+    }
+
+
+    public function InsertSubject($input)
+    {
+        $builder = $this->db->table('plan_student');
+        $builder->select('*');
+        $builder->where('users_id', $input['users_id']);
+        $builder->where('plan_student_term', $input['plan_student_term']);
+        $builder->where('subjects_id IN (' . $input['subjects_id'] . ')');
+        $resutl = $builder->get()->getResultArray();
+        // echo $this->db->getLastQuery();
+        // die();
+
+        if (!empty($resutl)) {
+            return 0;
+        } else {
+            $builder->set('users_id', $input['users_id']);
+            $builder->set('subjects_id', $input['subjects_id']);
+            $builder->set('plan_student_term', $input['plan_student_term']);
+            $builder->set('plan_student_year', $input['plan_student_year']);
+            $builder->insert();
+            return 1;
+        }
     }
 }

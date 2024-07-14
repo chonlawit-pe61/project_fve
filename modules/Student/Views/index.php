@@ -32,6 +32,9 @@
             </thead>
             <tbody>
                 <?php
+                // echo '<pre>';
+                // print_r($students);
+                // echo '</pre>';
                 foreach ($students as $student) {
                 ?>
                     <tr>
@@ -55,9 +58,9 @@
                             <img style="height: 120px; " class="img-fluid" src="<?php echo base_url('public/files/imgStd' . '/' . $student['student_img']) ?>" alt="">
                         </td>
                         <td>
+                            <a class="btn btn-info text-white" href="<?php echo base_url('Student/SubjectStudent?id=' . $student['users_id']) ?>"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
                             <a href="<?php echo base_url('Student/manage/' . $student['student_id']) ?>" class="btn btn-warning"><i class="fa fa-pen"></i></a>
-                            <button class="btn btn-danger"><i class="fa fa-trash"></i> </button>
-
+                            <button onclick="DeleteSubject(<?php echo $student['users_id'] ?>)" class="btn btn-danger"><i class="fa fa-trash"></i> </button>
                         </td>
                     </tr>
                 <?php
@@ -71,7 +74,48 @@
 <?php $this->endSection() ?>
 <?php $this->section('scripts') ?>
 
+<?php if (session()->getFlashdata('msg') != null) : ?>
+    <script script type="text/javascript">
+        Swal.fire({
+            icon: 'error',
+            title: '<?= session()->getFlashdata('msg') ?>',
+            timer: 2000,
+        })
+    </script>
+<?php endif; ?>
 <script>
+    const DeleteSubject = (id) => {
+        Swal.fire({
+            title: 'คุณต้องการลบข้อมูล?',
+            text: "คลิกตกลงเพื่อยืนยันการลบข้อมูล!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        'id': id
+                    },
+                    url: '<?= base_url('/Student/DeleteStudent'); ?>',
+                    success: function(res) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ลบข้อมูลของนักเรียนสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                })
+            }
+        })
+    }
     $(document).ready(function() {
         $('#myTable').dataTable({});
     })

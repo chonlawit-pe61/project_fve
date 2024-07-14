@@ -42,4 +42,30 @@ class ManageSubjectTeacher extends BaseController
     $ManageSubjectTeacherModel->UpdateGradeStudent($input);
     return redirect()->to(base_url('/ManageSubjectTeacher/Subject/Term/ListStudent?id=' . $input['id'] . '&term='  . $input['term']));
   }
+  public function exportPDFStudent()
+  {
+    $session = session();
+    $item = $session->get();
+    $data['date_thai'] = $this->Date_thai;
+    $mpdf = new \Mpdf\Mpdf([
+      'default_font' => 'thsarabun',
+      'default_font_size' => 13,
+      'mode' => 'utf-8',
+      'format' => 'A4',
+      'margin_top' => 10,
+      'margin_bottom' => 10,
+      'margin_left' => 10,
+      'margin_right' => 10,
+      'margin_header' => 0, // 30mm not pixel
+      'margin_footer' => 0, // 10mm
+      'orientation' => 'P', // L แนวนอน P แนวตั้งง
+    ]);
+    $this->response->setHeader('Content-Type', 'application/pdf');
+
+    $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
+    $data['students'] = $ManageSubjectTeacherModel->getListStudents();
+    $html = view('Modules\ManageSubjectTeacher\Views\exportPDF\FormPDF1.php', $data);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('pdf.pdf', 'I');
+  }
 }
