@@ -54,6 +54,7 @@ class SettingSubjectModel extends Model
     }
     public function CreateUpdateSettingSubject($input)
     {
+        
         $builder = $this->db->table('plan_education');
         $builder->set('plan_education_name', $input['plan_education_name']);
         if (!empty($input['plan_education_id'])) {

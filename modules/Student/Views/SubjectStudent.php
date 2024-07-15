@@ -19,7 +19,15 @@
                         <a target="_blank" href="<?php echo base_url('Student/exportProfileStudent?user_id=' . $_GET['id']) ?>" class="btn btn-success">PDF</a>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . $student['student_img']) ?>" alt="">
+                        <?php
+                        if ($student['student_img']) {
+                        ?>
+                            <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . @$student['student_img']) ?>" alt="">
+                        <?php
+                        }
+                        ?>
+
+
                     </div>
                     <div class="col-lg-12 ">
                         <div class="container ">
@@ -87,7 +95,7 @@
                                             @$sum_unit1 += @$row['unit'];
 
                                             $textGrade1 = '';
-                                            if (@$row['grade_student'] > 80) {
+                                            if (@$row['grade_student'] >= 80) {
                                                 $textGrade1 = '4';
                                             } else if (@$row['grade_student'] >= 75) {
                                                 $textGrade1 = '3.5';

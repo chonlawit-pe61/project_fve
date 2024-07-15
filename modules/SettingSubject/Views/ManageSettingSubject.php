@@ -45,7 +45,7 @@
                                     <tr id="Subject<?php echo $key ?>" class="Subject_len">
                                         <td class="text-center">
                                             <?php echo $key + 1 ?>
-                                            <input type="hidden" name="subject_id[<?php echo $key ?>]" value="<?php echo $subject['subjects_id'] ?>">
+                                            <input type="hidden" name="subject_id[<?php echo $key ?>]" value="<?php echo $subject['id'] ?>">
                                         </td>
                                         <td>
                                             <?php echo $subject['name'] ?>
@@ -200,13 +200,14 @@
                     });
                 } else {
                     let json_res = JSON.parse(res);
+                    $('#tbl_body').empty();
                     json_res.map((val, idx) => {
                         let len = $('.Subject_len').length;
                         $('#tbl_body').append(`
                         <tr id="Subject${len+1}" class="Subject_len">
                                 <td class="text-center">
                                     ${len+1}
-                                    <input type="hidden" name="subject_id[ ${len+1}]" value="${val.id}">
+                                    <input type="hidden" name="subject_id[${len+1}]" value="${val.id}">
                                 </td>
                                 <td>
                                 ${val.name}

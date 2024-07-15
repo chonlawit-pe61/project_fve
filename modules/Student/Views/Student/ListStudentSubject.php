@@ -62,22 +62,21 @@
                                                 ชื่อวิชา
                                             </td>
                                             <td class="text-center">
-                                                ทศดี
+                                                ทฤษฎี
                                             </td>
-                                            <td class="text-center">ปฎ</td>
+                                            <td class="text-center">ปฏิบัติ</td>
 
                                             <td class="text-center">
                                                 ชั่วโมง
                                             </td>
-                                            <td class="text-center">
-                                                เกรด
-                                            </td>
+
                                             <td class="text-center">
                                                 หน่วยกิต
                                             </td>
                                             <td class="text-center">
-                                                คะแนนหน่วยกิต
+                                                เกรด
                                             </td>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -127,15 +126,14 @@
                                                 <td class="text-center">
                                                     <?php echo @$row['hour'] ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    <?php echo @$textGrade1 ?>
-                                                </td>
+
                                                 <td class="text-center">
                                                     <?php echo @$row['unit'] ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade1 * @$row['unit'] ?>
+                                                    <?php echo @$textGrade1 ?>
                                                 </td>
+
                                             </tr>
                                         <?php
                                         }
@@ -143,15 +141,13 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="7" class="text-end">
+                                            <td colspan="6" class="text-end">
                                                 รวม
                                             </td>
                                             <td class="text-center">
                                                 <?php echo @$sum_unit1 ?>
                                             </td>
-                                            <td class="text-center">
-                                                <?php echo @$sum_ResutlUnit1 ?>
-                                            </td>
+
                                         </tr>
                                         <tr>
                                             <td colspan="9" class="text-center">
@@ -189,22 +185,21 @@
                                                 ชื่อวิชา
                                             </td>
                                             <td class="text-center">
-                                                ทศดี
+                                                ทฤษฎี
                                             </td>
-                                            <td class="text-center">ปฎ</td>
+                                            <td class="text-center">ปฏิบัติ</td>
 
                                             <td class="text-center">
                                                 ชั่วโมง
                                             </td>
-                                            <td class="text-center">
-                                                เกรด
-                                            </td>
+
                                             <td class="text-center">
                                                 หน่วยกิต
                                             </td>
                                             <td class="text-center">
-                                                คะแนนหน่วยกิต
+                                                เกรด
                                             </td>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -253,14 +248,12 @@
                                                 <td class="text-center">
                                                     <?php echo @$row['hour'] ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    <?php echo @$textGrade ?>
-                                                </td>
+
                                                 <td class="text-center">
                                                     <?php echo @$row['unit'] ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade * @$row['unit'] ?>
+                                                    <?php echo @$textGrade ?>
                                                 </td>
                                             </tr>
                                         <?php
@@ -269,14 +262,11 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="7" class="text-end">
+                                            <td colspan="6" class="text-end">
                                                 รวม
                                             </td>
                                             <td class="text-center">
                                                 <?php echo @$sum_unit ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?php echo @$sum_ResutlUnit ?>
                                             </td>
                                         </tr>
                                         <tr>

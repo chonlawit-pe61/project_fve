@@ -4,7 +4,13 @@
     <img class="img-fluid" style="height: 150px;" src="<?php echo base_url('public/img/icon.jpg') ?>" alt="">
 </div>
 <div class="col-lg-12 text-center" style="text-align: center;">
-    <img class="img-fluid" style="height: 150px;" src="<?php echo base_url('public/files/imgStd/' . $student['student_img']) ?>" alt="">
+    <?php
+    if ($student['student_img']) {
+    ?>
+        <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . @$student['student_img']) ?>" alt="">
+    <?php
+    }
+    ?>
 </div>
 <div class="col-lg-12 ">
     <div class="container ">

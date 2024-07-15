@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-3">
                 <label for="">รหัสผ่าน</label>
-                <input type="password" name="password" id="" class="form-control" value="<?= @$data['password'] ?>" <?= (!empty(@$data['password']) ? 'disabled' : '') ?>>
+                <input type="password" name="password" id="" class="form-control" value="<?= @$data['password'] ?>" >
             </div>
             <div class="col-md-12 pt-3 text-center">
                 <button type="submit" class="btn btn-primary">
