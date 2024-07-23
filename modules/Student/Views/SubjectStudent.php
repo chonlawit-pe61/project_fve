@@ -76,15 +76,16 @@
                                             <td class="text-center">
                                                 ชั่วโมง
                                             </td>
-                                            <td class="text-center">
-                                                เกรด
-                                            </td>
+
                                             <td class="text-center">
                                                 หน่วยกิต
                                             </td>
                                             <td class="text-center">
-                                                คะแนนหน่วยกิต
+                                                เกรด
                                             </td>
+                                            <!-- <td class="text-center">
+                                                คะแนนหน่วยกิต
+                                            </td> -->
                                             <td>
                                                 เครื่องมือ
                                             </td>
@@ -143,15 +144,16 @@
                                                 <td class="text-center">
                                                     <?php echo @$row['hour'] ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    <?php echo @$textGrade1 ?>
-                                                </td>
+
                                                 <td class="text-center">
                                                     <?php echo @$row['unit'] ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade1 * @$row['unit'] ?>
+                                                    <?php echo @$textGrade1 ?>
                                                 </td>
+                                                <!-- <td class="text-center">
+                                                    <?php echo @$textGrade1 * @$row['unit'] ?>
+                                                </td> -->
                                                 <td class="text-center">
 
                                                     <button class="btn btn-danger mx-1" onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
@@ -264,15 +266,16 @@
                                             <td class="text-center">
                                                 ชั่วโมง
                                             </td>
-                                            <td class="text-center">
-                                                เกรด
-                                            </td>
+
                                             <td class="text-center">
                                                 หน่วยกิต
                                             </td>
                                             <td class="text-center">
-                                                คะแนนหน่วยกิต
+                                                เกรด
                                             </td>
+                                            <!-- <td class="text-center">
+                                                คะแนนหน่วยกิต
+                                            </td> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -322,15 +325,16 @@
                                                 <td class="text-center">
                                                     <?php echo @$row['hour'] ?>
                                                 </td>
-                                                <td class="text-center">
-                                                    <?php echo @$textGrade ?>
-                                                </td>
+
                                                 <td class="text-center">
                                                     <?php echo @$row['unit'] ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade * @$row['unit'] ?>
+                                                    <?php echo @$textGrade ?>
                                                 </td>
+                                                <!-- <td class="text-center">
+                                                    <?php echo @$textGrade * @$row['unit'] ?>
+                                                </td> -->
                                             </tr>
                                         <?php
                                         }

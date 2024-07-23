@@ -41,7 +41,7 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                 <!-- Aplication Brand -->
                 <div class="app-brand">
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="">
+                        <a href="<?php echo base_url('home') ?>">
                             <img class="img-fluid" src="<?php echo base_url('public/img/Header.png') ?>" alt="Mono">
                         </a>
 
@@ -52,7 +52,7 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                 <div class="sidebar-left" data-simplebar style="height: 100%;">
                     <ul class="nav sidebar-inner" id="sidebar-menu">
                         <?php
-                        if ($_SESSION['role_id'] == 1) {
+                        if ($_SESSION['role_id'] == 1 || $_SESSION['role_id'] == 2) {
                         ?>
                             <li class="section-title text-white">
                                 งานทะเบียน
@@ -147,22 +147,33 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                         } else {
                         ?>
                             <?php
-                            if ($_SESSION['role_id'] == 2) {
+                            if ($_SESSION['role_id'] == 3) {
                             ?>
-                                <li class="<?= uri_string() == 'subjects' ? 'active' : '' ?>">
-                                    <a class="dropdown-link-item" href="<?php echo base_url('subjects') ?>">
-                                        <i class="fa-solid fa-book"></i>
-                                        <span>รายวิชา</span>
-                                    </a>
-                                </li>
                                 <li class="<?php echo uri_string() == 'Student' ? 'active' : '' ?>">
                                     <a class="sidenav-item-link" href="<?php echo base_url('Student/') ?>">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                         <span class="nav-text">ดูรายชื่อนักศึกษา</span>
                                     </a>
                                 </li>
+                                <li class="<?= uri_string() == 'ManageSubjectTeacher' ? 'active' : '' ?>">
+                                    <a class="dropdown-link-item" href="<?php echo base_url('ManageSubjectTeacher') ?>">
+                                        <!-- <i class="fa-solid fa-book"></i> -->
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        <span>กรอกคะแนนในรายวิชา</span>
+                                    </a>
+                                </li>
                             <?php
-                            } else {
+                            } else if ($_SESSION['role_id'] == 4) {
+                            ?>
+                                <li class="<?= uri_string() == 'ManageSubjectTeacher' ? 'active' : '' ?>">
+                                    <a class="dropdown-link-item" href="<?php echo base_url('ManageSubjectTeacher') ?>">
+                                        <!-- <i class="fa-solid fa-book"></i> -->
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        <span>กรอกคะแนนในรายวิชา</span>
+                                    </a>
+                                </li>
+                            <?php
+                            } else if ($_SESSION['role_id'] == 5) {
                             ?>
                                 <li class="<?php echo uri_string() == 'Student/create' ? 'active' : '' ?>">
                                     <a class="sidenav-item-link" href="<?php echo base_url('Student/StudentSubject') ?>">

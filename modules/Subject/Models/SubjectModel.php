@@ -64,6 +64,7 @@ class SubjectModel extends Model
     {
         $builder = $this->db->table('subjects');
         $builder->set('is_active', 0);
+        $builder->where('id', $id);
         $builder->update();
 
         $res = [

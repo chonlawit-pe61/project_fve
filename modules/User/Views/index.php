@@ -1,11 +1,18 @@
 <?php $this->extend('template/layout') ?>
 
 <?php $this->section('content'); ?>
+
 <div class="p-3 border shadow-sm">
     <div class="row">
         <div class="col-md-12">
             <h3 class="float-left">บุคลากร</h3>
-            <a href="<?= base_url('users/manage'); ?>" class="btn btn-success float-right">เพิ่ม</a>
+            <?php
+            if ($_SESSION['role_id'] == 1 && $_SESSION['role_id'] != 2) {
+            ?>
+                <a href="<?= base_url('users/manage'); ?>" class="btn btn-success float-right">เพิ่ม</a>
+            <?php
+            }
+            ?>
         </div>
         <div class="col-md-12 mt-3">
             <table id="users-tbl" class="table table-bordered">
@@ -15,7 +22,14 @@
                         <th>ชื่อ-นามกสุล</th>
                         <th width="30%">แผนก</th>
                         <th width="10%">สถานะ</th>
-                        <th width="20%">เครื่องมือ</th>
+                        <?php
+                        if ($_SESSION['role_id'] == 1 && $_SESSION['role_id'] != 2) {
+                        ?>
+                            <th width="20%">เครื่องมือ</th>
+                        <?php
+                        }
+                        ?>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -60,9 +74,14 @@
             {
                 targets: 3,
             },
-            {
-                targets: 4,
+            <?php
+            if ($_SESSION['role_id'] == 1 && $_SESSION['role_id'] != 2) {
+            ?> {
+                    targets: 4,
+                }
+            <?php
             }
+            ?>
         ],
         columns: [{
                 data: null,
@@ -81,24 +100,29 @@
             },
             {
                 data: 'is_active',
-                render: function(data){
-                    if(data == 1){
+                render: function(data) {
+                    if (data == 1) {
                         return '<span class="badge badge-success">ใช้งาน</span>'
-                    }else{
+                    } else {
                         return '<span class="badge badge-danger">ยกเลิก</span>'
                     }
                 }
             },
-            {
-                data: 'id',
-                render: function(data, row, type, meta) {
-                    let btn = `
+            <?php
+            if ($_SESSION['role_id'] == 1 && $_SESSION['role_id'] != 2) {
+            ?> {
+                    data: 'id',
+                    render: function(data, row, type, meta) {
+                        let btn = `
                         <a href="<?= base_url() ?>/users/manage/${data}" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
                         <button class="btn btn-danger btn-sm" onclick="deleteUser('${data}')"><i class="fa fa-trash"></i></button>
                     `;
-                    return btn;
+                        return btn;
+                    }
                 }
+            <?php
             }
+            ?>
         ]
     });
 </script>
@@ -127,7 +151,7 @@
                     method: "POST",
                     url: "<?= base_url() ?>/users/delete",
                     data: {
-                        id : id
+                        id: id
                     },
                     success: function(res) {
                         Swal.fire({

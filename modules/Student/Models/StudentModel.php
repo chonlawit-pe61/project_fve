@@ -63,7 +63,7 @@ class StudentModel extends Model
         $builder->set('created_by', $input['insert_by']);
         $builder->set('updated_at', date('Y-m-d H:i:s'));
         $builder->set('updated_by', $input['insert_by']);
-        $builder->set('role_id', 3);
+        $builder->set('role_id', 5);
         if (!empty($input['id_users'])) {
             $builder->where('id', $input['id_users']);
             $builder->update();
