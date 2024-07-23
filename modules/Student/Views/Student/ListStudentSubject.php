@@ -133,7 +133,6 @@
                                                 <td class="text-center">
                                                     <?php echo @$textGrade1 ?>
                                                 </td>
-
                                             </tr>
                                         <?php
                                         }

@@ -15,6 +15,7 @@ class ManageSubjectTeacherModel extends Model
     $builder = $this->db->table('subjects');
     $builder->select('*');
     $builder->where('teacher_id', $id);
+    $builder->where('old_school = 0');
     $data = $builder->get()->getResultArray();
     return $data;
   }

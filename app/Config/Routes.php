@@ -53,6 +53,15 @@ $routes->group('/subjects', ['namespace' => '\Modules\Subject\Controllers'], fun
     $routes->post('delete', 'Subject::delete');
 });
 
+$routes->group('/subjects_old', ['namespace' => '\Modules\Subject_old\Controllers'], function ($routes) {
+    $routes->get('/', 'Subject_old::index');
+    $routes->get('manage', 'Subject_old::manage');
+    $routes->get('manage/(:num)', 'Subject_old::manage/$1');
+    $routes->post('save', 'Subject_old::save');
+    $routes->get('ajax-subjects', 'Subject_old::ajax_subjects');
+    $routes->post('delete', 'Subject_old::delete');
+});
+
 $routes->group('/home', ['namespace' => '\Modules\Homepages\Controllers', 'filter' => 'authGuard'], function ($routes) {
     $routes->get('/', 'Homepages::homepage');
 });
@@ -69,8 +78,6 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->post('insertSubject', 'Student::insertSubject');
     $routes->post('deleteSubject', 'Student::deleteSubject');
     $routes->post('DeleteStudent', 'Student::DeleteStudent');
-    
-    
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');
@@ -99,6 +106,19 @@ $routes->group('ManageSubjectTeacher', ['namespace' => '\Modules\ManageSubjectTe
     $routes->get('Subject/Term', 'ManageSubjectTeacher::ManageSubjectTeacherTerm');
     $routes->post('ManageGradeStudent', 'ManageSubjectTeacher::ManageGradeStudent');
     $routes->get('exportPDFStudent', 'ManageSubjectTeacher::exportPDFStudent');
+});
+$routes->group('Manage', ['namespace' => '\Modules\Manage\Controllers'], function ($routes) {
+    $routes->get('ManagePrename', 'Manage::ManagePrename');
+    $routes->post('SubmitFormPrename', 'Manage::SubmitFormPrename');
+    $routes->post('DeletePrename', 'Manage::DeletePrename');
+
+    $routes->get('ManageTypePerson', 'ManageTypePerson::TypePerson');
+    $routes->post('SubmitFormTypePerson', 'ManageTypePerson::SubmitFormTypePerson');
+    $routes->post('DeleteTypePerson', 'ManageTypePerson::DeleteTypePerson');
+
+    $routes->get('SubjectType', 'ManageSubject::SubjectType');
+    $routes->post('SubmitFormSubject', 'ManageSubject::SubmitFormSubject');
+    $routes->post('DeleteSubject', 'ManageSubject::DeleteSubject');
 });
 
 

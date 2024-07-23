@@ -11,7 +11,7 @@ class StudentModel extends Model
     protected $primaryKey = "";
     protected $allowedFields = [];
 
-    public function getAllStd($input = '')
+    public function getAllStd($org = '')
     {
         $table = $this->db->table('student');
         $table->select('*,
@@ -27,8 +27,11 @@ class StudentModel extends Model
         $table->join('users', 'users.id = student.student_teacher_id', 'left');
         $table->join('prename', 'prename.prename_id = users.prename_id', 'left');
         $table->where('users.is_active = 1');
+        if (!empty($org)) {
+            $table->where('student.student_department = ' . $org);
+        }
         $data = $table->get()->getResultArray();
-       
+
         return $data;
     }
     public function getTypepeople()
@@ -353,5 +356,14 @@ class StudentModel extends Model
             $builder->insert();
             return 1;
         }
+    }
+
+    public function getOrgPersonel($user_id)
+    {
+        $builder = $this->db->table('users');
+        $builder->select('*');
+        $builder->where('id', $user_id);
+        $data = $builder->get()->getRowArray();
+        return $data;
     }
 }

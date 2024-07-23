@@ -16,6 +16,7 @@ class ManageSubjectTeacher extends BaseController
     $item = $session->get();
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
     $data['subjects'] = $ManageSubjectTeacherModel->getSubject($item['user_id']);
+    // echo die();
     return view('Modules\ManageSubjectTeacher\Views\ManageSubjectTeacherList.php', $data);
   }
   public function ManageSubjectTeacherTerm()

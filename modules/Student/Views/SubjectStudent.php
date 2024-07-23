@@ -85,6 +85,13 @@
                                             <td class="text-center">
                                                 คะแนนหน่วยกิต
                                             </td>
+                                            <td>
+                                                เครื่องมือ
+                                            </td>
+                                            <td>
+                                                สถานนะ
+                                            </td>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -145,10 +152,29 @@
                                                 <td class="text-center">
                                                     <?php echo @$textGrade1 * @$row['unit'] ?>
                                                 </td>
-                                                <td>
-                                                    <button class="btn btn-danger" onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                <td class="text-center">
+
+                                                    <button class="btn btn-danger mx-1" onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </button>
+
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php
+                                                    if ($row['old_school'] > 0) {
+                                                    ?>
+                                                        <select class="form-select" aria-label="Default select example">
+                                                            <option value="">เลือกสถานนะ</option>
+                                                            <option value="1" <?php echo $row['consider_old_school'] == '1' ? 'selected' : '' ?>>ผ่าน</option>
+                                                            <option value="2" <?php echo $row['consider_old_school'] == '2' ? 'selected' : '' ?>>ไม่ผ่าน</option>
+                                                        </select>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        -
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </td>
                                             </tr>
                                         <?php
@@ -167,7 +193,12 @@
                                                         <?php
                                                         foreach ($subject as $row) {
                                                         ?>
-                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?></option>
+                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
+                                                                                                                            if (!empty($row['comment'])) {
+
+                                                                                                                                echo '(' . $row['comment'] . ')';
+                                                                                                                            }
+                                                                                                                            ?></option>
                                                         <?php
                                                         }
                                                         ?>

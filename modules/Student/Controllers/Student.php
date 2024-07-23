@@ -13,7 +13,13 @@ class Student extends BaseController
   public function index()
   {
     $StudentModel = new StudentModel();
-    $data['students'] = $StudentModel->getAllStd();
+    $session = session();
+    $item = $session->get();
+
+    if ($item['role_id'] == 2) {
+      $org_personel = $StudentModel->getOrgPersonel($item['user_id']);
+    }
+    $data['students'] = $StudentModel->getAllStd($org_personel['department_id']);
     return view('Modules\Student\Views\index.php', $data);
   }
   public function createStd($id = '')

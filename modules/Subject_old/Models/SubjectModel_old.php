@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Subject\Models;
+namespace Modules\Subject_old\Models;
 
 use CodeIgniter\HTTP\Response;
 use CodeIgniter\Model;
 
-class SubjectModel extends Model
+class SubjectModel_old extends Model
 {
     protected $table      = "";
     protected $primaryKey = "";
@@ -13,7 +13,7 @@ class SubjectModel extends Model
 
     function getSubject($id = '')
     {
-        $builder = $this->db->table('subjects');
+        $builder = $this->db->table('subjects_old');
         $builder->select('*');
         if ($id) {
             $builder->where('id', $id);
@@ -27,7 +27,7 @@ class SubjectModel extends Model
 
     function saveSubject($input)
     {
-        $builder = $this->db->table('subjects');
+        $builder = $this->db->table('subjects_old');
         $builder->set('group_id', $input['group_id']);
         $builder->set('name', $input['name']);
         $builder->set('subjects_id', $input['subjects_id']);
@@ -85,7 +85,7 @@ class SubjectModel extends Model
     // Master Data
     function getSubjectGroup()
     {
-        $builder = $this->db->table('subject_group');
+        $builder = $this->db->table('subjects_old');
         $data = $builder->select('*')->where('is_active', 1)->get()->getResultArray();
         return $data;
     }

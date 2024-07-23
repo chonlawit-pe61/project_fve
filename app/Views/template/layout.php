@@ -29,9 +29,12 @@
         line-height: 1.9;
     }
 </style>
+<?php
+$Setting_1 =  array('ManageTypePerson', 'ManagePrename');
+
+?>
 
 <body class="navbar-fixed sidebar-fixed" id="body">
-
     <div class="wrapper">
         <aside class="left-sidebar sidebar-dark" id="left-sidebar">
             <div id="sidebar" class="sidebar sidebar-with-footer">
@@ -49,7 +52,7 @@
                 <div class="sidebar-left" data-simplebar style="height: 100%;">
                     <ul class="nav sidebar-inner" id="sidebar-menu">
                         <?php
-                        if ($_SESSION['role_id'] == 2 || $_SESSION['role_id'] == 1) {
+                        if ($_SESSION['role_id'] == 1) {
                         ?>
                             <li class="section-title text-white">
                                 งานทะเบียน
@@ -79,6 +82,12 @@
                                     <span>รายวิชา</span>
                                 </a>
                             </li>
+                            <!-- <li class="<?= uri_string() == 'subjects_old' ? 'active' : '' ?>">
+                                <a class="dropdown-link-item" href="<?php echo base_url('subjects_old') ?>">
+                                    <i class="fa-solid fa-book"></i>
+                                    <span>รายวิชา(จากโรงเรียนเก่า)</span>
+                                </a>
+                            </li> -->
                             <li class="<?= uri_string() == 'SettingSubject' ? 'active' : '' ?>">
                                 <a class="dropdown-link-item" href="<?php echo base_url('SettingSubject') ?>">
                                     <!-- <i class="fa-solid fa-book"></i> -->
@@ -100,9 +109,34 @@
                                     <span>กรอกคะแนนในรายวิชา</span>
                                 </a>
                             </li>
-                            <li class="section-title text-white">
-                                ระบบ
+                            <li>
+                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link dropdown-link-item align-middle ">
+                                    <i class=" fa fa-cog" aria-hidden="true"></i>
+                                    <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">เครื่องมือ</span></a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                    <li>
+                                        <a href="<?php echo base_url('Manage/ManageTypePerson') ?>" class="nav-link dropdown-link-item text-white">
+                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                            <span class="mx-1">ประเภทบุคลากร</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('Manage/ManagePrename') ?>" class="nav-link dropdown-link-item text-white">
+                                            <i class="fa fa-tag" aria-hidden="true"></i>
+                                            <span class="mx-1">คำนำหน้า</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url('Manage/SubjectType') ?>" class="nav-link dropdown-link-item text-white">
+                                            <i class="fa fa-tag" aria-hidden="true"></i>
+                                            <span class="mx-1">หมวดวิชา</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
+                            <!-- <li class="section-title text-white">
+                                ระบบ
+                            </li> -->
                             <li>
                                 <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -112,13 +146,34 @@
                         <?php
                         } else {
                         ?>
-                            <li class="<?php echo uri_string() == 'Student/create' ? 'active' : '' ?>">
-                                <a class="sidenav-item-link" href="<?php echo base_url('Student/StudentSubject') ?>">
-                                    <!-- <i class="mdi mdi-wechat"></i> -->
-                                    <i class="fa fa-address-card" aria-hidden="true"></i>
-                                    <span class="nav-text"> รายวิชาที่ศึกษา</span>
-                                </a>
-                            </li>
+                            <?php
+                            if ($_SESSION['role_id'] == 2) {
+                            ?>
+                                <li class="<?= uri_string() == 'subjects' ? 'active' : '' ?>">
+                                    <a class="dropdown-link-item" href="<?php echo base_url('subjects') ?>">
+                                        <i class="fa-solid fa-book"></i>
+                                        <span>รายวิชา</span>
+                                    </a>
+                                </li>
+                                <li class="<?php echo uri_string() == 'Student' ? 'active' : '' ?>">
+                                    <a class="sidenav-item-link" href="<?php echo base_url('Student/') ?>">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <span class="nav-text">ดูรายชื่อนักศึกษา</span>
+                                    </a>
+                                </li>
+                            <?php
+                            } else {
+                            ?>
+                                <li class="<?php echo uri_string() == 'Student/create' ? 'active' : '' ?>">
+                                    <a class="sidenav-item-link" href="<?php echo base_url('Student/StudentSubject') ?>">
+                                        <!-- <i class="mdi mdi-wechat"></i> -->
+                                        <i class="fa fa-address-card" aria-hidden="true"></i>
+                                        <span class="nav-text"> รายวิชาที่ศึกษา</span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            ?>
                             <li>
                                 <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
