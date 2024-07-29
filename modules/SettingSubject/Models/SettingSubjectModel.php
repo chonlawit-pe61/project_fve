@@ -54,7 +54,7 @@ class SettingSubjectModel extends Model
     }
     public function CreateUpdateSettingSubject($input)
     {
-        
+
         $builder = $this->db->table('plan_education');
         $builder->set('plan_education_name', $input['plan_education_name']);
         if (!empty($input['plan_education_id'])) {
@@ -78,8 +78,8 @@ class SettingSubjectModel extends Model
     }
     public function RemoveSubject($input)
     {
-        $builder = $this->db->table('plan_subjects');
-        $builder->where('plan_subjects_id', $input['plan_subjects_id']);
+        $builder = $this->db->table('plan_education');
+        $builder->where('plan_education_id', $input['id']);
         $builder->delete();
     }
 }

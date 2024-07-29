@@ -14,12 +14,13 @@ class SubjectModel_old extends Model
     function getSubject($id = '')
     {
         $builder = $this->db->table('subjects_old');
-        $builder->select('*');
+        $builder->select('subjects_old.*,subject_group.group_name');
+        $builder->join('subject_group', 'subject_group.id = subjects_old.group_id', 'left');
         if ($id) {
-            $builder->where('id', $id);
+            $builder->where('subjects_old.id', $id);
             $data = $builder->get()->getRowArray();
         } else {
-            $builder->where('is_active', 1);
+            $builder->where('subjects_old.is_active', 1);
             $data = $builder->get()->getResultArray();
         }
         return $data;
@@ -34,6 +35,7 @@ class SubjectModel_old extends Model
         $builder->set('lecture_unit', $input['lecture_unit']);
         $builder->set('teacher_id', $input['teacher_id']);
         $builder->set('practical_unit', $input['practical_unit']);
+        $builder->set('group_catagory', $input['group_catagory']);
         $builder->set('unit', $input['unit']);
         $builder->set('hour', $input['hour']);
         $builder->set('created_by', 1);
@@ -62,15 +64,10 @@ class SubjectModel_old extends Model
 
     function deleteSubject($id)
     {
-        $builder = $this->db->table('subjects');
+        $builder = $this->db->table('subjects_old');
         $builder->set('is_active', 0);
+        $builder->where('id', $id);
         $builder->update();
-
-        $res = [
-            'status' => 200,
-            'msg' => '  Successfully'
-        ];
-        return $res;
     }
 
     function getTeacherListAll()
@@ -85,8 +82,14 @@ class SubjectModel_old extends Model
     // Master Data
     function getSubjectGroup()
     {
-        $builder = $this->db->table('subjects_old');
+        $builder = $this->db->table('subject_group');
         $data = $builder->select('*')->where('is_active', 1)->get()->getResultArray();
+        return $data;
+    }
+    function getSubject_catagory()
+    {
+        $builder = $this->db->table('subject_catagory_type');
+        $data = $builder->select('*')->get()->getResultArray();
         return $data;
     }
 }

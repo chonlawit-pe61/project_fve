@@ -76,6 +76,8 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->get('exportProfileStudent', 'Student::exportProfileStudent');
     $routes->get('SubjectStudent', 'Student::SubjectStudent');
     $routes->post('insertSubject', 'Student::insertSubject');
+    $routes->post('InsertSubject_old', 'Student::InsertSubject_old');
+
     $routes->post('deleteSubject', 'Student::deleteSubject');
     $routes->post('DeleteStudent', 'Student::DeleteStudent');
 });

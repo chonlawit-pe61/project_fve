@@ -31,13 +31,18 @@ class Subject extends BaseController
     }
     public function index()
     {
-        return view('\Modules\Subject\Views\index.php');
+        $SubjectModel = new SubjectModel();
+        $data['Subject'] = $SubjectModel->getSubject();
+        return view('\Modules\Subject\Views\index.php', $data);
     }
 
     public function manage($id = '')
     {
+        $SubjectModel = new SubjectModel();
         $data['subject_group'] = $this->subjectModel->getSubjectGroup();
+        $data['subject_catagory'] = $SubjectModel->getSubject_catagory();
         if ($id) {
+
             $data['data'] = $this->subjectModel->getSubject($id);
         }
         $data['getTeacherListAll'] = $this->subjectModel->getTeacherListAll();
@@ -53,8 +58,9 @@ class Subject extends BaseController
 
     public function delete()
     {
+        $SubjectModel = new SubjectModel();
         $id = $this->request->getPost('id');
-        $responese = $this->subjectModel->deleteSubject($id);
-        return json_encode($responese);
+        $SubjectModel->deleteSubject($id);
+        return 1;
     }
 }

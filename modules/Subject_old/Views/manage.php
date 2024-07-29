@@ -1,12 +1,12 @@
 <?php $this->extend('template/layout') ?>
 
 <?php $this->section('content'); ?>
-<form action="<?= base_url('subjects/save') ?>" method="POST">
+<form action="<?= base_url('subjects_old/save') ?>" method="POST">
     <input type="hidden" name="id" value="<?= @$data['id'] ?>">
     <div class="p-3 border shadow-sm">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <h3>จัดการรายวิชา</h3>
+                <h3>จัดการรายวิชา (โรงเรียนเก่า)</h3>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="group_id">หมวดวิชา</label>
@@ -18,9 +18,19 @@
                 </select>
             </div>
             <div class="col-md-3 mb-3">
+                <label for="group_id">หมวดสาขาวิชา</label>
+                <select name="group_catagory" id="group_id" class="form-select">
+                    <option value="">เลือก</option>
+                    <?php foreach ($subject_catagory as $catagory) { ?>
+                        <option value="<?= $catagory['subject_catagory_id'] ?>" <?= (!empty($data) && $data['group_catagory'] == $catagory['subject_catagory_id']) ? 'selected' : '' ?>><?= $catagory['subject_catagory_name'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
                 <label for="">รหัสวิชา</label>
                 <input type="text" id="name" name="subjects_id" class="form-control" value="<?= @$data['subjects_id'] ?>">
             </div>
+
             <div class="col-md-3 mb-3">
                 <label for="">ชื่อวิชา</label>
                 <input type="text" id="name" name="name" class="form-control" value="<?= @$data['name'] ?>">
@@ -77,17 +87,9 @@
                     <input type="text" id="hour" name="comment" class="form-control" value="<?= @$data['comment'] ?>">
                 </div>
             </div>
-            <div class="col-md-3 my-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="old_school" value="1" id="flexCheckDefault" <?php echo @$data['old_school'] > 0 ? 'checked' : '' ?>>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        วิชาจากโรงเรียนเก่า
-                    </label>
-                </div>
-            </div>
             <div class="col-md-12 text-center mb-3">
                 <button type="submit" class="btn btn-success">บันทึก</button>
-                <a href="<?= base_url('subjects') ?>" class="btn btn-danger">กลับ</a>
+                <a href="<?= base_url('subjects_old') ?>" class="btn btn-danger">กลับ</a>
             </div>
         </div>
     </div>

@@ -27,7 +27,7 @@ class UserModel extends Model
         $builder->join('prename', 'prename.prename_id = users.prename_id', 'left');
 
         // $builder->where('is_active', 1);
-        $builder->whereNotIn('role_id', [1]);
+        $builder->whereNotIn('role_id', [1, 5]);
         if ($id) {
             $builder->where('users.id', $id);
             $data = $builder->get()->getRowArray();
@@ -86,7 +86,7 @@ class UserModel extends Model
     {
         $builder = $this->db->table('roles');
         $builder->select('id, name');
-        $builder->whereNotIn('id', [3]);
+        $builder->whereNotIn('id', [1, 5]);
         $data = $builder->get()->getResultArray();
         return $data;
     }

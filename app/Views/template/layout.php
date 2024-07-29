@@ -82,12 +82,12 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                                     <span>รายวิชา</span>
                                 </a>
                             </li>
-                            <!-- <li class="<?= uri_string() == 'subjects_old' ? 'active' : '' ?>">
+                            <li class="<?= uri_string() == 'subjects_old' ? 'active' : '' ?>">
                                 <a class="dropdown-link-item" href="<?php echo base_url('subjects_old') ?>">
                                     <i class="fa-solid fa-book"></i>
                                     <span>รายวิชา(จากโรงเรียนเก่า)</span>
                                 </a>
-                            </li> -->
+                            </li>
                             <li class="<?= uri_string() == 'SettingSubject' ? 'active' : '' ?>">
                                 <a class="dropdown-link-item" href="<?php echo base_url('SettingSubject') ?>">
                                     <!-- <i class="fa-solid fa-book"></i> -->

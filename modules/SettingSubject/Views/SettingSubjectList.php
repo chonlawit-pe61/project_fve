@@ -33,7 +33,7 @@
                                 <a href="<?php echo base_url('SettingSubject/manage/' . $plan['plan_education_id']) ?>" class="btn btn-warning">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </a>
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger" onclick="DeleteSubject('<?php echo $plan['plan_education_id'] ?>')">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
                             </td>
@@ -46,4 +46,41 @@
         </div>
     </div>
 </div>
+
+<?php $this->endSection() ?>
+<?php $this->section('scripts') ?>
+<script>
+    const DeleteSubject = (id) => {
+        Swal.fire({
+            title: 'คุณต้องการลบข้อมูล?',
+            text: "คลิกตกลงเพื่อยืนยันการลบข้อมูล!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        'id': id
+                    },
+                    url: '<?= base_url('/SettingSubject/RemoveSubject'); ?>',
+                    success: function(res) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ลบข้อมูลแผนการเรียนสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                })
+            }
+        })
+    }
+</script>
 <?php $this->endSection() ?>

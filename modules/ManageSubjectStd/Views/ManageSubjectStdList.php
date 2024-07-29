@@ -220,10 +220,10 @@
             if ($(this).prop('checked')) {
                 console.log(this.value);
                 if ($(".selectedDiv").children().length == 0) {
-                    const rec = `<input type="text" name="id_student[]" value="${this.value}" />`;
+                    const rec = `<input type="hidden" name="id_student[]" value="${this.value}" />`;
                     $(".selectedDiv").append(rec);
                 } else {
-                    const rec = `<input type="text" name="id_student[]" value="${this.value}" />`;
+                    const rec = `<input type="hidden" name="id_student[]" value="${this.value}" />`;
                     $(".selectedDiv").append(rec);
                 }
             }

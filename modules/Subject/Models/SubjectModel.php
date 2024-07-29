@@ -14,12 +14,13 @@ class SubjectModel extends Model
     function getSubject($id = '')
     {
         $builder = $this->db->table('subjects');
-        $builder->select('*');
+        $builder->select('subjects.*,subject_group.group_name');
+        $builder->join('subject_group', 'subject_group.id = subjects.group_id', 'left');
         if ($id) {
-            $builder->where('id', $id);
+            $builder->where('subjects.id', $id);
             $data = $builder->get()->getRowArray();
         } else {
-            $builder->where('is_active', 1);
+            $builder->where('subjects.is_active', 1);
             $data = $builder->get()->getResultArray();
         }
         return $data;
@@ -36,6 +37,7 @@ class SubjectModel extends Model
         $builder->set('practical_unit', $input['practical_unit']);
         $builder->set('unit', $input['unit']);
         $builder->set('hour', $input['hour']);
+        $builder->set('group_catagory', $input['group_catagory']);
         $builder->set('created_by', 1);
         $builder->set('comment', @$input['comment']);
         if (!empty($input['old_school'])) {
@@ -66,19 +68,13 @@ class SubjectModel extends Model
         $builder->set('is_active', 0);
         $builder->where('id', $id);
         $builder->update();
-
-        $res = [
-            'status' => 200,
-            'msg' => '  Successfully'
-        ];
-        return $res;
     }
 
     function getTeacherListAll()
     {
         $builder = $this->db->table('users');
         $builder->select('*');
-        $builder->where('role_id != 3');
+        $builder->whereNotIn('role_id', [1, 5]);
         $data = $builder->get()->getResultArray();
         return $data;
     }
@@ -88,6 +84,12 @@ class SubjectModel extends Model
     {
         $builder = $this->db->table('subject_group');
         $data = $builder->select('*')->where('is_active', 1)->get()->getResultArray();
+        return $data;
+    }
+    function getSubject_catagory()
+    {
+        $builder = $this->db->table('subject_catagory_type');
+        $data = $builder->select('*')->get()->getResultArray();
         return $data;
     }
 }

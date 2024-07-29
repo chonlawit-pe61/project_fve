@@ -12,6 +12,24 @@
         </a>
     </div>
 
+    <div class="text-start">
+
+        <div class="row mt-3">
+            <div class="col-lg-3 ms-auto ">
+                <form action="<?php echo base_url("ManageSubjectTeacher/Subject/Term/ListStudent") ?>" method="get">
+                    <input type="hidden" name="id" value="<?php echo $subject_id ?>">
+                    <input type="hidden" name="term" value="<?php echo $term ?>">
+                    <select class="form-select" aria-label="Default select example" name="year" onchange="this.form.submit()">
+                        <option value="0">เลือกปีการศึกษา</option>
+                        <?php
+                        for ($i = date('Y') + 10; $i >= date('Y') - 10; $i--) { ?>
+                            <option <?php echo $_GET['year'] == $i ? 'selected' : '' ?> value="<?php echo $i ?>">ปีการศึกษา <?php echo $i + 543 ?></option>
+                        <?php } ?>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="my-3">
         <form action="<?php echo base_url('ManageSubjectTeacher/ManageGradeStudent') ?>" method="post">
             <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
@@ -31,8 +49,20 @@
                         <td>
                             สาขาวิชา
                         </td>
-                        <td class="text-center">
-                            คะแนน
+                        <td class="text-center" style="width: 10%;">
+                            จิตพิสัย
+                        </td>
+                        <td class="text-center" style="width: 10%;">
+                            ภาระงาน
+                        </td>
+                        <td class="text-center" style="width: 10%;">
+                            ทดสอบ
+                        </td>
+                        <td class="text-center" style="width: 10%;">
+                            คะแนนสอบกลางภาค
+                        </td>
+                        <td class="text-center" style="width: 12%;">
+                            คะแนนสอบปลายภาค
                         </td>
                     </tr>
                 </thead>
@@ -56,7 +86,18 @@
                                 <?php echo $std['department_name'] ?>
                             </td>
                             <td class="text-center">
-
+                                <input type="text" class="form-control" value="<?php echo $std['grade_student'] ? $std['grade_student'] : '' ?>" name="student[<?php echo $std['plan_student_id'] ?>]">
+                            </td>
+                            <td class="text-center">
+                                <input type="text" class="form-control" value="<?php echo $std['grade_student'] ? $std['grade_student'] : '' ?>" name="student[<?php echo $std['plan_student_id'] ?>]">
+                            </td>
+                            <td class="text-center">
+                                <input type="text" class="form-control" value="<?php echo $std['grade_student'] ? $std['grade_student'] : '' ?>" name="student[<?php echo $std['plan_student_id'] ?>]">
+                            </td>
+                            <td class="text-center">
+                                <input type="text" class="form-control" value="<?php echo $std['grade_student'] ? $std['grade_student'] : '' ?>" name="student[<?php echo $std['plan_student_id'] ?>]">
+                            </td>
+                            <td class="text-center">
                                 <input type="text" class="form-control" value="<?php echo $std['grade_student'] ? $std['grade_student'] : '' ?>" name="student[<?php echo $std['plan_student_id'] ?>]">
                             </td>
                         </tr>

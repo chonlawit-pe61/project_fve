@@ -41,8 +41,10 @@ class ManageSubjectStdModel extends Model
       }
       // $builder->where('plan_student.plan_student_id IS NULL');
       $builder->groupBy('student_id');
+      // $builder->where('users.is_active', 1);
       $data = $builder->get()->getResultArray();
     }
+
     // ech
     // e
     return $data;
@@ -83,7 +85,6 @@ class ManageSubjectStdModel extends Model
 
   public function ManageSubjectStdList($input = array())
   {
-   
     $builderSubject = $this->db->table('plan_subjects');
     $builderSubject->select('*');
     $builderSubject->where('plan_education_id', $input['plan_education_id']);

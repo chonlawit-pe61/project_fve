@@ -11,7 +11,7 @@ class StudentModel extends Model
     protected $primaryKey = "";
     protected $allowedFields = [];
 
-    public function getAllStd($org = '')
+    public function getAllStd($student_teacher_id = '')
     {
         $table = $this->db->table('student');
         $table->select('*,
@@ -27,11 +27,13 @@ class StudentModel extends Model
         $table->join('users', 'users.id = student.student_teacher_id', 'left');
         $table->join('prename', 'prename.prename_id = users.prename_id', 'left');
         $table->where('users.is_active = 1');
-        if (!empty($org)) {
-            $table->where('student.student_department = ' . $org);
+        if (!empty($student_teacher_id)) {
+            $table->where('student.student_teacher_id = ' . $student_teacher_id);
         }
         $data = $table->get()->getResultArray();
 
+        // echo $this->db->getLastQuery();
+        // die();
         return $data;
     }
     public function getTypepeople()
@@ -210,8 +212,11 @@ class StudentModel extends Model
     {
         $builder = $this->db->table('users');
         $builder->select('*');
-        $builder->where('role_id', $role_id);
+        $builder->whereNotIn('role_id', [1, 2, 4, 5]);
+        $builder->where('is_active', 1);
         $data = $builder->get()->getResultArray();
+        // echo $this->db->getLastQuery();
+        // die();
         return $data;
     }
 
@@ -296,7 +301,7 @@ class StudentModel extends Model
 
         return $data;
     }
-    public function getStudentSubject($student_id = '', $term = '')
+    public function getStudentSubject($student_id = '', $term = '', $year = '')
     {
         $builder = $this->db->table('plan_student');
         $builder->select('plan_student.*,
@@ -304,9 +309,24 @@ class StudentModel extends Model
         $builder->join('subjects', 'subjects.id = plan_student.subjects_id', 'left');
         $builder->where('plan_student.plan_student_term', $term);
         $builder->where('plan_student.users_id', $student_id);
+        $builder->where('plan_student.plan_student_year', $year);
         $data = $builder->get()->getResultArray();
         return $data;
     }
+    public function getStudentSubject_old($student_id = '', $term = '', $year = '')
+    {
+        $builder = $this->db->table('plan_student_old');
+        $builder->select('plan_student_old.*,
+        subjects.*');
+        $builder->join('subjects', 'subjects.id = plan_student_old.subjects_id', 'left');
+        $builder->where('plan_student_old.plan_student_term', $term);
+        $builder->where('plan_student_old.users_id', $student_id);
+        $builder->where('plan_student_old.plan_student_year', $year);
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+
+
     public function getSubject()
     {
         $builder = $this->db->table('subjects');
@@ -314,6 +334,14 @@ class StudentModel extends Model
         $data = $builder->get()->getResultArray();
         return $data;
     }
+    public function getSubject_old()
+    {
+        $builder = $this->db->table('subjects_old');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+
     public function DeleteSubject($input)
     {
         $builder = $this->db->table('plan_student');
@@ -337,15 +365,33 @@ class StudentModel extends Model
 
     public function InsertSubject($input)
     {
+
         $builder = $this->db->table('plan_student');
         $builder->select('*');
         $builder->where('users_id', $input['users_id']);
         $builder->where('plan_student_term', $input['plan_student_term']);
         $builder->where('subjects_id IN (' . $input['subjects_id'] . ')');
         $resutl = $builder->get()->getResultArray();
-        // echo $this->db->getLastQuery();
-        // die();
+        if (!empty($resutl)) {
+            return 0;
+        } else {
+            $builder->set('users_id', $input['users_id']);
+            $builder->set('subjects_id', $input['subjects_id']);
+            $builder->set('plan_student_term', $input['plan_student_term']);
+            $builder->set('plan_student_year', $input['plan_student_year']);
+            $builder->insert();
+            return 1;
+        }
+    }
+    public function InsertSubject_old($input)
+    {
 
+        $builder = $this->db->table('plan_student_old');
+        $builder->select('*');
+        $builder->where('users_id', $input['users_id']);
+        $builder->where('plan_student_term', $input['plan_student_term']);
+        $builder->where('subjects_id IN (' . $input['subjects_id'] . ')');
+        $resutl = $builder->get()->getResultArray();
         if (!empty($resutl)) {
             return 0;
         } else {

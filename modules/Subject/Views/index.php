@@ -19,7 +19,32 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                    <?php
+                    if (!empty($Subject)) {
+                        foreach ($Subject as $key => $sb) {
+                    ?>
+                            <tr>
+                                <td>
+                                    <?php echo $key + 1 ?>
+                                </td>
+                                <td>
+                                    <?php echo $sb['group_name'] ?>
+                                </td>
+                                <td><?php echo $sb['name'] ?></td>
+                                <td>
+                                    <?php echo $sb['unit'] ?>
+                                </td>
+                                <td>
+                                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url('subjects/manage/' . $sb['id']) ?>">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteSubject('<?php echo $sb['id'] ?>')"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                    <?php
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -29,71 +54,8 @@
 
 <?php $this->section('scripts'); ?>
 <script>
-    $('#subjects-tbl').dataTable({
-        "language": {
-            "lengthMenu": "แสดง _MENU_ รายการ",
-            "search": "ค้นหา:",
-            "zeroRecords": "ไม่มีข้อมูล",
-            "info": "รายการที่ _START_ ถึง _END_ จาก _TOTAL_ รายการ",
-            "infoFiltered": "(กรองข้อมูลทั้งหมดจาก _MAX_ รายการ)",
-            "infoEmpty": "ไม่มีข้อมูล",
-            "paginate": {
-                "first": "หน้าแรก",
-                "last": "หน้าสุดท้าย",
-                "next": "ถัดไป",
-                "previous": "ก่อนหน้า"
-            },
-            "processing": "Loading..."
-        },
-        processing: true,
-        serverSide: true,
-        ajax: "<?= base_url('subjects/ajax-subjects') ?>",
-        columnDefs: [{
-                targets: 0,
-            },
-            {
-                targets: 1,
-            },
-            {
-                targets: 2,
-            },
-            {
-                targets: 3,
-            },
-            {
-                targets: 4,
-            }
-        ],
-        columns: [{
-                data: null,
-                render: function(data, type, full, meta) {
-                    return meta.row + 1;
-                },
-            },
-            {
-                data: 'group_id',
-            },
-            {
-                data: 'name',
-            },
-            {
-                data: 'unit',
-            },
-            {
-                data: 'id',
-                render: function(data, row, type, meta) {
-                    let btn = `
-                        <a href="<?= base_url() ?>/subjects/manage/${data}" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
-                        <button class="btn btn-danger btn-sm" onclick="deleteSubject('${data}')"><i class="fa fa-trash"></i></button>
-                    `;
-                    return btn;
-                }
-            }
-        ]
-    });
-
     function deleteSubject(id) {
-        console.log(id)
+        // console.log(id)
         Swal.fire({
             title: "แจ้งเตือนจากระบบ",
             text: "คุณต้องการลบข้อมูลแถวนี้หรือไม่?",
@@ -109,7 +71,7 @@
                     method: "POST",
                     url: "<?= base_url() ?>/subjects/delete",
                     data: {
-                        id : id
+                        id: id
                     },
                     success: function(res) {
                         Swal.fire({
@@ -119,7 +81,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            $('#subjects-tbl').DataTable().ajax.reload(null, false);
+                            window.location.reload();
                         })
                     }
                 })

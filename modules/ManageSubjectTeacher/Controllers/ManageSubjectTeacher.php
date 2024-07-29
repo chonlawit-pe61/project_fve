@@ -31,9 +31,10 @@ class ManageSubjectTeacher extends BaseController
     $session = session();
     $item = $session->get();
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
-    $subject_id = $_GET['id'];
-    $term = $_GET['term'];
-    $data['student'] = $ManageSubjectTeacherModel->getStudentInSubject($subject_id, $term);
+    $data['subject_id'] = $_GET['id'];
+    $data['term'] = $_GET['term'];
+    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
+    $data['student'] = $ManageSubjectTeacherModel->getStudentInSubject($data['subject_id'], $data['term'], $data['year']);
     return view('Modules\ManageSubjectTeacher\Views\ManageSubjectTeacherSubject.php', $data);
   }
   public function ManageGradeStudent()

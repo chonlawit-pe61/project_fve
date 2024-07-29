@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class="float-left">รายวิชา</h3>
-            <a href="<?= base_url('subjects/manage'); ?>" class="btn btn-success float-right">เพิ่ม</a>
+            <a href="<?= base_url('subjects_old/manage'); ?>" class="btn btn-success float-right">เพิ่ม</a>
         </div>
         <div class="col-md-12 mt-3">
             <table id="subjects-tbl" class="table table-bordered">
@@ -20,34 +20,31 @@
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($data)) {
-                        foreach ($data as $key => $row) {
+                    if (!empty($Subject)) {
+                        foreach ($Subject as $key => $sb) {
                     ?>
                             <tr>
-                                <td class="text-center">
-                                    <?php
-                                    echo $key + 1 // echo  
-                                    ?>
+                                <td>
+                                    <?php echo $key + 1 ?>
                                 </td>
                                 <td>
-                                    <?php echo $row['group_id'] ?>
+                                    <?php echo $sb['group_name'] ?>
+                                </td>
+                                <td><?php echo $sb['name'] ?></td>
+                                <td>
+                                    <?php echo $sb['unit'] ?>
                                 </td>
                                 <td>
-                                    <?php echo $row['name'] ?>
-                                </td>
-                                <td>
-
-                                </td>
-                                <td>
-                                    <a href="http://localhost:8888/project_fve/subjects/manage/1" class="btn btn-secondary btn-sm"><i class="fa fa-pen"></i></a>
+                                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url('subjects_old/manage/' . $sb['id']) ?>">
+                                        <i class="fa fa-pen"></i>
+                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteSubject('<?php echo $sb['id'] ?>')"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                     <?php
                         }
                     }
                     ?>
-
-
                 </tbody>
             </table>
         </div>
@@ -58,7 +55,7 @@
 <?php $this->section('scripts'); ?>
 <script>
     function deleteSubject(id) {
-        console.log(id)
+        // console.log(id)
         Swal.fire({
             title: "แจ้งเตือนจากระบบ",
             text: "คุณต้องการลบข้อมูลแถวนี้หรือไม่?",
@@ -72,7 +69,7 @@
             if (result.isConfirmed) {
                 $.ajax({
                     method: "POST",
-                    url: "<?= base_url() ?>/subjects/delete",
+                    url: "<?= base_url() ?>/subjects_old/delete",
                     data: {
                         id: id
                     },
@@ -84,7 +81,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {
-                            $('#subjects-tbl').DataTable().ajax.reload(null, false);
+                            window.location.reload();
                         })
                     }
                 })

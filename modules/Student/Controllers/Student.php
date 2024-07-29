@@ -16,10 +16,15 @@ class Student extends BaseController
     $session = session();
     $item = $session->get();
 
-    if ($item['role_id'] == 2) {
-      $org_personel = $StudentModel->getOrgPersonel($item['user_id']);
+    if ($item['role_id'] == 3) {
+      $data['students'] = $StudentModel->getAllStd(@$item['user_id']);
+    } else {
+      $data['students'] = $StudentModel->getAllStd();
     }
-    $data['students'] = $StudentModel->getAllStd($org_personel['department_id']);
+
+    // echo '<pre>';
+    // print_r($data);
+    // die();
     return view('Modules\Student\Views\index.php', $data);
   }
   public function createStd($id = '')
@@ -38,7 +43,7 @@ class Student extends BaseController
     $data['education_rooms'] = $StudentModel->getEducationRoom();
     $data['prenames'] = $StudentModel->getPrename();
     $data['status_types'] = $StudentModel->getStatusType();
-    $data['users'] = $StudentModel->getUserType2(2);
+    $data['users'] = $StudentModel->getUserType2(3);
     if (!empty($id)) {
       $data['student'] = $StudentModel->getStudentById($id);
       $data['id'] = $id;
@@ -93,10 +98,13 @@ class Student extends BaseController
     $StudentModel = new StudentModel();
     $item = $session->get();;
     $student_id = $item['user_id'];
+    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
     $data['student'] =  $StudentModel->getStudentByUserID($student_id);
-    $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1);
-    $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2);
-    //
+    $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1, $data['year']);
+    $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2, $data['year']);
+    $data['student_subject_old_1'] = $StudentModel->getStudentSubject_old($student_id, 1, $data['year']);
+    $data['student_subject_old_2'] = $StudentModel->getStudentSubject_old($student_id, 2, $data['year']);
+
     return view('Modules\Student\Views\Student\ListStudentSubject.php', $data);
   }
   public function exportProfileStudent()
@@ -126,6 +134,8 @@ class Student extends BaseController
     $data['student'] =  $StudentModel->getStudentByUserID($student_id);
     $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1);
     $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2);
+    $data['student_subject_old_1'] = $StudentModel->getStudentSubject_old($student_id, 1, $data['year']);
+    $data['student_subject_old_2'] = $StudentModel->getStudentSubject_old($student_id, 2, $data['year']);
     $html = view('Modules\Student\Views\exportPDF\FormPDF1.php', $data);
     $mpdf->WriteHTML($html);
     $mpdf->Output('pdf.pdf', 'I');
@@ -135,11 +145,18 @@ class Student extends BaseController
   {
     $session = session();
     $StudentModel = new StudentModel();
+    $item = $session->get();
     $user_id = $_GET['id'];
+    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
+    // 
+    $data['role_id'] = $item['role_id'];
     $data['student'] =  $StudentModel->getStudentByUserID($user_id);
-    $data['student_subject'] = $StudentModel->getStudentSubject($user_id, 1);
-    $data['student_subject2'] = $StudentModel->getStudentSubject($user_id, 2);
+    $data['student_subject'] = $StudentModel->getStudentSubject($user_id, 1, $data['year']);
+    $data['student_subject2'] = $StudentModel->getStudentSubject($user_id, 2, $data['year']);
+    $data['student_subject_old_1'] = $StudentModel->getStudentSubject_old($user_id, 1, $data['year']);
+    $data['student_subject_old_2'] = $StudentModel->getStudentSubject_old($user_id, 2, $data['year']);
     $data['subject'] = $StudentModel->getSubject();
+    $data['subject_old'] = $StudentModel->getSubject_old();
 
     // echo '<pre>';
     // print_r($student_id);
@@ -159,6 +176,21 @@ class Student extends BaseController
       return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
     }
   }
+  public function InsertSubject_old()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $input = $this->request->getPost();
+    $resutl =  $StudentModel->InsertSubject_old($input);
+
+    if ($resutl == 0) {
+      // $session->setFlashdata('msg', 'วิชาที่เลือกซ้ำ');
+      return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+    } else {
+      return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+    }
+  }
+
   public function DeleteSubject()
   {
     $session = session();

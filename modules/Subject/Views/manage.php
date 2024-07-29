@@ -18,9 +18,19 @@
                 </select>
             </div>
             <div class="col-md-3 mb-3">
+                <label for="group_id">หมวดสาขาวิชา</label>
+                <select name="group_catagory" id="group_id" class="form-select">
+                    <option value="">เลือก</option>
+                    <?php foreach ($subject_catagory as $catagory) { ?>
+                        <option value="<?= $catagory['subject_catagory_id'] ?>" <?= (!empty($data) && $data['group_catagory'] == $catagory['subject_catagory_id']) ? 'selected' : '' ?>><?= $catagory['subject_catagory_name'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
                 <label for="">รหัสวิชา</label>
                 <input type="text" id="name" name="subjects_id" class="form-control" value="<?= @$data['subjects_id'] ?>">
             </div>
+
             <div class="col-md-3 mb-3">
                 <label for="">ชื่อวิชา</label>
                 <input type="text" id="name" name="name" class="form-control" value="<?= @$data['name'] ?>">
@@ -75,14 +85,6 @@
                 <label for="hour">หมายเหตุ</label>
                 <div class="input-group">
                     <input type="text" id="hour" name="comment" class="form-control" value="<?= @$data['comment'] ?>">
-                </div>
-            </div>
-            <div class="col-md-3 my-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="old_school" value="1" id="flexCheckDefault" <?php echo @$data['old_school'] > 0 ? 'checked' : '' ?>>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        วิชาจากโรงเรียนเก่า
-                    </label>
                 </div>
             </div>
             <div class="col-md-12 text-center mb-3">

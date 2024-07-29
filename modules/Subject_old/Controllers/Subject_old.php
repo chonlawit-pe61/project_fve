@@ -32,17 +32,21 @@ class Subject_old extends BaseController
     }
     public function index()
     {
-        $data['data'] = $this->subjectModel->getSubject();
+        $SubjectModel_old = new SubjectModel_old();
+        $data['Subject'] = $SubjectModel_old->getSubject();
         return view('\Modules\Subject_old\Views\index.php', $data);
     }
 
     public function manage($id = '')
     {
-        $data['subject_group'] = $this->subjectModel->getSubjectGroup();
+        $SubjectModel_old = new SubjectModel_old();
+        $data['subject_group'] = $SubjectModel_old->getSubjectGroup();
+        $data['subject_catagory'] = $SubjectModel_old->getSubject_catagory();
         if ($id) {
             $data['data'] = $this->subjectModel->getSubject($id);
         }
         $data['getTeacherListAll'] = $this->subjectModel->getTeacherListAll();
+
         return view('\Modules\Subject_old\Views\manage.php', $data);
     }
 
@@ -50,7 +54,7 @@ class Subject_old extends BaseController
     {
         $input = $this->request->getPost();
         $res = $this->subjectModel->saveSubject($input);
-        return redirect()->to(base_url('subjects'));
+        return redirect()->to(base_url('subjects_old'));
     }
 
     public function delete()

@@ -41,7 +41,7 @@ class ManageSubjectTeacherModel extends Model
     $data = $builder->get()->getRowArray();
     return $data;
   }
-  public function getStudentInSubject($id = '', $term = '')
+  public function getStudentInSubject($id = '', $term = '', $year = '')
   {
     $builder = $this->db->table('plan_student');
     $builder->select('*');
@@ -49,6 +49,7 @@ class ManageSubjectTeacherModel extends Model
     $builder->join('department', 'department.department_id = student.student_department', 'left');
     $builder->where('plan_student.subjects_id', $id);
     $builder->where('plan_student.plan_student_term', $term);
+    $builder->where('plan_student.plan_student_year', $year);
     $builder->where('student.users_id IS NOT NULL');
     $builder->orderBy('student.student_department', 'desc');
     $data = $builder->get()->getResultArray();
