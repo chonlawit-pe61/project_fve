@@ -12,8 +12,8 @@
                 <thead>
                     <tr>
                         <th width="5%">#</th>
-                        <th width="15%">หมวดวิชา</th>
                         <th width="30%">ชื่อวิชา</th>
+                        <th>อาจารย์ผู้สอน</th>
                         <th width="10%">หน่วยกิต</th>
                         <th width="20%">เครื่องมือ</th>
                     </tr>
@@ -27,10 +27,11 @@
                                 <td>
                                     <?php echo $key + 1 ?>
                                 </td>
-                                <td>
-                                    <?php echo $sb['group_name'] ?>
-                                </td>
                                 <td><?php echo $sb['name'] ?></td>
+                                <td>
+                                    <?php echo $sb['teacher_name'] ?>
+                                </td>
+
                                 <td>
                                     <?php echo $sb['unit'] ?>
                                 </td>

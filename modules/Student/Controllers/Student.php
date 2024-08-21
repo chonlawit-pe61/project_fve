@@ -207,4 +207,11 @@ class Student extends BaseController
     $StudentModel->DeleteStudent($input);
     // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
   }
+  public function updateStatusPlanStudentOld()
+  {
+    $StudentModel = new StudentModel();
+    $input = $this->request->getPost();
+    $StudentModel->UpdateStatusPlanOld($input);
+    // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+  }
 }

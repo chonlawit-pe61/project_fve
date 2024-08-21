@@ -52,7 +52,7 @@
                             <?php echo $student['student_phone'] ?>
                         </td>
                         <td>
-                            <?php echo $student['prename_teacher'] . ' ' . $student['firstname'] . ' ' . $student['lastname'] ?>
+                            <?php echo $student['student_teacher_name'] ?>
                         </td>
                         <td class="text-center">
                             <img style="height: 120px; " class="img-fluid" src="<?php echo base_url('public/files/imgStd' . '/' . $student['student_img']) ?>" alt="">

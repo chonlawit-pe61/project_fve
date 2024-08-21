@@ -80,6 +80,9 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
 
     $routes->post('deleteSubject', 'Student::deleteSubject');
     $routes->post('DeleteStudent', 'Student::DeleteStudent');
+    $routes->post('updateStatusPlanStudentOld', 'Student::updateStatusPlanStudentOld');
+
+    
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');

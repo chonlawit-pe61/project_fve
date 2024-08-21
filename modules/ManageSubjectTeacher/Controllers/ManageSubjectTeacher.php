@@ -4,6 +4,7 @@ namespace Modules\ManageSubjectTeacher\Controllers;
 
 use App\Controllers\BaseController;
 use Modules\ManageSubjectTeacher\Models\ManageSubjectTeacherModel;
+use Modules\Subject\Models\SubjectModel;
 
 /**
  *
@@ -31,10 +32,18 @@ class ManageSubjectTeacher extends BaseController
     $session = session();
     $item = $session->get();
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
+    $subjectModel = new SubjectModel();
     $data['subject_id'] = $_GET['id'];
     $data['term'] = $_GET['term'];
     $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
     $data['student'] = $ManageSubjectTeacherModel->getStudentInSubject($data['subject_id'], $data['term'], $data['year']);
+
+    $data['subject'] = $ManageSubjectTeacherModel->getSubjectById($_GET['id']);
+    $data['getTeacherListAll'] = $subjectModel->getTeacherListAll();
+    $data['plan_student'] = $ManageSubjectTeacherModel->getPlan_student($data['subject_id'], $data['term'], $data['year']);
+    // echo '<pre>';
+    // print_r($data['plan_student']);
+    // die();
     return view('Modules\ManageSubjectTeacher\Views\ManageSubjectTeacherSubject.php', $data);
   }
   public function ManageGradeStudent()
@@ -48,6 +57,7 @@ class ManageSubjectTeacher extends BaseController
   {
     $session = session();
     $item = $session->get();
+
     $data['date_thai'] = $this->Date_thai;
     $mpdf = new \Mpdf\Mpdf([
       'default_font' => 'thsarabun',
@@ -65,8 +75,15 @@ class ManageSubjectTeacher extends BaseController
     $this->response->setHeader('Content-Type', 'application/pdf');
 
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
-    $data['students'] = $ManageSubjectTeacherModel->getListStudents();
+    $data['students'] = $ManageSubjectTeacherModel->getListStudents($_GET['subject_id_plan'], $_GET['term'], $_GET['year']);
+    $data['subject'] = $ManageSubjectTeacherModel->getSubjectById($_GET['subject_id_plan']);
+    $data['teacher'] = $ManageSubjectTeacherModel->getTeacherById($data['subject']['teacher_id']);
+    $data['teacher_consider'] = $ManageSubjectTeacherModel->getTeacherById($_GET['consider']);
+    $data['teacher_prename_consider'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider']['prename_id']);
+    $data['plan_student'] = $ManageSubjectTeacherModel->getPlan_student($_GET['subject_id_plan'], $_GET['term'], $_GET['year']);
+    $data['teacher_org'] = $ManageSubjectTeacherModel->getDepartmentById($data['teacher']['department_id']);
     $html = view('Modules\ManageSubjectTeacher\Views\exportPDF\FormPDF1.php', $data);
+
     $mpdf->WriteHTML($html);
     $mpdf->Output('pdf.pdf', 'I');
   }

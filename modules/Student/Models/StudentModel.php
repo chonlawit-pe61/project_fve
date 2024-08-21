@@ -14,17 +14,25 @@ class StudentModel extends Model
     public function getAllStd($student_teacher_id = '')
     {
         $table = $this->db->table('student');
-        $table->select('*,
+        $table->select("*,
         `department`.`department_name`,
         `education_year`.`education_year_name`,
         `education_room`.`education_room_name`,
         prename.prename_name as prename_teacher,
         users.firstname,
-        users.lastname');
+        users.lastname,
+        (
+        SELECT
+            CONCAT(users.firstname, ' ' , users.lastname)  
+        FROM
+            users
+        WHERE
+            users.id = student.student_teacher_id
+        ) as student_teacher_name");
         $table->join('department', 'department.department_id = student.student_department', 'left');
         $table->join('education_year', 'education_year.education_year_id = student.student_level', 'left');
         $table->join('education_room', 'education_room.education_room_id = student.student_room', 'left');
-        $table->join('users', 'users.id = student.student_teacher_id', 'left');
+        $table->join('users', 'users.id = student.users_id', 'left');
         $table->join('prename', 'prename.prename_id = users.prename_id', 'left');
         $table->where('users.is_active = 1');
         if (!empty($student_teacher_id)) {
@@ -356,10 +364,17 @@ class StudentModel extends Model
         $builder->where('id', $input['id']);
         $builder->update();
         // return $data;
-        $student = $this->db->table('student');
-        $student->where('users_id', $input['id']);
-        $student->delete();
+        // $student = $this->db->table('student');
+        // $student->where('users_id', $input['id']);
+        // $student->delete();
         // return 1;
+    }
+    public function UpdateStatusPlanOld($input)
+    {
+        $builder = $this->db->table('plan_student_old');
+        $builder->set('status', $input['status']);
+        $builder->where('plan_student_id', $input['id']);
+        $builder->update();
     }
 
 

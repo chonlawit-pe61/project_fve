@@ -9,24 +9,6 @@
                 <h3>จัดการรายวิชา (โรงเรียนเก่า)</h3>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="group_id">หมวดวิชา</label>
-                <select name="group_id" id="group_id" class="form-select">
-                    <option value="">เลือก</option>
-                    <?php foreach ($subject_group as $group) { ?>
-                        <option value="<?= $group['id'] ?>" <?= (!empty($data) && $data['group_id'] == $group['id']) ? 'selected' : '' ?>><?= $group['group_name'] ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="group_id">หมวดสาขาวิชา</label>
-                <select name="group_catagory" id="group_id" class="form-select">
-                    <option value="">เลือก</option>
-                    <?php foreach ($subject_catagory as $catagory) { ?>
-                        <option value="<?= $catagory['subject_catagory_id'] ?>" <?= (!empty($data) && $data['group_catagory'] == $catagory['subject_catagory_id']) ? 'selected' : '' ?>><?= $catagory['subject_catagory_name'] ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div class="col-md-3 mb-3">
                 <label for="">รหัสวิชา</label>
                 <input type="text" id="name" name="subjects_id" class="form-control" value="<?= @$data['subjects_id'] ?>">
             </div>
@@ -37,21 +19,7 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="">อาจารย์ผู้สอน</label>
-                <select class="form-select" name="teacher_id" aria-label="Default select example">
-                    <option value="0">เลือกอาจารย์ผู้สอน</option>
-                    <?php
-                    if (!empty($getTeacherListAll)) {
-                        foreach ($getTeacherListAll as $teacher) {
-                    ?>
-                            <option <?php echo @$data['teacher_id'] == @$teacher['id'] ? 'selected' : '' ?> value="<?php echo @$teacher['id'] ?>">
-                                <?php echo @$teacher['firstname'] . ' ' . @$teacher['lastname'] ?>
-                            </option>
-
-                    <?php
-                        }
-                    }
-                    ?>
-                </select>
+                <input type="text" class="form-control" name="teacher_name" value="<?= $data['teacher_name'] ?>">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="">หน่วยกิต</label>

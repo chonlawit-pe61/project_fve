@@ -100,23 +100,23 @@
                                         <?php
                                         foreach ($student_subject as $key => $row) {
                                             @$sum_unit1 += @$row['unit'];
-
+                                            $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
                                             $textGrade1 = '';
-                                            if (@$row['grade_student'] > 80) {
+                                            if (@$result > 80) {
                                                 $textGrade1 = '4';
-                                            } else if (@$row['grade_student'] >= 75) {
+                                            } else if (@$result >= 75) {
                                                 $textGrade1 = '3.5';
-                                            } else if (@$row['grade_student'] >= 70) {
+                                            } else if (@$result >= 70) {
                                                 $textGrade1 = '3';
-                                            } else if (@$row['grade_student'] >= 65) {
+                                            } else if (@$result >= 65) {
                                                 $textGrade1 = '2.5';
-                                            } else if (@$row['grade_student'] >= 60) {
+                                            } else if (@$result >= 60) {
                                                 $textGrade1 = '2';
-                                            } else if (@$row['grade_student'] >= 55) {
+                                            } else if (@$result >= 55) {
                                                 $textGrade1 = '1.5';
-                                            } else if (@$row['grade_student'] >= 50) {
+                                            } else if (@$result >= 50) {
                                                 $textGrade1 = '1';
-                                            } else if (@$row['grade_student'] < 50) {
+                                            } else if (@$result < 50) {
                                                 $textGrade1 = '0';
                                             } else {
                                                 $textGrade1 = '-';
@@ -220,24 +220,24 @@
                                     <tbody>
                                         <?php
                                         foreach ($student_subject_old_1 as $key => $row) {
-                                            @$sum_unit1 += @$row['unit'];
-
+                                            @$sum_unit_old_1 += @$row['unit'];
+                                            $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
                                             $textGrade1 = '';
-                                            if (@$row['grade_student'] > 80) {
+                                            if (@$result > 80) {
                                                 $textGrade1 = '4';
-                                            } else if (@$row['grade_student'] >= 75) {
+                                            } else if (@$result >= 75) {
                                                 $textGrade1 = '3.5';
-                                            } else if (@$row['grade_student'] >= 70) {
+                                            } else if (@$result >= 70) {
                                                 $textGrade1 = '3';
-                                            } else if (@$row['grade_student'] >= 65) {
+                                            } else if (@$result >= 65) {
                                                 $textGrade1 = '2.5';
-                                            } else if (@$row['grade_student'] >= 60) {
+                                            } else if (@$result >= 60) {
                                                 $textGrade1 = '2';
-                                            } else if (@$row['grade_student'] >= 55) {
+                                            } else if (@$result >= 55) {
                                                 $textGrade1 = '1.5';
-                                            } else if (@$row['grade_student'] >= 50) {
+                                            } else if (@$result >= 50) {
                                                 $textGrade1 = '1';
-                                            } else if (@$row['grade_student'] < 50) {
+                                            } else if (@$result < 50) {
                                                 $textGrade1 = '0';
                                             } else {
                                                 $textGrade1 = '-';
@@ -269,7 +269,19 @@
                                                     <?php echo @$row['unit'] ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade1 ?>
+                                                    <?php
+                                                    $textStatus = '';
+                                                    if ($row['status'] == 1) {
+                                                        $textStatus = 'ผ่าน';
+                                                    } else if ($row['status'] == 2) {
+                                                        $textStatus = 'ไม่ผ่าน';
+                                                    } else  if ($row['status'] == 3) {
+                                                        $textStatus = 'รอพิจารณา';
+                                                    } else {
+                                                        $textStatus = '-';
+                                                    }
+                                                    ?>
+                                                    <?php echo $textStatus ?>
                                                 </td>
                                             </tr>
                                         <?php
@@ -282,7 +294,7 @@
                                                 รวม
                                             </td>
                                             <td class="text-center">
-                                                <?php echo @$sum_unit1 ?>
+                                                <?php echo @$sum_unit_old_1 ?>
                                             </td>
 
                                         </tr>
@@ -427,7 +439,7 @@
                         <div class="container">
                             <div class="col-lg-12 mt-2">
                                 <b>
-                                    รายวิชาที่ศึกษาเทอม 2 (<?php echo $year + 543 ?>)
+                                    รายวิชาที่ศึกษาเทอม 2 ปีการศึกษา (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
                                 </b>
                             </div>
                             <div class="col-lg-12">
@@ -462,7 +474,7 @@
                                     <tbody>
                                         <?php
                                         foreach ($student_subject_old_2 as $key => $row) {
-                                            @$sum_unit1 += @$row['unit'];
+                                            @$sum_unit_old2 += @$row['unit'];
 
                                             $textGrade1 = '';
                                             if (@$row['grade_student'] > 80) {
@@ -511,7 +523,19 @@
                                                     <?php echo @$row['unit'] ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade1 ?>
+                                                    <?php
+                                                    $textStatus = '';
+                                                    if ($row['status'] == 1) {
+                                                        $textStatus = 'ผ่าน';
+                                                    } else if ($row['status'] == 2) {
+                                                        $textStatus = 'ไม่ผ่าน';
+                                                    } else if ($row['status'] == 3) {
+                                                        $textStatus = 'รอพิจารณา';
+                                                    } else {
+                                                        $textStatus = '-';
+                                                    }
+                                                    ?>
+                                                    <?php echo $textStatus ?>
                                                 </td>
                                             </tr>
                                         <?php
@@ -524,7 +548,7 @@
                                                 รวม
                                             </td>
                                             <td class="text-center">
-                                                <?php echo @$sum_unit1 ?>
+                                                <?php echo @$sum_unit_old2 ?>
                                             </td>
 
                                         </tr>

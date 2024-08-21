@@ -119,23 +119,23 @@
                                         foreach ($student_subject as $key => $row) {
                                             $plan1 = $row['plan_student_year'];
                                             @$sum_unit1 += @$row['unit'];
-
+                                            $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
                                             $textGrade1 = '';
-                                            if (@$row['grade_student'] >= 80) {
+                                            if (@$result >= 80) {
                                                 $textGrade1 = '4';
-                                            } else if (@$row['grade_student'] >= 75) {
+                                            } else if (@$result >= 75) {
                                                 $textGrade1 = '3.5';
-                                            } else if (@$row['grade_student'] >= 70) {
+                                            } else if (@$result >= 70) {
                                                 $textGrade1 = '3';
-                                            } else if (@$row['grade_student'] >= 65) {
+                                            } else if (@$result >= 65) {
                                                 $textGrade1 = '2.5';
-                                            } else if (@$row['grade_student'] >= 60) {
+                                            } else if (@$result >= 60) {
                                                 $textGrade1 = '2';
-                                            } else if (@$row['grade_student'] >= 55) {
+                                            } else if (@$result >= 55) {
                                                 $textGrade1 = '1.5';
-                                            } else if (@$row['grade_student'] >= 50) {
+                                            } else if (@$result >= 50) {
                                                 $textGrade1 = '1';
-                                            } else if (@$row['grade_student'] < 50) {
+                                            } else if (@$result < 50) {
                                                 $textGrade1 = '0';
                                             } else {
                                                 $textGrade1 = '-';
@@ -251,198 +251,203 @@
                                 </table>
                             </div>
                         </div>
-                    <?php
-                    }
-                    ?>
-
-                    <?php
-                    if (!empty($student_subject_old_1) || $role_id < 5) {
-                    ?>
-                        <div class="container">
-                            <div class="col-lg-12 mt-5">
-                                <b>
-                                    รายวิชาที่ศึกษาเทอม 1 ปีการศึกษา (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
-                                </b>
-                            </div>
-                            <div class="col-lg-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <td class="text-center">ลำดับ</td>
-                                            <td class="text-center">
-                                                รหัสวิชา
-                                            </td>
-                                            <td class="text-center">
-                                                ชื่อวิชา
-                                            </td>
-                                            <td class="text-center">
-                                                ทศดี
-                                            </td>
-                                            <td class="text-center">ปฎ</td>
-
-                                            <td class="text-center">
-                                                ชั่วโมง
-                                            </td>
-
-                                            <td class="text-center">
-                                                หน่วยกิต
-                                            </td>
-                                            <td class="text-center">
-                                                เกรด
-                                            </td>
-                                            <!-- <td class="text-center">
-                                                คะแนนหน่วยกิต
-                                            </td> -->
-                                            <td>
-                                                เครื่องมือ
-                                            </td>
-                                            <td>
-                                                สถานนะ
-                                            </td>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <?php
-                                        foreach ($student_subject_old_1 as $key => $row) {
-                                            $plan1 = $row['plan_student_year'];
-                                            @$sum_unit1 += @$row['unit'];
-
-                                            $textGrade1 = '';
-                                            if (@$row['grade_student'] >= 80) {
-                                                $textGrade1 = '4';
-                                            } else if (@$row['grade_student'] >= 75) {
-                                                $textGrade1 = '3.5';
-                                            } else if (@$row['grade_student'] >= 70) {
-                                                $textGrade1 = '3';
-                                            } else if (@$row['grade_student'] >= 65) {
-                                                $textGrade1 = '2.5';
-                                            } else if (@$row['grade_student'] >= 60) {
-                                                $textGrade1 = '2';
-                                            } else if (@$row['grade_student'] >= 55) {
-                                                $textGrade1 = '1.5';
-                                            } else if (@$row['grade_student'] >= 50) {
-                                                $textGrade1 = '1';
-                                            } else if (@$row['grade_student'] < 50) {
-                                                $textGrade1 = '0';
-                                            } else {
-                                                $textGrade1 = '-';
-                                            }
-
-                                            @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
-                                        ?>
+                        <?php
+                        if (!empty($student_subject_old_1) || $role_id < 5) {
+                        ?>
+                            <div class="container">
+                                <div class="col-lg-12 mt-5">
+                                    <b>
+                                        รายวิชาที่ศึกษาเพิ่มเติม เทอม 1 (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
+                                    </b>
+                                </div>
+                                <div class="col-lg-12">
+                                    <table class="table table-bordered">
+                                        <thead>
                                             <tr>
+                                                <td class="text-center">ลำดับ</td>
                                                 <td class="text-center">
-                                                    <?php echo @$key + 1 ?>
+                                                    รหัสวิชา
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$row['subjects_id'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo @$row['name'] ?>
+                                                    ชื่อวิชา
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$row['lecture_unit'] ?>
+                                                    ทศดี
                                                 </td>
+                                                <td class="text-center">ปฎ</td>
+
                                                 <td class="text-center">
-                                                    <?php echo @$row['practical_unit'] ?>
-                                                </td>
-                                                <td class="text-center">
-                                                    <?php echo @$row['hour'] ?>
+                                                    ชั่วโมง
                                                 </td>
 
                                                 <td class="text-center">
-                                                    <?php echo @$row['unit'] ?>
+                                                    หน่วยกิต
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$textGrade1 ?>
+                                                    เกรด
                                                 </td>
                                                 <!-- <td class="text-center">
+                                                คะแนนหน่วยกิต
+                                            </td> -->
+                                                <td>
+                                                    เครื่องมือ
+                                                </td>
+                                                <td>
+                                                    สถานนะ
+                                                </td>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php
+                                            foreach ($student_subject_old_1 as $key => $row) {
+                                                $plan1 = $row['plan_student_year'];
+                                                @$sum_unit1 += @$row['unit'];
+                                                $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
+                                                $textGrade1 = '';
+                                                if (@$result >= 80) {
+                                                    $textGrade1 = '4';
+                                                } else if (@$result >= 75) {
+                                                    $textGrade1 = '3.5';
+                                                } else if (@$result >= 70) {
+                                                    $textGrade1 = '3';
+                                                } else if (@$result >= 65) {
+                                                    $textGrade1 = '2.5';
+                                                } else if (@$result >= 60) {
+                                                    $textGrade1 = '2';
+                                                } else if (@$result >= 55) {
+                                                    $textGrade1 = '1.5';
+                                                } else if (@$result >= 50) {
+                                                    $textGrade1 = '1';
+                                                } else if (@$result < 50) {
+                                                    $textGrade1 = '0';
+                                                } else {
+                                                    $textGrade1 = '-';
+                                                }
+
+                                                @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
+                                            ?>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <?php echo @$key + 1 ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['subjects_id'] ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo @$row['name'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['lecture_unit'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['practical_unit'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['hour'] ?>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <?php echo @$row['unit'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$textGrade1 ?>
+                                                    </td>
+                                                    <!-- <td class="text-center">
                                                     <?php echo @$textGrade1 * @$row['unit'] ?>
                                                 </td> -->
-                                                <td class="text-center">
-
-                                                    <button class="btn btn-danger mx-1" onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    </button>
-
-                                                </td>
-                                                <td class="text-center">
-                                                    <?php
-                                                    if ($row['old_school'] > 0) {
-                                                    ?>
-                                                        <select class="form-select" aria-label="Default select example">
-                                                            <option value="">เลือกสถานนะ</option>
-                                                            <option value="1" <?php echo $row['consider_old_school'] == '1' ? 'selected' : '' ?>>ผ่าน</option>
-                                                            <option value="2" <?php echo $row['consider_old_school'] == '2' ? 'selected' : '' ?>>ไม่ผ่าน</option>
-                                                        </select>
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        -
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                        <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
-                                            <tr>
-                                                <td colspan="3">
-                                                    &nbsp;
-                                                    <input type="hidden" name="plan_student_term" value="1">
-                                                    <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
-                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
-                                                </td>
-                                                <td colspan="3">
-                                                    <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                    <td class="text-center">
+                                                        <div class="d-flex">
+                                                            <select onchange="updateStatus(this.value ,<?php echo $row['plan_student_id'] ?> )" class="form-select" aria-label="Default select example">
+                                                                <option value="0" <?php echo $row['status'] == 0 ? 'selected' : '' ?>>เลือกสถานนะ</option>
+                                                                <option value="1" <?php echo $row['status'] == 1 ? 'selected' : '' ?>>ผ่าน</option>
+                                                                <option value="2" <?php echo $row['status'] == 2 ? 'selected' : '' ?>>ไม่ผ่าน</option>
+                                                                <option value="3" <?php echo $row['status'] == 3 ? 'selected' : '' ?>>รอพิจารณา</option>
+                                                            </select>
+                                                            <button class="btn btn-danger mx-1 " onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
                                                         <?php
-                                                        foreach ($subject_old as $row) {
-                                                        ?>
-                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
-                                                                                                                            if (!empty($row['comment'])) {
-
-                                                                                                                                echo '(' . $row['comment'] . ')';
-                                                                                                                            }
-                                                                                                                            ?></option>
-                                                        <?php
+                                                        $textStatus = '';
+                                                        if ($row['status'] == 1) {
+                                                            $textStatus = 'ผ่าน';
+                                                        } else if ($row['status'] == 2) {
+                                                            $textStatus = 'ไม่ผ่าน';
+                                                        } else  if ($row['status'] == 3) {
+                                                            $textStatus = 'รอพิจารณา';
+                                                        } else {
+                                                            $textStatus = '-';
                                                         }
                                                         ?>
-                                                    </select>
+                                                        <?php echo $textStatus ?>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                            <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
+                                                <tr>
+                                                    <td colspan="3">
+                                                        &nbsp;
+                                                        <input type="hidden" name="plan_student_term" value="1">
+                                                        <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
+                                                        <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                            <?php
+                                                            foreach ($subject_old as $row) {
+                                                            ?>
+                                                                <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
+                                                                                                                                if (!empty($row['comment'])) {
+
+                                                                                                                                    echo '(' . $row['comment'] . ')';
+                                                                                                                                }
+                                                                                                                                ?></option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td colspan="3" class="text-center">
+                                                        <button class="btn btn-success">บันทึก</button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7" class="text-end">
+                                                    รวม
                                                 </td>
-                                                <td colspan="3" class="text-center">
-                                                    <button class="btn btn-success">บันทึก</button>
+                                                <td class="text-center">
+                                                    <?php echo @$sum_unit1 ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo @$sum_ResutlUnit1 ?>
                                                 </td>
                                             </tr>
-                                        </form>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="7" class="text-end">
-                                                รวม
-                                            </td>
-                                            <td class="text-center">
-                                                <?php echo @$sum_unit1 ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?php echo @$sum_ResutlUnit1 ?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="9" class="text-center">
-                                                เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                            <tr>
+                                                <td colspan="9" class="text-center">
+                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        <?php
+                        }
+                        ?>
                     <?php
                     }
                     ?>
+
+
 
                     <?php
                     if (!empty($student_subject2)) {
@@ -594,9 +599,204 @@
 
                             </div>
                         </div>
+
+                        <?php
+                        if (!empty($student_subject_old_2) || $role_id < 5) {
+                        ?>
+                            <div class="container">
+                                <div class="col-lg-12 mt-5">
+                                    <b>
+                                        รายวิชาที่ศึกษาเพิ่มเติมเทอม 2 (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
+                                    </b>
+                                </div>
+                                <div class="col-lg-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td class="text-center">ลำดับ</td>
+                                                <td class="text-center">
+                                                    รหัสวิชา
+                                                </td>
+                                                <td class="text-center">
+                                                    ชื่อวิชา
+                                                </td>
+                                                <td class="text-center">
+                                                    ทศดี
+                                                </td>
+                                                <td class="text-center">ปฎ</td>
+
+                                                <td class="text-center">
+                                                    ชั่วโมง
+                                                </td>
+
+                                                <td class="text-center">
+                                                    หน่วยกิต
+                                                </td>
+                                                <td class="text-center">
+                                                    เกรด
+                                                </td>
+                                                <!-- <td class="text-center">
+                                                คะแนนหน่วยกิต
+                                            </td> -->
+                                                <td>
+                                                    เครื่องมือ
+                                                </td>
+                                                <td>
+                                                    สถานนะ
+                                                </td>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php
+                                            foreach ($student_subject_old_2 as $key => $row) {
+                                                $plan1 = $row['plan_student_year'];
+                                                @$sum_unit1 += @$row['unit'];
+                                                $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
+                                                $textGrade1 = '';
+                                                if (@$result >= 80) {
+                                                    $textGrade1 = '4';
+                                                } else if (@$result >= 75) {
+                                                    $textGrade1 = '3.5';
+                                                } else if (@$result >= 70) {
+                                                    $textGrade1 = '3';
+                                                } else if (@$result >= 65) {
+                                                    $textGrade1 = '2.5';
+                                                } else if (@$result >= 60) {
+                                                    $textGrade1 = '2';
+                                                } else if (@$result >= 55) {
+                                                    $textGrade1 = '1.5';
+                                                } else if (@$result >= 50) {
+                                                    $textGrade1 = '1';
+                                                } else if (@$result < 50) {
+                                                    $textGrade1 = '0';
+                                                } else {
+                                                    $textGrade1 = '-';
+                                                }
+
+                                                @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
+                                            ?>
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <?php echo @$key + 1 ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['subjects_id'] ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo @$row['name'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['lecture_unit'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['practical_unit'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$row['hour'] ?>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <?php echo @$row['unit'] ?>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php echo @$textGrade1 ?>
+                                                    </td>
+                                                    <!-- <td class="text-center">
+                                                    <?php echo @$textGrade1 * @$row['unit'] ?>
+                                                </td> -->
+                                                    <td class="text-center">
+                                                        <div class="d-flex">
+                                                            <select onchange="updateStatus(this.value ,<?php echo $row['plan_student_id'] ?> )" class="form-select" aria-label="Default select example">
+                                                                <option value="0" <?php echo $row['status'] == 0 ? 'selected' : '' ?>>เลือกสถานนะ</option>
+                                                                <option value="1" <?php echo $row['status'] == 1 ? 'selected' : '' ?>>ผ่าน</option>
+                                                                <option value="2" <?php echo $row['status'] == 2 ? 'selected' : '' ?>>ไม่ผ่าน</option>
+                                                                <option value="3" <?php echo $row['status'] == 3 ? 'selected' : '' ?>>รอพิจารณา</option>
+                                                            </select>
+                                                            <button class="btn btn-danger mx-1 " onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        $textStatus = '';
+                                                        if ($row['status'] == 1) {
+                                                            $textStatus = 'ผ่าน';
+                                                        } else if ($row['status'] == 2) {
+                                                            $textStatus = 'ไม่ผ่าน';
+                                                        } else  if ($row['status'] == 3) {
+                                                            $textStatus = 'รอพิจารณา';
+                                                        } else {
+                                                            $textStatus = '-';
+                                                        }
+                                                        ?>
+                                                        <?php echo $textStatus ?>
+                                                    </td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                            <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
+                                                <tr>
+                                                    <td colspan="3">
+                                                        &nbsp;
+                                                        <input type="hidden" name="plan_student_term" value="2">
+                                                        <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
+                                                        <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                            <?php
+                                                            foreach ($subject_old as $row) {
+                                                            ?>
+                                                                <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
+                                                                                                                                if (!empty($row['comment'])) {
+
+                                                                                                                                    echo '(' . $row['comment'] . ')';
+                                                                                                                                }
+                                                                                                                                ?></option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td colspan="3" class="text-center">
+                                                        <button class="btn btn-success">บันทึก</button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7" class="text-end">
+                                                    รวม
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo @$sum_unit1 ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php echo @$sum_ResutlUnit1 ?>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="9" class="text-center">
+                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
+
                     <?php
                     }
                     ?>
+
 
                 </div>
                 <div class="text-center">
@@ -614,6 +814,41 @@
 <?php $this->endSection() ?>
 <?php $this->section('scripts') ?>
 <script>
+    const updateStatus = (status, id) => {
+
+        Swal.fire({
+            title: 'คุณเปลื่ยนแปลงสถานนะ?',
+            text: "คลิกตกลงเพื่อยืนยันการเปลื่ยนแปลงข้อมูล!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        'status': status,
+                        'id': id
+                    },
+                    url: '<?= base_url('/Student/updateStatusPlanStudentOld'); ?>',
+                    success: function(res) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'การเปลื่ยนแปลงข้อมูลสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                })
+            }
+        })
+    }
+
     const DeleteSubject = (id) => {
         Swal.fire({
             title: 'คุณต้องการลบข้อมูล?',

@@ -14,8 +14,8 @@ class SubjectModel_old extends Model
     function getSubject($id = '')
     {
         $builder = $this->db->table('subjects_old');
-        $builder->select('subjects_old.*,subject_group.group_name');
-        $builder->join('subject_group', 'subject_group.id = subjects_old.group_id', 'left');
+        $builder->select('*');
+        // $builder->join('subject_group', 'subject_group.id = subjects_old.group_id', 'left');
         if ($id) {
             $builder->where('subjects_old.id', $id);
             $data = $builder->get()->getRowArray();
@@ -28,14 +28,13 @@ class SubjectModel_old extends Model
 
     function saveSubject($input)
     {
+       
         $builder = $this->db->table('subjects_old');
-        $builder->set('group_id', $input['group_id']);
         $builder->set('name', $input['name']);
         $builder->set('subjects_id', $input['subjects_id']);
         $builder->set('lecture_unit', $input['lecture_unit']);
-        $builder->set('teacher_id', $input['teacher_id']);
+        $builder->set('teacher_name', $input['teacher_name']);
         $builder->set('practical_unit', $input['practical_unit']);
-        $builder->set('group_catagory', $input['group_catagory']);
         $builder->set('unit', $input['unit']);
         $builder->set('hour', $input['hour']);
         $builder->set('created_by', 1);
