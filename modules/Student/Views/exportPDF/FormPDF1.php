@@ -7,7 +7,7 @@
     <?php
     if ($student['student_img']) {
     ?>
-        <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . @$student['student_img']) ?>" alt="">
+        <img class="img-fluid" style="height: 100px;" src="<?php echo base_url('public/files/imgStd/' . @$student['student_img']) ?>" alt="">
     <?php
     }
     ?>
@@ -32,12 +32,143 @@
     </div>
 </div>
 <?php
+if (!empty($student_subject_old_1)) {
+?>
+    <div class="container">
+        <div class="col-lg-12 mt-2">
+            <b>
+                รายวิชาที่ศึกษาเทอม 1 ปีการศึกษา (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
+            </b>
+        </div>
+        <div class="col-lg-12">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <td class="text-center" style="text-align: center;">ลำดับ</td>
+                        <td class="text-center" style="text-align: center;">
+                            รหัสวิชา
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            ชื่อวิชา
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            ทฤษฎี
+                        </td>
+                        <td class="text-center" style="text-align: center;">ปฏิบัติ</td>
+
+                        <td class="text-center" style="text-align: center;">
+                            ชั่วโมง
+                        </td>
+
+                        <td class="text-center" style="text-align: center;">
+                            หน่วยกิต
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            เกรด
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($student_subject_old_1 as $key => $row) {
+                        @$sum_unit_old_1 += @$row['unit'];
+                        $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
+                        $textGrade1 = '';
+                        if (@$result > 80) {
+                            $textGrade1 = '4';
+                        } else if (@$result >= 75) {
+                            $textGrade1 = '3.5';
+                        } else if (@$result >= 70) {
+                            $textGrade1 = '3';
+                        } else if (@$result >= 65) {
+                            $textGrade1 = '2.5';
+                        } else if (@$result >= 60) {
+                            $textGrade1 = '2';
+                        } else if (@$result >= 55) {
+                            $textGrade1 = '1.5';
+                        } else if (@$result >= 50) {
+                            $textGrade1 = '1';
+                        } else if (@$result < 50) {
+                            $textGrade1 = '0';
+                        } else {
+                            $textGrade1 = '-';
+                        }
+
+                        @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
+                    ?>
+                        <tr>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$key + 1 ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['subjects_id'] ?>
+                            </td>
+                            <td>
+                                <?php echo @$row['name'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['lecture_unit'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['practical_unit'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['hour'] ?>
+                            </td>
+
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['unit'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php
+                                $textStatus = '';
+                                if ($row['status'] == 1) {
+                                    $textStatus = 'ผ่าน';
+                                } else if ($row['status'] == 2) {
+                                    $textStatus = 'ไม่ผ่าน';
+                                } else  if ($row['status'] == 3) {
+                                    $textStatus = 'รอพิจารณา';
+                                } else {
+                                    $textStatus = '-';
+                                }
+                                ?>
+                                <?php echo $textStatus ?>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7" class="text-end" style="text-align: center;">
+                            รวม
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            <?php echo @$sum_unit_old_1 ?>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="8" class="text-center" style="text-align: center;">
+                            เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit_old_1 ?>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+<?php
+}
+?>
+<?php
 if (!empty($student_subject)) {
 ?>
     <div class="container">
-        <div class="col-lg-12 mt-5">
+        <div class="col-lg-12 mt-2">
             <b>
-                รายวิชาที่ศึกษาเทอม 1
+                รายวิชาที่ศึกษาเทอม 1 (<?php echo $year + 543 ?>)
             </b>
         </div>
         <div class="col-lg-12">
@@ -45,36 +176,157 @@ if (!empty($student_subject)) {
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <td class="text-center">ลำดับ</td>
-                        <td class="text-center">
+                        <td class="text-center" style="text-align: center;">ลำดับ</td>
+                        <td class="text-center" style="text-align: center;">
                             รหัสวิชา
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" style="text-align: center;">
                             ชื่อวิชา
                         </td>
-                        <td class="text-center">
-                            ทศดี
+                        <td class="text-center" style="text-align: center;">
+                            ทฤษฎี
                         </td>
-                        <td class="text-center">ปฎ</td>
+                        <td class="text-center" style="text-align: center;">ปฏิบัติ</td>
 
-                        <td class="text-center">
+                        <td class="text-center" style="text-align: center;">
                             ชั่วโมง
                         </td>
-                        <td class="text-center">
-                            เกรด
-                        </td>
-                        <td class="text-center">
+
+                        <td class="text-center" style="text-align: center;">
                             หน่วยกิต
                         </td>
-                        <td class="text-center">
-                            คะแนนหน่วยกิต
+                        <td class="text-center" style="text-align: center;">
+                            เกรด
                         </td>
+
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     foreach ($student_subject as $key => $row) {
                         @$sum_unit1 += @$row['unit'];
+                        $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
+                        $textGrade1 = '';
+                        if (@$result > 80) {
+                            $textGrade1 = '4';
+                        } else if (@$result >= 75) {
+                            $textGrade1 = '3.5';
+                        } else if (@$result >= 70) {
+                            $textGrade1 = '3';
+                        } else if (@$result >= 65) {
+                            $textGrade1 = '2.5';
+                        } else if (@$result >= 60) {
+                            $textGrade1 = '2';
+                        } else if (@$result >= 55) {
+                            $textGrade1 = '1.5';
+                        } else if (@$result >= 50) {
+                            $textGrade1 = '1';
+                        } else if (@$result < 50) {
+                            $textGrade1 = '0';
+                        } else {
+                            $textGrade1 = '-';
+                        }
+
+                        @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
+                    ?>
+                        <tr>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$key + 1 ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['subjects_id'] ?>
+                            </td>
+                            <td>
+                                <?php echo @$row['name'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['lecture_unit'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['practical_unit'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['hour'] ?>
+                            </td>
+
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$row['unit'] ?>
+                            </td>
+                            <td class="text-center" style="text-align: center;">
+                                <?php echo @$textGrade1 ?>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="7" class="text-end" style="text-align: center;">
+                            รวม
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            <?php echo @$sum_unit1 ?>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="8" class="text-center" style="text-align: center;">
+                            เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+<?php
+}
+?>
+
+<?php
+if (!empty($student_subject_old_2)) {
+?>
+    <div class="container">
+        <div class="col-lg-12 mt-2">
+            <b>
+                รายวิชาที่ศึกษาเทอม 2 ปีการศึกษา (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
+            </b>
+        </div>
+        <div class="col-lg-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td class="text-center" style="text-align: center;">ลำดับ</td>
+                        <td class="text-center" style="text-align: center;">
+                            รหัสวิชา
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            ชื่อวิชา
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            ทฤษฎี
+                        </td>
+                        <td class="text-center" style="text-align: center;">ปฏิบัติ</td>
+
+                        <td class="text-center" style="text-align: center;">
+                            ชั่วโมง
+                        </td>
+
+                        <td class="text-center" style="text-align: center;">
+                            หน่วยกิต
+                        </td>
+                        <td class="text-center" style="text-align: center;">
+                            เกรด
+                        </td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+
+                    foreach ($student_subject_old_2 as $key => $row) {
+                        @$sum_unit_old2 += @$row['unit'];
 
                         $textGrade1 = '';
                         if (@$row['grade_student'] > 80) {
@@ -100,32 +352,42 @@ if (!empty($student_subject)) {
                         @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
                     ?>
                         <tr>
-                            <td class="text-center">
+                            <td class="text-center" style="text-align: center;">
                                 <?php echo @$key + 1 ?>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" style="text-align: center;">
                                 <?php echo @$row['subjects_id'] ?>
                             </td>
                             <td>
                                 <?php echo @$row['name'] ?>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" style="text-align: center;">
                                 <?php echo @$row['lecture_unit'] ?>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" style="text-align: center;">
                                 <?php echo @$row['practical_unit'] ?>
                             </td>
-                            <td class="text-center">
+                            <td class="text-center" style="text-align: center;">
                                 <?php echo @$row['hour'] ?>
                             </td>
-                            <td class="text-center">
-                                <?php echo @$textGrade1 ?>
-                            </td>
-                            <td class="text-center">
+
+                            <td class="text-center " style="text-align: center;">
                                 <?php echo @$row['unit'] ?>
                             </td>
-                            <td class="text-center">
-                                <?php echo @$textGrade1 * @$row['unit'] ?>
+                            <td class="text-center" style="text-align: center;">
+                                <?php
+                                $textStatus = '';
+                                if ($row['status'] == 1) {
+                                    $textStatus = 'ผ่าน';
+                                } else if ($row['status'] == 2) {
+                                    $textStatus = 'ไม่ผ่าน';
+                                } else if ($row['status'] == 3) {
+                                    $textStatus = 'รอพิจารณา';
+                                } else {
+                                    $textStatus = '-';
+                                }
+                                ?>
+                                <?php echo $textStatus ?>
                             </td>
                         </tr>
                     <?php
@@ -134,19 +396,17 @@ if (!empty($student_subject)) {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="7" class="text-end">
+                        <td colspan="7" class="text-end" style="text-align: center;">
                             รวม
                         </td>
-                        <td class="text-center">
-                            <?php echo @$sum_unit1 ?>
+                        <td class="text-center" style="text-align: center;">
+                            <?php echo @$sum_unit_old2 ?>
                         </td>
-                        <td class="text-center">
-                            <?php echo @$sum_ResutlUnit1 ?>
-                        </td>
+
                     </tr>
                     <tr>
-                        <td colspan="9" class="text-center">
-                            เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo date('Y') + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
+                        <td colspan="8" class="text-center" style="text-align: center;">
+                            เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
                         </td>
                     </tr>
                 </tfoot>
@@ -157,14 +417,13 @@ if (!empty($student_subject)) {
 <?php
 }
 ?>
-
 <?php
 if (!empty($student_subject2)) {
 ?>
     <div class="container">
         <div class="col-lg-12 mt-5">
             <b>
-                รายวิชาที่ศึกษาเทอม 2
+                รายวิชาที่ศึกษาเทอม 2 (<?php echo $year + 543 ?>)
             </b>
         </div>
         <div class="col-lg-12">
@@ -180,22 +439,21 @@ if (!empty($student_subject2)) {
                             ชื่อวิชา
                         </td>
                         <td class="text-center">
-                            ทศดี
+                            ทฤษฎี
                         </td>
-                        <td class="text-center">ปฎ</td>
+                        <td class="text-center">ปฏิบัติ</td>
 
                         <td class="text-center">
                             ชั่วโมง
                         </td>
-                        <td class="text-center">
-                            เกรด
-                        </td>
+
                         <td class="text-center">
                             หน่วยกิต
                         </td>
                         <td class="text-center">
-                            คะแนนหน่วยกิต
+                            เกรด
                         </td>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -244,14 +502,12 @@ if (!empty($student_subject2)) {
                             <td class="text-center">
                                 <?php echo @$row['hour'] ?>
                             </td>
-                            <td class="text-center">
-                                <?php echo @$textGrade ?>
-                            </td>
+
                             <td class="text-center">
                                 <?php echo @$row['unit'] ?>
                             </td>
                             <td class="text-center">
-                                <?php echo @$textGrade * @$row['unit'] ?>
+                                <?php echo @$textGrade ?>
                             </td>
                         </tr>
                     <?php
@@ -260,19 +516,16 @@ if (!empty($student_subject2)) {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="7" class="text-end">
+                        <td colspan="7" class="text-end" style="text-align: center;">
                             รวม
                         </td>
-                        <td class="text-center">
+                        <td style="text-align: center;">
                             <?php echo @$sum_unit ?>
-                        </td>
-                        <td class="text-center">
-                            <?php echo @$sum_ResutlUnit ?>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="9" class="text-center">
-                            เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo date('Y') + 543 ?> = <?php echo @$sum_ResutlUnit / @$sum_unit ?>
+                        <td colspan="8" class="text-center" style="text-align: center;">
+                            เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit / @$sum_unit ?>
                         </td>
                     </tr>
                 </tfoot>

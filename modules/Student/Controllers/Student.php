@@ -131,9 +131,10 @@ class Student extends BaseController
     $StudentModel = new StudentModel();
     $item = $session->get();;
     $student_id = $_GET['user_id'] ? $_GET['user_id'] : $item['user_id'];
+    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
     $data['student'] =  $StudentModel->getStudentByUserID($student_id);
-    $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1);
-    $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2);
+    $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1, $data['year']);
+    $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2, $data['year']);
     $data['student_subject_old_1'] = $StudentModel->getStudentSubject_old($student_id, 1, $data['year']);
     $data['student_subject_old_2'] = $StudentModel->getStudentSubject_old($student_id, 2, $data['year']);
     $html = view('Modules\Student\Views\exportPDF\FormPDF1.php', $data);

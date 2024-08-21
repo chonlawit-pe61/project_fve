@@ -107,10 +107,6 @@
                                             <td>
                                                 เครื่องมือ
                                             </td>
-                                            <td>
-                                                สถานนะ
-                                            </td>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -179,23 +175,7 @@
                                                     </button>
 
                                                 </td>
-                                                <td class="text-center">
-                                                    <?php
-                                                    if ($row['old_school'] > 0) {
-                                                    ?>
-                                                        <select class="form-select" aria-label="Default select example">
-                                                            <option value="">เลือกสถานนะ</option>
-                                                            <option value="1" <?php echo $row['consider_old_school'] == '1' ? 'selected' : '' ?>>ผ่าน</option>
-                                                            <option value="2" <?php echo $row['consider_old_school'] == '2' ? 'selected' : '' ?>>ไม่ผ่าน</option>
-                                                        </select>
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        -
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </td>
+
                                             </tr>
                                         <?php
                                         }
@@ -485,16 +465,16 @@
                                             <td class="text-center">
                                                 เกรด
                                             </td>
-                                            <!-- <td class="text-center">
-                                                คะแนนหน่วยกิต
-                                            </td> -->
+                                            <td class="text-center">
+                                                เครื่องมือ
+                                            </td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         foreach ($student_subject2 as $key => $row) {
                                             $plan2 = $row['plan_student_year'];
-                                            @$sum_unit += @$row['unit'];
+                                            @$sum_unit2 += @$row['unit'];
 
                                             @$textGrade = '';
                                             if (@$row['grade_student'] > 80) {
@@ -516,7 +496,7 @@
                                             } else {
                                                 $textGrade = '-';
                                             }
-                                            @$sum_ResutlUnit += @$textGrade * @$row['unit'];
+                                            @$sum_ResutlUnit_2 += @$textGrade * @$row['unit'];
                                         ?>
                                             <tr>
                                                 <td class="text-center">
@@ -544,9 +524,12 @@
                                                 <td class="text-center">
                                                     <?php echo @$textGrade ?>
                                                 </td>
-                                                <!-- <td class="text-center">
-                                                    <?php echo @$textGrade * @$row['unit'] ?>
-                                                </td> -->
+                                                <td class="text-center">
+
+                                                    <button class="btn btn-danger mx-1" onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         <?php
                                         }
@@ -583,15 +566,15 @@
                                                 รวม
                                             </td>
                                             <td class="text-center">
-                                                <?php echo @$sum_unit ?>
+                                                <?php echo @$sum_unit2 ?>
                                             </td>
                                             <td class="text-center">
-                                                <?php echo @$sum_ResutlUnit ?>
+                                                <?php echo @$sum_ResutlUnit_2 ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td colspan="9" class="text-center">
-                                                เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo date('Y') + 543 ?> = <?php echo @$sum_ResutlUnit / @$sum_unit ?>
+                                                เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo date('Y') + 543 ?> = <?php echo @$sum_ResutlUnit_2 / @$sum_unit2 ?>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -651,8 +634,9 @@
 
                                             <?php
                                             foreach ($student_subject_old_2 as $key => $row) {
+
                                                 $plan1 = $row['plan_student_year'];
-                                                @$sum_unit1 += @$row['unit'];
+                                                @$sum_unit2_old += @$row['unit'];
                                                 $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
                                                 $textGrade1 = '';
                                                 if (@$result >= 80) {
@@ -675,7 +659,7 @@
                                                     $textGrade1 = '-';
                                                 }
 
-                                                @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
+                                                @$sum_ResutlUnit2_old += @$textGrade1 * $row['unit'];
                                             ?>
                                                 <tr>
                                                     <td class="text-center">
@@ -774,15 +758,15 @@
                                                     รวม
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$sum_unit1 ?>
+                                                    <?php echo @$sum_unit2_old ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$sum_ResutlUnit1 ?>
+                                                    <?php echo @$sum_ResutlUnit2_old ?>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="9" class="text-center">
-                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
+                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit2_old / @$sum_unit2_old ?>
                                                 </td>
                                             </tr>
                                         </tfoot>

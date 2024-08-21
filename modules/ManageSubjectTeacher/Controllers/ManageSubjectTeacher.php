@@ -82,6 +82,10 @@ class ManageSubjectTeacher extends BaseController
     $data['teacher_prename_consider'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider']['prename_id']);
     $data['plan_student'] = $ManageSubjectTeacherModel->getPlan_student($_GET['subject_id_plan'], $_GET['term'], $_GET['year']);
     $data['teacher_org'] = $ManageSubjectTeacherModel->getDepartmentById($data['teacher']['department_id']);
+
+
+    $data['teacher_consider2'] = $ManageSubjectTeacherModel->getTeacherById($_GET['consider_2']);
+    $data['teacher_prename_consider2'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider2']['prename_id']);
     $html = view('Modules\ManageSubjectTeacher\Views\exportPDF\FormPDF1.php', $data);
 
     $mpdf->WriteHTML($html);

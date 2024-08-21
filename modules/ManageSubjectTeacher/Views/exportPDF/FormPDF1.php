@@ -424,7 +424,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" colspan="3" style="width: 100%; text-align: center;">
-                            ( นายสราวุธ ปันทะนะ )
+                            ( <?php echo $teacher_prename_consider2['prename_name'] .  $teacher_consider2['firstname'] . ' ' . $teacher_consider2['lastname']  ?> )
                         </td>
 
                     </tr>
@@ -616,7 +616,6 @@
         <div class="column-1" style="margin: 0; padding: 0;text-align: left;">
             &nbsp;
         </div>
-
     </div>
 
 </div>
@@ -981,6 +980,27 @@
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
         0 คน
+    </div>
+
+</div>
+<div class="row">
+    <div class="column-2" style="margin: 0; padding: 0;">
+        &nbsp;
+    </div>
+    <div class="column-1" style="margin: 0; padding: 0;">
+        &nbsp;
+    </div>
+    <div class="column-1" style="margin: 0; padding: 0;">
+        รวม
+    </div>
+    <div class="column-1" style="margin: 0; padding: 0;">
+        &nbsp;
+    </div>
+    <div class="column-1" style="margin: 0; padding: 0;">
+        <?php echo (intval($idx_1) + intval($idx_1_5) + intval($idx_2) + intval($idx_2_5) + intval($idx_3) + intval($idx_3_5) + intval($idx_4)  + intval($idx_0)) ?> คน
+    </div>
+    <div class="column-1" style="margin: 0; padding: 0;">
+
     </div>
 
 </div>

@@ -325,8 +325,8 @@ class StudentModel extends Model
     {
         $builder = $this->db->table('plan_student_old');
         $builder->select('plan_student_old.*,
-        subjects.*');
-        $builder->join('subjects', 'subjects.id = plan_student_old.subjects_id', 'left');
+        subjects_old.*');
+        $builder->join('subjects_old', 'subjects_old.id = plan_student_old.subjects_id', 'left');
         $builder->where('plan_student_old.plan_student_term', $term);
         $builder->where('plan_student_old.users_id', $student_id);
         $builder->where('plan_student_old.plan_student_year', $year);

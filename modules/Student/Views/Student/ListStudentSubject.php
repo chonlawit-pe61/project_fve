@@ -433,7 +433,7 @@
                     }
                     ?>
 
-                    <?
+                    <?php
                     if (!empty($student_subject_old_2)) {
                     ?>
                         <div class="container">
@@ -473,6 +473,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
+                                       
                                         foreach ($student_subject_old_2 as $key => $row) {
                                             @$sum_unit_old2 += @$row['unit'];
 
