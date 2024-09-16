@@ -637,7 +637,7 @@
         <td style="text-rotate: 90;text-align: center;">ทดสอบ</td>
         <td style="text-rotate: 90;text-align: center;">ภาระงาน</td>
         <td style="text-rotate: 90;text-align: center;">&nbsp;</td>
-        <td style="text-rotate: 90;text-align: center;">&nbsp;</td>
+        <td style="text-rotate: 90;text-align: center;">สอบกลางภาค</td>
         <td style="text-rotate: 90;text-align: center;">สอบปลายภาค</td>
     </tr>
     <tr style="text-align: center;">
@@ -645,7 +645,7 @@
         <td style="text-align: center;"><?php echo $plan_student['max_work'] ?></td>
         <td style="text-align: center;"><?php echo $plan_student['max_test'] ?></td>
         <td style="text-align: center;"></td>
-        <td style="text-align: center;"></td>
+        <td style="text-align: center;"><?php echo $plan_student['midterm_exam'] ?></td>
         <td style="text-align: center;"><?php echo $plan_student['max_final_exam'] ?></td>
         <td style="text-align: center;">100</td>
     </tr>
@@ -679,8 +679,8 @@
             <td>
                 &nbsp;
             </td>
-            <td>
-                &nbsp;
+            <td style="text-align: center;">
+                <?php echo $student['midterm_exam'] ?>
             </td>
             <td style="text-align: center;">
                 <?php echo $student['final_exam'] ?>
@@ -688,7 +688,7 @@
             <td style="text-align: center;">
                 <?php
                 $sum = 0;
-                $sum += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
+                $sum += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
                 echo $sum;
                 ?>
             </td>
@@ -745,7 +745,7 @@
         $idx_4 = 0;
         foreach ($students as $key => $student) {
             $sum_4 = 0;
-            $sum_4 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
+            $sum_4 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
             if (@$sum_4 > 80) {
                 $idx_4++;
             }
