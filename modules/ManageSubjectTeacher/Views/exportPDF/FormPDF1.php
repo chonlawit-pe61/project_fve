@@ -459,7 +459,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" colspan="3" style="width: 100%; text-align: center;">
-                            ( นางสายนที ดำดิบ )
+                            ( <?php echo $teacher_prename_consider3['prename_name'] .  $teacher_consider3['firstname'] . ' ' . $teacher_consider3['lastname']  ?> )
                         </td>
 
                     </tr>
@@ -494,7 +494,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" colspan="3" style="width: 100%; text-align: center;">
-                            ( นายปัญญา ช่างงาน )
+                            ( <?php echo $teacher_prename_consider4['prename_name'] .  $teacher_consider4['firstname'] . ' ' . $teacher_consider4['lastname']  ?> )
                         </td>
 
                     </tr>
@@ -645,7 +645,7 @@
         <td style="text-align: center;"><?php echo $plan_student['max_work'] ?></td>
         <td style="text-align: center;"><?php echo $plan_student['max_test'] ?></td>
         <td style="text-align: center;"></td>
-        <td style="text-align: center;"><?php echo $plan_student['midterm_exam'] ?></td>
+        <td style="text-align: center;"><?php echo $plan_student['max_midterm_exam'] ?></td>
         <td style="text-align: center;"><?php echo $plan_student['max_final_exam'] ?></td>
         <td style="text-align: center;">100</td>
     </tr>

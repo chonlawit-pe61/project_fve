@@ -7,9 +7,6 @@
         <div>
             <h1 class="mt-0 mb-0"><u><b>รายชื่อนักศึกษา</b></u></h1>
         </div>
-
-
-
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             PDF
         </button>
@@ -44,7 +41,7 @@
 
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">รองผู้อำนวยการฝ่ายวิชาการ</label>
+                                <label for="exampleInputEmail1" class="form-label">หัวหน้าแผนกวิชา</label>
                                 <select id="consider_2" class="form-select" aria-label="Default select example">
                                     <option value="0">เลือกรองผู้อำนวยการฝ่ายวิชาการ</option>
                                     <?php
@@ -62,7 +59,42 @@
                                 </select>
 
                             </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">หัวหน้าแผนกวิชา</label>
+                                <select id="consider_3" class="form-select" aria-label="Default select example">
+                                    <option value="0">เลือกรองผู้อำนวยการฝ่ายวิชาการ</option>
+                                    <?php
+                                    if (!empty($getTeacherListAll)) {
+                                        foreach ($getTeacherListAll as $teacher) {
+                                    ?>
+                                            <option value="<?php echo @$teacher['id'] ?>">
+                                                <?php echo @$teacher['firstname'] . ' ' . @$teacher['lastname'] ?>
+                                            </option>
 
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">หัวหน้าแผนกวิชา</label>
+                                <select id="consider_4" class="form-select" aria-label="Default select example">
+                                    <option value="0">เลือกรองผู้อำนวยการฝ่ายวิชาการ</option>
+                                    <?php
+                                    if (!empty($getTeacherListAll)) {
+                                        foreach ($getTeacherListAll as $teacher) {
+                                    ?>
+                                            <option value="<?php echo @$teacher['id'] ?>">
+                                                <?php echo @$teacher['firstname'] . ' ' . @$teacher['lastname'] ?>
+                                            </option>
+
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -201,15 +233,28 @@
 </div>
 <?php $this->endSection() ?>
 <?php $this->section('scripts') ?>
+<?php if (session()->getFlashdata('msg') != null) : ?>
+    <script type="text/javascript">
+        Swal.fire({
+            icon: 'success',
+            title: '<?= session()->getFlashdata('msg') ?>',
+            timer: 2000,
+        })
+    </script>
+<?php endif; ?>
 <script>
     const RedirectToExport = () => {
         let consider_1 = $('#consider_1').val();
         let consider_2 = $('#consider_2').val();
+        let consider_3 = $('#consider_3').val();
+        let consider_4 = $('#consider_4').val();
+
+
         let year = $('#year').val();
         let term = $('#term').val();
         let subject_id = $('#subject_id').val();
         let subject_id_plan = $('#subject_id_plan').val();
-        window.open("<?php echo base_url('ManageSubjectTeacher/exportPDFStudent?consider=') ?>" + consider_1 + '&year=' + year + '&term=' + term + '&plan=' + subject_id + '&subject_id_plan=' + subject_id_plan + '&consider_2=' + consider_2, "_blank");
+        window.open("<?php echo base_url('ManageSubjectTeacher/exportPDFStudent?consider=') ?>" + consider_1 + '&year=' + year + '&term=' + term + '&plan=' + subject_id + '&subject_id_plan=' + subject_id_plan + '&consider_2=' + consider_2 + '&consider_3=' + consider_3 + '&consider_4=' + consider_4, "_blank");
     }
 </script>
 <?php $this->endSection() ?>

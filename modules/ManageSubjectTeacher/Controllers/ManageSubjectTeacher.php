@@ -44,13 +44,16 @@ class ManageSubjectTeacher extends BaseController
     // echo '<pre>';
     // print_r($data['plan_student']);
     // die();
+
     return view('Modules\ManageSubjectTeacher\Views\ManageSubjectTeacherSubject.php', $data);
   }
   public function ManageGradeStudent()
   {
+    $session = session();
     $input = $this->request->getPost();
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
     $ManageSubjectTeacherModel->UpdateGradeStudent($input);
+    $session->setFlashdata('msg', 'บันทึกข้อมูลสำเร็จ');
     return redirect()->to(base_url('/ManageSubjectTeacher/Subject/Term/ListStudent?id=' . $input['id'] . '&term='  . $input['term']));
   }
   public function exportPDFStudent()
@@ -86,6 +89,10 @@ class ManageSubjectTeacher extends BaseController
 
     $data['teacher_consider2'] = $ManageSubjectTeacherModel->getTeacherById($_GET['consider_2']);
     $data['teacher_prename_consider2'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider2']['prename_id']);
+    $data['teacher_consider3'] = $ManageSubjectTeacherModel->getTeacherById($_GET['consider_3']);
+    $data['teacher_prename_consider3'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider3']['prename_id']);
+    $data['teacher_consider4'] = $ManageSubjectTeacherModel->getTeacherById($_GET['consider_4']);
+    $data['teacher_prename_consider4'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider4']['prename_id']);
     $html = view('Modules\ManageSubjectTeacher\Views\exportPDF\FormPDF1.php', $data);
 
     $mpdf->WriteHTML($html);
