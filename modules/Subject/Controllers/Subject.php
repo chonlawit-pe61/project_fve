@@ -42,9 +42,11 @@ class Subject extends BaseController
         $data['subject_group'] = $this->subjectModel->getSubjectGroup();
         $data['subject_catagory'] = $SubjectModel->getSubject_catagory();
         if ($id) {
-
             $data['data'] = $this->subjectModel->getSubject($id);
         }
+        // echo '<pre>';
+        // print_r($data);
+        // die();
         $data['getTeacherListAll'] = $this->subjectModel->getTeacherListAll();
         return view('\Modules\Subject\Views\manage.php', $data);
     }

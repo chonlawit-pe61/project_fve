@@ -14,8 +14,10 @@ class SubjectModel extends Model
     function getSubject($id = '')
     {
         $builder = $this->db->table('subjects');
-        $builder->select('subjects.*,subject_group.group_name');
+        $builder->select('subjects.*,subject_group.group_name ,users.* ,prename.* , subjects.id as id_subject');
         $builder->join('subject_group', 'subject_group.id = subjects.group_id', 'left');
+        $builder->join('users', 'users.id = subjects.teacher_id', 'left');
+        $builder->join('prename', 'prename.prename_id = users.prename_id', 'left');
         if ($id) {
             $builder->where('subjects.id', $id);
             $data = $builder->get()->getRowArray();
@@ -23,6 +25,7 @@ class SubjectModel extends Model
             $builder->where('subjects.is_active', 1);
             $data = $builder->get()->getResultArray();
         }
+
         return $data;
     }
 

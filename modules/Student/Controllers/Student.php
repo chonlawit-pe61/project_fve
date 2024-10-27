@@ -105,6 +105,9 @@ class Student extends BaseController
     $data['student_subject_old_1'] = $StudentModel->getStudentSubject_old($student_id, 1, $data['year']);
     $data['student_subject_old_2'] = $StudentModel->getStudentSubject_old($student_id, 2, $data['year']);
 
+    // echo '<pre>';
+    // print_r($data);
+    // die();
     return view('Modules\Student\Views\Student\ListStudentSubject.php', $data);
   }
   public function exportProfileStudent()
@@ -148,7 +151,7 @@ class Student extends BaseController
     $StudentModel = new StudentModel();
     $item = $session->get();
     $user_id = $_GET['id'];
-    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
+    $data['year'] = @$_GET['year'] != '' ? @$_GET['year'] : date('Y');
     // 
     $data['role_id'] = $item['role_id'];
     $data['student'] =  $StudentModel->getStudentByUserID($user_id);
@@ -159,9 +162,7 @@ class Student extends BaseController
     $data['subject'] = $StudentModel->getSubject();
     $data['subject_old'] = $StudentModel->getSubject_old();
 
-    // echo '<pre>';
-    // print_r($student_id);
-    // die();
+
     return view('Modules\Student\Views\SubjectStudent.php', $data);
   }
   public function insertSubject()

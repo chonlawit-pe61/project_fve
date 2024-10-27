@@ -13,7 +13,9 @@ class SettingSubjectModel extends Model
     public function getSubjects($input = '')
     {
         $builder = $this->db->table('subjects');
-        $builder->select('*');
+        $builder->select('*  ,subjects.id as id_subject ');
+        $builder->join('users', 'users.id = subjects.teacher_id', 'left');
+        $builder->join('prename', 'prename.prename_id = users.prename_id', 'left');
         $data = $builder->get()->getResultArray();
 
         return $data;
@@ -34,21 +36,26 @@ class SettingSubjectModel extends Model
     public function getPlanSubjects($id = '')
     {
         $builder =  $this->db->table('plan_subjects');
-        $builder->select('*');
+        $builder->select('* , subjects.id as id_subject');
         if (!empty($id)) {
             $builder->where('plan_education_id', $id);
             $builder->join('subjects', 'subjects.id = plan_subjects.subjects_id', 'left');
+            $builder->join('users', 'users.id = subjects.teacher_id', 'left');
+            $builder->join('prename', 'prename.prename_id = users.prename_id', 'left');
         }
         $data = $builder->get()->getResultArray();
         // 
+        // ech
         return $data;
     }
 
     public function getSubjectsForTB($input)
     {
         $builder = $this->db->table('subjects');
-        $builder->select('*');
-        $builder->whereIn('id', $input['subject']);
+        $builder->select('*,subjects.id as id_subject');
+        $builder->join('users', 'users.id = subjects.teacher_id', 'left');
+        $builder->join('prename', 'prename.prename_id = users.prename_id', 'left');
+        $builder->whereIn('subjects.id', $input['subject']);
         $data = $builder->get()->getResultArray();
         return $data;
     }
@@ -78,8 +85,8 @@ class SettingSubjectModel extends Model
     }
     public function RemoveSubject($input)
     {
-        $builder = $this->db->table('plan_education');
-        $builder->where('plan_education_id', $input['id']);
+        $builder = $this->db->table('plan_subjects');
+        $builder->where('plan_subjects_id', $input['subject_id']);
         $builder->delete();
     }
 }

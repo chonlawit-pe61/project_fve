@@ -26,6 +26,9 @@ class SettingSubject extends BaseController
       $data['plan_education'] = $SettingSubjectModel->getPlanEducation($id);
       $data['plan_subjects'] = $SettingSubjectModel->getPlanSubjects($id);
     }
+    // echo '<pre>';
+    // print_r($data);
+    // die();
 
     return view('Modules\SettingSubject\Views\ManageSettingSubject.php', $data);
   }

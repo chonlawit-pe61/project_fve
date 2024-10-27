@@ -87,9 +87,9 @@
                                                 ชื่อวิชา
                                             </td>
                                             <td class="text-center">
-                                                ทศดี
+                                                ทฤษฎี
                                             </td>
-                                            <td class="text-center">ปฎ</td>
+                                            <td class="text-center">ปฏิบัติ</td>
 
                                             <td class="text-center">
                                                 ชั่วโมง
@@ -231,59 +231,58 @@
                                 </table>
                             </div>
                         </div>
-                        <?php
-                        if (!empty($student_subject_old_1) || $role_id < 5) {
-                        ?>
-                            <div class="container">
-                                <div class="col-lg-12 mt-5">
-                                    <b>
-                                        รายวิชาที่ศึกษาเพิ่มเติม เทอม 1 (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
-                                    </b>
-                                </div>
-                                <div class="col-lg-12">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <td class="text-center">ลำดับ</td>
-                                                <td class="text-center">
-                                                    รหัสวิชา
-                                                </td>
-                                                <td class="text-center">
-                                                    ชื่อวิชา
-                                                </td>
-                                                <td class="text-center">
-                                                    ทศดี
-                                                </td>
-                                                <td class="text-center">ปฎ</td>
 
-                                                <td class="text-center">
-                                                    ชั่วโมง
-                                                </td>
+                    <?php
+                    }
+                    ?>
+                    <?php
+                    if (!empty(@$student_subject_old_1) || $role_id < 5) {
+                    ?>
+                        <div class="container">
+                            <div class="col-lg-12 mt-5">
+                                <b>
+                                    รายวิชาที่ศึกษาเพิ่มเติม เทอม 1 (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
+                                </b>
+                            </div>
+                            <div class="col-lg-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-center">ลำดับ</td>
+                                            <td class="text-center">
+                                                รหัสวิชา
+                                            </td>
+                                            <td class="text-center">
+                                                ชื่อวิชา
+                                            </td>
+                                            <td class="text-center">
+                                                ทฤษฎี
+                                            </td>
+                                            <td class="text-center">ปฏิบัติ</td>
 
-                                                <td class="text-center">
-                                                    หน่วยกิต
-                                                </td>
-                                                <td class="text-center">
-                                                    เกรด
-                                                </td>
-                                                <!-- <td class="text-center">
-                                                คะแนนหน่วยกิต
-                                            </td> -->
-                                                <td>
-                                                    เครื่องมือ
-                                                </td>
-                                                <td>
-                                                    สถานนะ
-                                                </td>
+                                            <td class="text-center">
+                                                ชั่วโมง
+                                            </td>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                            <td class="text-center">
+                                                หน่วยกิต
+                                            </td>
 
-                                            <?php
+                                            <td>
+                                                เครื่องมือ
+                                            </td>
+                                            <td>
+                                                สถานนะ
+                                            </td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (!empty($student_subject_old_1)) {
                                             foreach ($student_subject_old_1 as $key => $row) {
-                                                $plan1 = $row['plan_student_year'];
-                                                @$sum_unit1 += @$row['unit'];
+                                                $plan1 = $year;
+                                                @$sum_unit1_old += $row['unit'];
                                                 $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
                                                 $textGrade1 = '';
                                                 if (@$result >= 80) {
@@ -305,9 +304,8 @@
                                                 } else {
                                                     $textGrade1 = '-';
                                                 }
-
                                                 @$sum_ResutlUnit1 += @$textGrade1 * $row['unit'];
-                                            ?>
+                                        ?>
                                                 <tr>
                                                     <td class="text-center">
                                                         <?php echo @$key + 1 ?>
@@ -331,12 +329,6 @@
                                                     <td class="text-center">
                                                         <?php echo @$row['unit'] ?>
                                                     </td>
-                                                    <td class="text-center">
-                                                        <?php echo @$textGrade1 ?>
-                                                    </td>
-                                                    <!-- <td class="text-center">
-                                                    <?php echo @$textGrade1 * @$row['unit'] ?>
-                                                </td> -->
                                                     <td class="text-center">
                                                         <div class="d-flex">
                                                             <select onchange="updateStatus(this.value ,<?php echo $row['plan_student_id'] ?> )" class="form-select" aria-label="Default select example">
@@ -369,60 +361,68 @@
                                             <?php
                                             }
                                             ?>
-                                            <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
-                                                <tr>
-                                                    <td colspan="3">
-                                                        &nbsp;
-                                                        <input type="hidden" name="plan_student_term" value="1">
-                                                        <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
-                                                        <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
-                                                    </td>
-                                                    <td colspan="3">
-                                                        <select name="subjects_id" class="form-select" aria-label="Default select example">
-                                                            <?php
-                                                            foreach ($subject_old as $row) {
-                                                            ?>
-                                                                <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
-                                                                                                                                if (!empty($row['comment'])) {
+                                        <?php
+                                        }
 
-                                                                                                                                    echo '(' . $row['comment'] . ')';
-                                                                                                                                }
-                                                                                                                                ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </td>
-                                                    <td colspan="3" class="text-center">
-                                                        <button class="btn btn-success">บันทึก</button>
-                                                    </td>
-                                                </tr>
-                                            </form>
-                                        </tbody>
+                                        ?>
+                                        <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
+                                            <tr>
+                                                <td colspan="3">
+                                                    &nbsp;
+                                                    <input type="hidden" name="plan_student_term" value="1">
+                                                    <input type="hidden" name="plan_student_year" value="<?php echo $year ?>">
+                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                </td>
+                                                <td colspan="3">
+                                                    <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                        <?php
+                                                        foreach ($subject_old as $row) {
+                                                        ?>
+                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
+                                                                                                                            if (!empty($row['comment'])) {
+
+                                                                                                                                echo '(' . $row['comment'] . ')';
+                                                                                                                            }
+                                                                                                                            ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                                <td colspan="3" class="text-center">
+                                                    <button class="btn btn-success">บันทึก</button>
+                                                </td>
+                                            </tr>
+                                        </form>
+                                    </tbody>
+                                    <?php
+                                    if (!empty($student_subject_old_1)) {
+                                    ?>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="7" class="text-end">
+                                                <td colspan="6" class="text-end">
                                                     รวม
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$sum_unit1 ?>
+                                                    <?php echo @$sum_unit1_old ?>
                                                 </td>
                                                 <td class="text-center">
-                                                    <?php echo @$sum_ResutlUnit1 ?>
+                                                    <?php echo @$sum_ResutlUnit1_old ?>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td colspan="9" class="text-center">
-                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
+                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo @$year + 543  ?> = <?php echo (@intval($sum_ResutlUnit1_old) / @intval($sum_unit1_old))
+                                                                                                            ?>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tfoot>
-                                    </table>
-                                </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </table>
                             </div>
-                        <?php
-                        }
-                        ?>
+                        </div>
                     <?php
                     }
                     ?>
@@ -451,9 +451,9 @@
                                                 ชื่อวิชา
                                             </td>
                                             <td class="text-center">
-                                                ทศดี
+                                                ทฤษฎี
                                             </td>
-                                            <td class="text-center">ปฎ</td>
+                                            <td class="text-center">ปฏิบัติ</td>
 
                                             <td class="text-center">
                                                 ชั่วโมง
@@ -583,59 +583,63 @@
                             </div>
                         </div>
 
-                        <?php
-                        if (!empty($student_subject_old_2) || $role_id < 5) {
-                        ?>
-                            <div class="container">
-                                <div class="col-lg-12 mt-5">
-                                    <b>
-                                        รายวิชาที่ศึกษาเพิ่มเติมเทอม 2 (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
-                                    </b>
-                                </div>
-                                <div class="col-lg-12">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <td class="text-center">ลำดับ</td>
-                                                <td class="text-center">
-                                                    รหัสวิชา
-                                                </td>
-                                                <td class="text-center">
-                                                    ชื่อวิชา
-                                                </td>
-                                                <td class="text-center">
-                                                    ทศดี
-                                                </td>
-                                                <td class="text-center">ปฎ</td>
 
-                                                <td class="text-center">
-                                                    ชั่วโมง
-                                                </td>
 
-                                                <td class="text-center">
-                                                    หน่วยกิต
-                                                </td>
-                                                <td class="text-center">
-                                                    เกรด
-                                                </td>
-                                                <!-- <td class="text-center">
-                                                คะแนนหน่วยกิต
-                                            </td> -->
-                                                <td>
-                                                    เครื่องมือ
-                                                </td>
-                                                <td>
-                                                    สถานนะ
-                                                </td>
+                    <?php
+                    }
+                    ?>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                    <?php
+                    if (!empty($student_subject_old_2) || $role_id < 5) {
+                    ?>
+                        <div class="container">
+                            <div class="col-lg-12 mt-5">
+                                <b>
+                                    รายวิชาที่ศึกษาเพิ่มเติมเทอม 2 (<?php echo $year + 543 ?>) สำหรับวิชาเก่าจากโรงเรียนเก่า
+                                </b>
+                            </div>
+                            <div class="col-lg-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-center">ลำดับ</td>
+                                            <td class="text-center">
+                                                รหัสวิชา
+                                            </td>
+                                            <td class="text-center">
+                                                ชื่อวิชา
+                                            </td>
+                                            <td class="text-center">
+                                                ทฤษฎี
+                                            </td>
+                                            <td class="text-center">ปฏิบัติ</td>
 
+                                            <td class="text-center">
+                                                ชั่วโมง
+                                            </td>
+
+                                            <td class="text-center">
+                                                หน่วยกิต
+                                            </td>
+
+                                            <td>
+                                                เครื่องมือ
+                                            </td>
+                                            <td>
+                                                สถานนะ
+                                            </td>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <?php
+                                        if (!empty($student_subject_old_2)) {
+                                        ?>
                                             <?php
                                             foreach ($student_subject_old_2 as $key => $row) {
 
-                                                $plan1 = $row['plan_student_year'];
+                                                $plan1 = @$row['plan_student_year'];
                                                 @$sum_unit2_old += @$row['unit'];
                                                 $result = $row['affective'] + $row['work'] + $row['test'] + $row['midterm_exam'] + $row['final_exam'];
                                                 $textGrade1 = '';
@@ -681,15 +685,10 @@
                                                         <?php echo @$row['hour'] ?>
                                                     </td>
 
+
                                                     <td class="text-center">
                                                         <?php echo @$row['unit'] ?>
                                                     </td>
-                                                    <td class="text-center">
-                                                        <?php echo @$textGrade1 ?>
-                                                    </td>
-                                                    <!-- <td class="text-center">
-                                                    <?php echo @$textGrade1 * @$row['unit'] ?>
-                                                </td> -->
                                                     <td class="text-center">
                                                         <div class="d-flex">
                                                             <select onchange="updateStatus(this.value ,<?php echo $row['plan_student_id'] ?> )" class="form-select" aria-label="Default select example">
@@ -722,36 +721,43 @@
                                             <?php
                                             }
                                             ?>
-                                            <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
-                                                <tr>
-                                                    <td colspan="3">
-                                                        &nbsp;
-                                                        <input type="hidden" name="plan_student_term" value="2">
-                                                        <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
-                                                        <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
-                                                    </td>
-                                                    <td colspan="3">
-                                                        <select name="subjects_id" class="form-select" aria-label="Default select example">
-                                                            <?php
-                                                            foreach ($subject_old as $row) {
-                                                            ?>
-                                                                <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
-                                                                                                                                if (!empty($row['comment'])) {
+                                        <?php
+                                        }
+                                        ?>
 
-                                                                                                                                    echo '(' . $row['comment'] . ')';
-                                                                                                                                }
-                                                                                                                                ?></option>
-                                                            <?php
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                    </td>
-                                                    <td colspan="3" class="text-center">
-                                                        <button class="btn btn-success">บันทึก</button>
-                                                    </td>
-                                                </tr>
-                                            </form>
-                                        </tbody>
+                                        <form action="<?php echo base_url('Student/InsertSubject_old') ?>" method="post">
+                                            <tr>
+                                                <td colspan="3">
+                                                    &nbsp;
+                                                    <input type="hidden" name="plan_student_term" value="2">
+                                                    <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
+                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                </td>
+                                                <td colspan="3">
+                                                    <select name="subjects_id" class="form-select" aria-label="Default select example">
+                                                        <?php
+                                                        foreach ($subject_old as $row) {
+                                                        ?>
+                                                            <option value="<?php echo $row['id'] ?>"><?= $row['name'] ?> <?php
+                                                                                                                            if (!empty($row['comment'])) {
+
+                                                                                                                                echo '(' . $row['comment'] . ')';
+                                                                                                                            }
+                                                                                                                            ?></option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                                <td colspan="3" class="text-center">
+                                                    <button class="btn btn-success">บันทึก</button>
+                                                </td>
+                                            </tr>
+                                        </form>
+                                    </tbody>
+                                    <?php
+                                    if (!empty($student_subject_old_2)) {
+                                    ?>
                                         <tfoot>
                                             <tr>
                                                 <td colspan="7" class="text-end">
@@ -764,19 +770,18 @@
                                                     <?php echo @$sum_ResutlUnit2_old ?>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td colspan="9" class="text-center">
-                                                    เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit2_old / @$sum_unit2_old ?>
+                                                    เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo @$year + 543 ?> = <?php echo @$sum_ResutlUnit2_old / @$sum_unit2_old ?>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tfoot>
-                                    </table>
-                                </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </table>
                             </div>
-                        <?php
-                        }
-                        ?>
-
+                        </div>
                     <?php
                     }
                     ?>

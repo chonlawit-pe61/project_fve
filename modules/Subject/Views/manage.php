@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 <form action="<?= base_url('subjects/save') ?>" method="POST">
-    <input type="hidden" name="id" value="<?= @$data['id'] ?>">
+    <input type="hidden" name="id" value="<?= @$data['id_subject'] ?>">
     <div class="p-3 border shadow-sm">
         <div class="row">
             <div class="col-md-12 mb-3">

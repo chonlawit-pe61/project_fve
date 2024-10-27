@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 text-end mb-3">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary" onclick="showModal()">
                         เพิ่มวิชา
                     </button>
                 </div>
@@ -30,7 +30,14 @@
                                     ลำดับ
                                 </td>
                                 <td>
+                                    รหัสวิชา
+                                </td>
+                                <td>
                                     วิชา
+                                </td>
+
+                                <td>
+                                    ชื่อผู้สอน
                                 </td>
                                 <td style="width: 10%;">
                                     เครื่องมือ
@@ -45,13 +52,20 @@
                                     <tr id="Subject<?php echo $key ?>" class="Subject_len">
                                         <td class="text-center">
                                             <?php echo $key + 1 ?>
-                                            <input type="hidden" name="subject_id[<?php echo $key ?>]" value="<?php echo $subject['id'] ?>">
+                                            <input type="hidden" name="subject_id[<?php echo $key ?>]" value="<?php echo $subject['id_subject'] ?>">
+                                        </td>
+                                        <td>
+                                            <?php echo $subject['subjects_id'] ?>
                                         </td>
                                         <td>
                                             <?php echo $subject['name'] ?>
                                         </td>
+
+                                        <td>
+                                            <?php echo $subject['prename_name'] . ' ' . $subject['firstname']  . ' ' . $subject['lastname'] ?>
+                                        </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-danger" onclick="RemoveSubject(<?php echo $subject['plan_subjects_id'] ?> ,<?php echo $key ?> )"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="RemoveSubject(<?php echo $subject['plan_subjects_id'] ?>,<?php echo $key ?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
                             <?php
@@ -95,17 +109,12 @@
                                     <td>
                                         ชื่อวิชา
                                     </td>
-                                    <td>
-                                        ทฤษฎี
-                                    </td>
-                                    <td>
-                                        ปฎิบัติ
-                                    </td>
+
                                     <td>
                                         หน่วยกิต
                                     </td>
                                     <td>
-                                        ชั่วโมง
+                                        ชื่อผู้สอน
                                     </td>
                                 </tr>
                             </thead>
@@ -116,7 +125,7 @@
                                     <tr>
                                         <td class="text-center">
                                             <div class="form-check">
-                                                <input class="form-check-input ck_check" type="checkbox" value="<?php echo $subject['id'] ?>" id="">
+                                                <input class="form-check-input ck_check" type="checkbox" value="<?php echo $subject['id_subject'] ?>" id="">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -125,17 +134,13 @@
                                         <td>
                                             <?php echo $subject['name'] ?>
                                         </td>
-                                        <td>
-                                            <?php echo $subject['lecture_unit'] ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $subject['practical_unit'] ?>
-                                        </td>
+
                                         <td>
                                             <?php echo $subject['unit'] ?>
                                         </td>
+
                                         <td>
-                                            <?php echo $subject['hour'] ?>
+                                            <?php echo $subject['prename_name'] . ' ' . $subject['firstname'] . ' ' . $subject['lastname'] ?>
                                         </td>
                                     </tr>
                                 <?php
@@ -158,8 +163,15 @@
 <?php $this->section('scripts') ?>
 <script>
     $(document).ready(function() {
-        $('#myTable').dataTable();
+
+
     });
+    const showModal = () => {
+        $('#exampleModal').modal('show', () => {
+            $('#myTable').dataTable();
+        });
+
+    }
 
 
     const RemoveSubject = (id, idx) => {
@@ -182,9 +194,11 @@
 
     const CheckSubject = () => {
         let arrayCheck = [];
+
         $('.ck_check:checked').each(function(idx) {
             arrayCheck.push(this.value)
         });
+
         $.ajax({
             url: "<?php echo base_url('SettingSubject/getSubjectToTable') ?>",
             type: "post",
@@ -207,11 +221,13 @@
                         <tr id="Subject${len+1}" class="Subject_len">
                                 <td class="text-center">
                                     ${len+1}
-                                    <input type="hidden" name="subject_id[${len+1}]" value="${val.id}">
+                                    <input type="hidden" name="subject_id[${len+1}]" value="${val.id_subject}">
                                 </td>
                                 <td>
                                 ${val.name}
                                 </td>
+                                <td>${val.subjects_id}</td>
+                                <td>${val.prename_name  + ' ' + val.firstname + ' ' + val.lastname}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-danger" onclick="RemoveEl(${len+1})"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>

@@ -20,7 +20,9 @@
                 </thead>
                 <tbody>
                     <?php
+
                     if (!empty($Subject)) {
+
                         foreach ($Subject as $key => $sb) {
                     ?>
                             <tr>
@@ -35,7 +37,10 @@
                                     <?php echo $sb['unit'] ?>
                                 </td>
                                 <td>
-                                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url('subjects/manage/' . $sb['id']) ?>">
+                                    <?php echo $sb['prename_name'] . ' ' . $sb['firstname'] . ' ' . $sb['lastname'] ?>
+                                </td>
+                                <td>
+                                    <a class="btn btn-secondary btn-sm" href="<?php echo base_url('subjects/manage/' . $sb['id_subject']) ?>">
                                         <i class="fa fa-pen"></i>
                                     </a>
                                     <button class="btn btn-danger btn-sm" onclick="deleteSubject('<?php echo $sb['id'] ?>')"><i class="fa fa-trash"></i></button>

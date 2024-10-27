@@ -46,7 +46,7 @@
                                 <div class="col-lg-3 ms-auto">
                                     <form action="<?php echo base_url("Student/StudentSubject") ?>" method="get">
                                         <select class="form-select" aria-label="Default select example" name="year" onchange="this.form.submit()">
-                                            <option value="0">เลือกปีการศึกษา</option>
+                                            <option value="<?php echo date('Y') ?>">เลือกปีการศึกษา</option>
                                             <?php
                                             for ($i = date('Y') + 10; $i >= date('Y') - 10; $i--) { ?>
                                                 <option <?php echo $_GET['year'] == $i ? 'selected' : '' ?> value="<?php echo $i ?>">ปีการศึกษา <?php echo $i + 543 ?></option>
@@ -212,7 +212,7 @@
                                                 หน่วยกิต
                                             </td>
                                             <td class="text-center">
-                                                เกรด
+                                                สถานนะ
                                             </td>
 
                                         </tr>
@@ -296,12 +296,6 @@
                                             <td class="text-center">
                                                 <?php echo @$sum_unit_old_1 ?>
                                             </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td colspan="9" class="text-center">
-                                                เกรดเฉลี่ยประจำภาคเรียน 1/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit1 / @$sum_unit1 ?>
-                                            </td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -347,7 +341,7 @@
                                                 หน่วยกิต
                                             </td>
                                             <td class="text-center">
-                                                เกรด
+                                                สถานนะ
                                             </td>
 
                                         </tr>
@@ -419,11 +413,7 @@
                                                 <?php echo @$sum_unit ?>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td colspan="9" class="text-center">
-                                                เกรดเฉลี่ยประจำภาคเรียน 2/<?php echo $year + 543 ?> = <?php echo @$sum_ResutlUnit / @$sum_unit ?>
-                                            </td>
-                                        </tr>
+
                                     </tfoot>
                                 </table>
 
@@ -473,7 +463,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                       
+
                                         foreach ($student_subject_old_2 as $key => $row) {
                                             @$sum_unit_old2 += @$row['unit'];
 
