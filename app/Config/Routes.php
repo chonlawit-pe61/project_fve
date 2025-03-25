@@ -79,6 +79,8 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
     $routes->post('InsertSubject_old', 'Student::InsertSubject_old');
 
     $routes->post('deleteSubject', 'Student::deleteSubject');
+    $routes->post('deleteSubjectOld', 'Student::deleteSubjectOld');
+    
     $routes->post('DeleteStudent', 'Student::DeleteStudent');
     $routes->post('updateStatusPlanStudentOld', 'Student::updateStatusPlanStudentOld');
 
@@ -99,6 +101,7 @@ $routes->group('/SettingSubject', ['namespace' => '\Modules\SettingSubject\Contr
     $routes->post('getSubjectToTable', 'SettingSubject::getSubjectToTable');
     $routes->post('CreateUpdateSettingSubject', 'SettingSubject::CreateUpdateSettingSubject');
     $routes->post('RemoveSubject', 'SettingSubject::RemoveSubject');
+    $routes->post('RemovePlanEducation', 'SettingSubject::RemovePlanEducation');
 });
 
 $routes->group('ManageSubjectStd', ['namespace' => '\Modules\ManageSubjectStd\Controllers'], function ($routes) {

@@ -283,9 +283,7 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('public/js/adminlte.min.js') ?> "></script>
     <script src="<?php echo base_url('public/js/dataTables.min.js') ?> "></script>
-    <script src="<?php echo base_url('public/js/functioninvoiceprint.js') ?> "></script>
     <script src="<?php echo base_url('public/js/select2.min.js') ?> "></script>
-    <script src="<?php echo base_url('public/js/functiondeleteroom.js') ?> "></script>
 
     <?php $this->renderSection('scripts'); ?>
     <script>

@@ -68,9 +68,8 @@ class SubjectModel extends Model
     function deleteSubject($id)
     {
         $builder = $this->db->table('subjects');
-        $builder->set('is_active', 0);
         $builder->where('id', $id);
-        $builder->update();
+        $builder->delete();
     }
 
     function getTeacherListAll()

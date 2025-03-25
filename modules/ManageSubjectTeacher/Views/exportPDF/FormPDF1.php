@@ -662,7 +662,7 @@
                 <?php echo $student['student_id_conlage'] ?>
             </td>
             <td style="text-align: left;">
-                <?php echo $student['prename_name'] .  ' ' . $student['student_name_th'] . ' ' . $student['student_name_en'] ?>
+                <?php echo $student['prename_name'] .  ' ' . $student['student_name_th'] . ' ' . $student['student_name_th'] ?>
             </td>
             <td style="text-align: center;">
                 &nbsp;
@@ -749,8 +749,9 @@
             if (@$sum_4 > 80) {
                 $idx_4++;
             }
-            echo $idx_4 . ' คน';
-        } ?>
+        }
+        echo $idx_4 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 
@@ -781,8 +782,9 @@
             if (@$sum_3_5 > 75 && @$sum_3_5 < 79) {
                 $idx_3_5++;
             }
-            echo $idx_3_5 . ' คน';
-        } ?>
+        }
+        echo $idx_3_5 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 
@@ -811,8 +813,9 @@
             if (@$sum_3 > 70 && @$sum_3 < 74) {
                 $idx_3++;
             }
-            echo $idx_3 . ' คน';
-        } ?>
+        }
+        echo $idx_3 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 
@@ -843,8 +846,9 @@
             if (@$sum_2_5 > 65 && @$sum_2_5 < 69) {
                 $idx_2_5++;
             }
-            echo $idx_2_5 . ' คน';
-        } ?>
+        }
+        echo $idx_2_5 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 
@@ -873,8 +877,9 @@
             if (@$sum_2 > 60 && @$sum_2 < 64) {
                 $idx_2++;
             }
-            echo $idx_2 . ' คน';
-        } ?>
+        }
+        echo $idx_2 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 
@@ -905,8 +910,9 @@
             if (@$sum_1_5 > 55 && @$sum_1_5 < 59) {
                 $idx_1_5++;
             }
-            echo $idx_1_5 . ' คน';
-        } ?>
+        }
+        echo $idx_1_5 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 
@@ -946,8 +952,9 @@
             if (@$sum_1 > 50 && @$sum_1 < 54) {
                 $idx_1++;
             }
-            echo $idx_1 . ' คน';
-        } ?>
+        }
+        echo $idx_1 . ' คน';
+        ?>
     </div>
     <div class="column-5" style="margin: 0; padding: 0;">
         .................................................. รองผู้อำนวยการฝ่ายวิชาการ
@@ -969,8 +976,9 @@
             if (@$sum_0 < 50) {
                 $idx_0++;
             }
-            echo $idx_0 . ' คน';
-        } ?>
+        }
+        echo $idx_0 . ' คน';
+        ?>
     </div>
     <div class="column-1" style="margin: 0; padding: 0;">
 

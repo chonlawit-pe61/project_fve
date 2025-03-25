@@ -201,6 +201,15 @@ class Student extends BaseController
     $StudentModel->DeleteSubject($input);
     // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
   }
+  public function deleteSubjectOld()
+  {
+    $session = session();
+    $StudentModel = new StudentModel();
+    $input = $this->request->getPost();
+    $StudentModel->deleteSubjectOld($input);
+    // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
+  }
+  
   public function DeleteStudent()
   {
     $session = session();

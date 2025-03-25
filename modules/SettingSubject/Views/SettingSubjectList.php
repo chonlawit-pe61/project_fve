@@ -65,9 +65,9 @@
                 $.ajax({
                     method: 'POST',
                     data: {
-                        'id': id
+                        'plan_education_id': id
                     },
-                    url: '<?= base_url('/SettingSubject/RemoveSubject'); ?>',
+                    url: '<?= base_url('/SettingSubject/RemovePlanEducation'); ?>',
                     success: function(res) {
                         Swal.fire({
                             icon: 'success',

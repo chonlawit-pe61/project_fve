@@ -357,6 +357,14 @@ class StudentModel extends Model
         $builder->delete();
         // return $data;
     }
+    public function deleteSubjectOld($input)
+    {
+        $builder = $this->db->table('plan_student_old');
+        $builder->where('plan_student_id', $input['id']);
+        $builder->delete();
+        // return $data;
+    }
+
     public function DeleteStudent($input)
     {
         $builder = $this->db->table('users');

@@ -89,4 +89,10 @@ class SettingSubjectModel extends Model
         $builder->where('plan_subjects_id', $input['subject_id']);
         $builder->delete();
     }
+    public function RemovePlanEducation($input)
+    {
+        $builder = $this->db->table('plan_education');
+        $builder->where('plan_education_id', $input['plan_education_id']);
+        $builder->delete();
+    }
 }

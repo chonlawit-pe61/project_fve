@@ -337,7 +337,7 @@
                                                                 <option value="2" <?php echo $row['status'] == 2 ? 'selected' : '' ?>>ไม่ผ่าน</option>
                                                                 <option value="3" <?php echo $row['status'] == 3 ? 'selected' : '' ?>>รอพิจารณา</option>
                                                             </select>
-                                                            <button class="btn btn-danger mx-1 " onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                            <button class="btn btn-danger mx-1 " onclick="DeleteSubject_old(<?php echo $row['plan_student_id'] ?>)">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </button>
                                                         </div>
@@ -697,7 +697,7 @@
                                                                 <option value="2" <?php echo $row['status'] == 2 ? 'selected' : '' ?>>ไม่ผ่าน</option>
                                                                 <option value="3" <?php echo $row['status'] == 3 ? 'selected' : '' ?>>รอพิจารณา</option>
                                                             </select>
-                                                            <button class="btn btn-danger mx-1 " onclick="DeleteSubject(<?php echo $row['plan_student_id'] ?>)">
+                                                            <button class="btn btn-danger mx-1 " onclick="DeleteSubject_old(<?php echo $row['plan_student_id'] ?>)">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </button>
                                                         </div>
@@ -856,6 +856,38 @@
                         'id': id
                     },
                     url: '<?= base_url('/Student/deleteSubject'); ?>',
+                    success: function(res) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'ลบรายวิชาสำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            // window.location.reload();
+                        })
+                    }
+                })
+            }
+        })
+    }
+    const DeleteSubject_old = (id) => {
+        Swal.fire({
+            title: 'คุณต้องการลบข้อมูล?',
+            text: "คลิกตกลงเพื่อยืนยันการลบข้อมูล!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method: 'POST',
+                    data: {
+                        'id': id
+                    },
+                    url: '<?= base_url('/Student/deleteSubjectOld'); ?>',
                     success: function(res) {
                         Swal.fire({
                             icon: 'success',

@@ -54,6 +54,15 @@ class SettingSubject extends BaseController
     $SettingSubjectModel->RemoveSubject($input);
     return json_encode(1);
   }
+  public function RemovePlanEducation()
+  {
+    $input = $this->request->getPost();
+    $SettingSubjectModel = new SettingSubjectModel();
+    $SettingSubjectModel->RemovePlanEducation($input);
+    return json_encode(1);
+  }
+
+  
 
   public function CreateUpdateSettingSubject()
   {
