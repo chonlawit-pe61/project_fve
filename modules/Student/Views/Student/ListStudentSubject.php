@@ -49,7 +49,7 @@
                                             <option value="<?php echo date('Y') ?>">เลือกปีการศึกษา</option>
                                             <?php
                                             for ($i = date('Y') + 10; $i >= date('Y') - 10; $i--) { ?>
-                                                <option <?php echo $_GET['year'] == $i ? 'selected' : '' ?> value="<?php echo $i ?>">ปีการศึกษา <?php echo $i + 543 ?></option>
+                                                <option <?php echo @$_GET['year'] == $i ? 'selected' : '' ?> value="<?php echo $i ?>">ปีการศึกษา <?php echo $i + 543 ?></option>
                                             <?php } ?>
                                         </select>
                                     </form>

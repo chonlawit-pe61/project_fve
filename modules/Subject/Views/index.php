@@ -13,14 +13,15 @@
                     <tr>
                         <th width="5%">#</th>
                         <th width="15%">หมวดวิชา</th>
+                        <th>รหัสวิชา</th>
                         <th width="30%">ชื่อวิชา</th>
-                        <th width="10%">หน่วยกิต</th>
-                        <th width="20%">เครื่องมือ</th>
+                        <th width="5%">หน่วยกิต</th>
+                        <th>ผู้สอน</th>
+                        <th width="10%">เครื่องมือ</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-
                     if (!empty($Subject)) {
 
                         foreach ($Subject as $key => $sb) {
@@ -32,8 +33,11 @@
                                 <td>
                                     <?php echo $sb['group_name'] ?>
                                 </td>
-                                <td><?php echo $sb['name'] ?></td>
                                 <td>
+                                    <?php echo $sb['subjects_id'] ?>
+                                </td>
+                                <td><?php echo $sb['name'] ?></td>
+                                <td class="text-center">
                                     <?php echo $sb['unit'] ?>
                                 </td>
                                 <td>

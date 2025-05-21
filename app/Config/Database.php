@@ -29,7 +29,7 @@ class Database extends Config
 		'hostname' => "localhost",
 		'username' => 'root',
 		'password' => 'root',
-		'database' => 'collage',
+		'database' => 'fve',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pconnect' => true,

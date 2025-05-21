@@ -41,9 +41,9 @@
 
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">หัวหน้าแผนกวิชา</label>
+                                <label for="exampleInputEmail1" class="form-label">หัวหน้างานวัดผลและประเมินผล</label>
                                 <select id="consider_2" class="form-select" aria-label="Default select example">
-                                    <option value="0">เลือกรองผู้อำนวยการฝ่ายวิชาการ</option>
+                                    <option value="0">เลือกหัวหน้างานวัดผลและประเมินผล</option>
                                     <?php
                                     if (!empty($getTeacherListAll)) {
                                         foreach ($getTeacherListAll as $teacher) {
@@ -60,7 +60,7 @@
 
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">หัวหน้าแผนกวิชา</label>
+                                <label for="exampleInputEmail1" class="form-label">รองผู้อำนวยการฝ่ายวิชาการ</label>
                                 <select id="consider_3" class="form-select" aria-label="Default select example">
                                     <option value="0">เลือกรองผู้อำนวยการฝ่ายวิชาการ</option>
                                     <?php
@@ -78,9 +78,9 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">หัวหน้าแผนกวิชา</label>
+                                <label for="exampleInputEmail1" class="form-label">ผู้อำนวยการ</label>
                                 <select id="consider_4" class="form-select" aria-label="Default select example">
-                                    <option value="0">เลือกรองผู้อำนวยการฝ่ายวิชาการ</option>
+                                    <option value="0">เลือกผู้อำนวยการ</option>
                                     <?php
                                     if (!empty($getTeacherListAll)) {
                                         foreach ($getTeacherListAll as $teacher) {
@@ -163,23 +163,23 @@
                         </td>
                         <td class="text-center" style="width: 10%;">
                             จิตพิสัย
-                            <input type="text" class="form-control" name="max_affective" value="<?php echo $plan_student['max_affective'] ?>">
+                            <input type="text" class="form-control" name="max_affective" value="<?php echo @$plan_student['max_affective'] ?>">
                         </td>
                         <td class="text-center" style="width: 10%;">
                             ภาระงาน
-                            <input type="text" class="form-control" name="max_work" value="<?php echo $plan_student['max_work'] ?>">
+                            <input type="text" class="form-control" name="max_work" value="<?php echo @$plan_student['max_work'] ?>">
                         </td>
                         <td class="text-center" style="width: 10%;">
                             ทดสอบ
-                            <input type="text" class="form-control" name="max_test" value="<?php echo $plan_student['max_test'] ?>">
+                            <input type="text" class="form-control" name="max_test" value="<?php echo @$plan_student['max_test'] ?>">
                         </td>
                         <td class="text-center" style="width: 10%;">
                             คะแนนสอบกลางภาค
-                            <input type="text" class="form-control" name="max_midterm_exam" value="<?php echo $plan_student['max_midterm_exam'] ?>">
+                            <input type="text" class="form-control" name="max_midterm_exam" value="<?php echo @$plan_student['max_midterm_exam'] ?>">
                         </td>
                         <td class="text-center" style="width: 12%;">
                             คะแนนสอบปลายภาค
-                            <input type="text" class="form-control" name="max_final_exam" value="<?php echo $plan_student['max_final_exam'] ?>">
+                            <input type="text" class="form-control" name="max_final_exam" value="<?php echo @$plan_student['max_final_exam'] ?>">
                         </td>
                     </tr>
                 </thead>

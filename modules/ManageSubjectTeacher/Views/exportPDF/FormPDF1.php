@@ -132,12 +132,13 @@
                             $idx_4 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_4 = 0;
-                                $sum_4 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_4 > 80) {
+                                $sum_4 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_4 >= 80) {
                                     $idx_4++;
                                 }
-                                echo $idx_4;
-                            } ?>
+                            }
+                            echo $idx_4;
+                            ?>
                         </td>
                     </tr>
                     <tr>
@@ -152,12 +153,13 @@
                             $idx_3_5 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_3_5 = 0;
-                                $sum_3_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_3_5 > 75 && @$sum_3_5 < 79) {
+                                $sum_3_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_3_5 >= 75 && @$sum_3_5 <= 79) {
                                     $idx_3_5++;
                                 }
-                                echo $idx_3_5;
-                            } ?>
+                            }
+                            echo $idx_3_5;
+                            ?>
                         </td>
                     </tr>
                     <tr>
@@ -172,12 +174,13 @@
                             $idx_3 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_3 = 0;
-                                $sum_3 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_3 > 70 && @$sum_3 < 74) {
+                                $sum_3 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_3 >= 70 && @$sum_3 <= 74) {
                                     $idx_3++;
                                 }
-                                echo $idx_3;
-                            } ?>
+                            }
+                            echo $idx_3;
+                            ?>
                         </td>
                     </tr>
                     <tr>
@@ -192,12 +195,14 @@
                             $idx_2_5 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_2_5 = 0;
-                                $sum_2_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_2_5 > 65 && @$sum_2_5 < 69) {
+                                $sum_2_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_2_5 >= 65 && @$sum_2_5 <= 69) {
                                     $idx_2_5++;
                                 }
-                                echo $idx_2_5;
-                            } ?>
+                            }
+                            echo $idx_2_5;
+                            ?>
+
                         </td>
                     </tr>
                     <tr>
@@ -213,8 +218,8 @@
                             $idx_2 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_2 = 0;
-                                $sum_2 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_2 > 60 && @$sum_2 < 64) {
+                                $sum_2 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_2 >= 60 && @$sum_2 <= 64) {
                                     $idx_2++;
                                 }
                                 echo $idx_2;
@@ -233,8 +238,8 @@
                             $idx_1_5 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_1_5 = 0;
-                                $sum_1_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_1_5 > 55 && @$sum_1_5 < 59) {
+                                $sum_1_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_1_5 >= 55 && @$sum_1_5 <= 59) {
                                     $idx_1_5++;
                                 }
                                 echo $idx_1_5;
@@ -253,8 +258,8 @@
                             $idx_1 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_1 = 0;
-                                $sum_1 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_1 > 50 && @$sum_1 < 54) {
+                                $sum_1 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_1 >= 50 && @$sum_1 <= 54) {
                                     $idx_1++;
                                 }
                                 echo $idx_1;
@@ -273,12 +278,13 @@
                             $idx_0 = 0;
                             foreach ($students as $key => $student) {
                                 $sum_0 = 0;
-                                $sum_0 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-                                if (@$sum_0 < 50) {
+                                $sum_0 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+                                if (@$sum_0 <= 50) {
                                     $idx_0++;
                                 }
-                                echo $idx_0;
-                            } ?>
+                            }
+                            echo $idx_0;
+                            ?>
                         </td>
                     </tr>
 
@@ -322,7 +328,7 @@
                             รวม
                         </td>
                         <td style="text-align: center;">
-                            -
+                            <?php echo (intval($idx_1) + intval($idx_1_5) + intval($idx_2) + intval($idx_2_5) + intval($idx_3) + intval($idx_3_5) + intval($idx_4)  + intval($idx_0)) ?>
                         </td>
                     </tr>
                 </tbody>
@@ -367,8 +373,9 @@
         <div class="vl"></div>
     </div>
     <div class="column-5" style="margin: 0; padding:0;">
+
         <div style="margin-bottom: 15px;">
-            <b>ความเห็นของหัวหน้างานวัดผลและประเมินผล</b>
+            <b>ความเห็นของหัวหน้าแผนกวิชา</b>
             <div style="margin-top: 20px;">
                 <table style="margin-bottom: 40px;width: 100%;">
                     <tr>
@@ -389,6 +396,7 @@
                     </tr>
                     <tr>
                         <td class="text-center" colspan="3" style="width: 100%; text-align: center;">
+
                             ( <?php echo  $teacher_prename_consider['prename_name']  . $teacher_consider['firstname'] . ' ' . $teacher_consider['lastname'] ?> )
                         </td>
 
@@ -403,7 +411,7 @@
             </div>
         </div>
         <div style="margin-bottom: 15px;">
-            <b>ความเห็นของหัวหน้าแผนกวิชา</b>
+            <b>ความเห็นของหัวหน้างานวัดผลและประเมินผล</b>
             <div style="margin-top: 20px;">
                 <table style="margin-bottom: 40px;width: 100%;">
                     <tr>
@@ -746,7 +754,7 @@
         foreach ($students as $key => $student) {
             $sum_4 = 0;
             $sum_4 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
-            if (@$sum_4 > 80) {
+            if (@$sum_4 >= 80) {
                 $idx_4++;
             }
         }
@@ -778,8 +786,8 @@
         $idx_3_5 = 0;
         foreach ($students as $key => $student) {
             $sum_3_5 = 0;
-            $sum_3_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_3_5 > 75 && @$sum_3_5 < 79) {
+            $sum_3_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_3_5 >= 75 && @$sum_3_5 <= 79) {
                 $idx_3_5++;
             }
         }
@@ -809,8 +817,8 @@
         $idx_3 = 0;
         foreach ($students as $key => $student) {
             $sum_3 = 0;
-            $sum_3 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_3 > 70 && @$sum_3 < 74) {
+            $sum_3 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_3 >= 70 && @$sum_3 <= 74) {
                 $idx_3++;
             }
         }
@@ -842,8 +850,8 @@
         $idx_2_5 = 0;
         foreach ($students as $key => $student) {
             $sum_2_5 = 0;
-            $sum_2_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_2_5 > 65 && @$sum_2_5 < 69) {
+            $sum_2_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_2_5 >= 65 && @$sum_2_5 <= 69) {
                 $idx_2_5++;
             }
         }
@@ -873,8 +881,8 @@
         $idx_2 = 0;
         foreach ($students as $key => $student) {
             $sum_2 = 0;
-            $sum_2 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_2 > 60 && @$sum_2 < 64) {
+            $sum_2 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_2 >= 60 && @$sum_2 <= 64) {
                 $idx_2++;
             }
         }
@@ -906,8 +914,8 @@
         $idx_1_5 = 0;
         foreach ($students as $key => $student) {
             $sum_1_5 = 0;
-            $sum_1_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_1_5 > 55 && @$sum_1_5 < 59) {
+            $sum_1_5 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_1_5 >= 55 && @$sum_1_5 <= 59) {
                 $idx_1_5++;
             }
         }
@@ -948,8 +956,8 @@
         $idx_1 = 0;
         foreach ($students as $key => $student) {
             $sum_1 = 0;
-            $sum_1 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_1 > 50 && @$sum_1 < 54) {
+            $sum_1 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_1 >= 50 && @$sum_1 <= 54) {
                 $idx_1++;
             }
         }
@@ -972,8 +980,8 @@
         $idx_0 = 0;
         foreach ($students as $key => $student) {
             $sum_0 = 0;
-            $sum_0 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'];
-            if (@$sum_0 < 50) {
+            $sum_0 += $student['affective'] + $student['test'] + $student['work'] + $student['final_exam'] + $student['midterm_exam'];
+            if (@$sum_0 <= 50) {
                 $idx_0++;
             }
         }

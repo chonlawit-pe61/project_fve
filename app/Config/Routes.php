@@ -80,11 +80,9 @@ $routes->group('/Student', ['namespace' => '\Modules\Student\Controllers'], func
 
     $routes->post('deleteSubject', 'Student::deleteSubject');
     $routes->post('deleteSubjectOld', 'Student::deleteSubjectOld');
-    
+
     $routes->post('DeleteStudent', 'Student::DeleteStudent');
     $routes->post('updateStatusPlanStudentOld', 'Student::updateStatusPlanStudentOld');
-
-    
 });
 $routes->group('/Addmin', ['namespace' => '\Modules\Addmin\Controllers'], function ($routes) {
     $routes->get('/', 'Addmin::index');
@@ -119,14 +117,15 @@ $routes->group('Manage', ['namespace' => '\Modules\Manage\Controllers'], functio
     $routes->get('ManagePrename', 'Manage::ManagePrename');
     $routes->post('SubmitFormPrename', 'Manage::SubmitFormPrename');
     $routes->post('DeletePrename', 'Manage::DeletePrename');
-
     $routes->get('ManageTypePerson', 'ManageTypePerson::TypePerson');
     $routes->post('SubmitFormTypePerson', 'ManageTypePerson::SubmitFormTypePerson');
     $routes->post('DeleteTypePerson', 'ManageTypePerson::DeleteTypePerson');
-
     $routes->get('SubjectType', 'ManageSubject::SubjectType');
     $routes->post('SubmitFormSubject', 'ManageSubject::SubmitFormSubject');
     $routes->post('DeleteSubject', 'ManageSubject::DeleteSubject');
+    $routes->get('ManagesubjectCatagory', 'Manage::ManagesubjectCatagory');
+    $routes->post('SubmitSubjectCatagory', 'Manage::SubmitSubjectCatagory');
+    $routes->post('DeleteSubjectCatagory', 'Manage::DeleteSubjectCatagory');
 });
 
 

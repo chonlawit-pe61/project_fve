@@ -98,7 +98,7 @@ class Student extends BaseController
     $StudentModel = new StudentModel();
     $item = $session->get();;
     $student_id = $item['user_id'];
-    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
+    $data['year'] = @$_GET['year'] != '' ? @$_GET['year'] : date('Y');
     $data['student'] =  $StudentModel->getStudentByUserID($student_id);
     $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1, $data['year']);
     $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2, $data['year']);
@@ -133,8 +133,8 @@ class Student extends BaseController
     $session = session();
     $StudentModel = new StudentModel();
     $item = $session->get();;
-    $student_id = $_GET['user_id'] ? $_GET['user_id'] : $item['user_id'];
-    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
+    $student_id = @$_GET['user_id'] ? @$_GET['user_id'] : $item['user_id'];
+    $data['year'] = @$_GET['year'] != '' ? @$_GET['year'] : date('Y');
     $data['student'] =  $StudentModel->getStudentByUserID($student_id);
     $data['student_subject'] = $StudentModel->getStudentSubject($student_id, 1, $data['year']);
     $data['student_subject2'] = $StudentModel->getStudentSubject($student_id, 2, $data['year']);
@@ -209,7 +209,7 @@ class Student extends BaseController
     $StudentModel->deleteSubjectOld($input);
     // return redirect()->to(base_url('Student/SubjectStudent?id=' . $input['users_id']));
   }
-  
+
   public function DeleteStudent()
   {
     $session = session();

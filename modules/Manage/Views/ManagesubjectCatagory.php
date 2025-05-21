@@ -6,15 +6,15 @@
     <thead>
         <tr>
             <td style="width: 10%;">ลำดับ</td>
-            <td>คำนำหน้า</td>
+            <td>หมวดสาขาวิชา</td>
             <td>เครื่องมือ</td>
         </tr>
     </thead>
     <tbody>
-        <form action="<?php echo base_url('Manage/SubmitFormTypePerson') ?>" method="post">
+        <form action="<?php echo base_url('Manage/SubmitSubjectCatagory') ?>" method="post">
             <?php
-            if (!empty($TypePersons)) {
-                foreach ($TypePersons as $key => $TypePerson) {
+            if (!empty($subjectCatagory)) {
+                foreach ($subjectCatagory as $key => $row) {
             ?>
                     <tr>
                         <td>
@@ -22,30 +22,30 @@
                         </td>
                         <td>
                             <?php
-                            if (@$_GET['id'] == $TypePerson['id']) {
+                            if (@$_GET['id'] == $row['subject_catagory_id']) {
                             ?>
-                                <input type="hidden" name="id" value="<?php echo $TypePerson['id'] ?>">
-                                <input type="text" name="name" class="form-control" value="<?php echo $TypePerson['name']  ?>">
+                                <input type="hidden" name="id" value="<?php echo $row['subject_catagory_id'] ?>">
+                                <input type="text" name="name" class="form-control" value="<?php echo $row['name']  ?>">
                             <?php
                             } else {
                             ?>
-                                <?php echo $TypePerson['name'] ?>
+                                <?php echo $row['subject_catagory_name'] ?>
                             <?php
                             }
                             ?>
                         </td>
                         <td>
                             <?php
-                            if (@$_GET['id'] == $TypePerson['id']) {
+                            if (@$_GET['id'] == $row['subject_catagory_id']) {
                             ?>
                                 <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                             <?php
                             }
                             ?>
-                            <a href="<?php echo base_url('Manage/ManageTypePerson?id=' . $TypePerson['id']) ?>" class="btn btn-warning">
+                            <a href="<?php echo base_url('Manage/SubmitSubjectCatagory?id=' . $row['subject_catagory_id']) ?>" class="btn btn-warning">
                                 <i class="fa fa-cog" aria-hidden="true"></i>
                             </a>
-                            <button type="button" onclick="DeletePrename(<?php echo $TypePerson['id'] ?>)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" onclick="DeletePrename(<?php echo $row['subject_catagory_id'] ?>)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </td>
                     </tr>
             <?php
@@ -94,11 +94,11 @@
                     data: {
                         'id': id
                     },
-                    url: '<?= base_url('/Manage/DeleteTypePerson'); ?>',
+                    url: '<?= base_url('/Manage/DeleteSubjectCatagory'); ?>',
                     success: function(res) {
                         Swal.fire({
                             icon: 'success',
-                            title: 'ลบประเภทบุคลากรสำเร็จ',
+                            title: 'ลบประเภทหมวดสาขาวิชาสำเร็จ',
                             showConfirmButton: false,
                             timer: 1500
                         }).then(() => {

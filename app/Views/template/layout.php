@@ -28,6 +28,22 @@
     .form-select {
         line-height: 1.9;
     }
+
+    .sidebar {
+        overflow: scroll;
+    }
+
+    .child {
+        padding: 1rem 1.5rem;
+        line-height: 20px;
+        color: #bfc7d9;
+        display: block;
+        text-decoration: none;
+        text-transform: capitalize;
+        font-size: 1rem;
+        font-weight: 400;
+        white-space: nowrap;
+    }
 </style>
 <?php
 $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
@@ -50,7 +66,7 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                 </div>
                 <!-- begin sidebar scrollbar -->
                 <div class="sidebar-left" data-simplebar style="height: 100%;">
-                    <ul class="nav sidebar-inner" id="sidebar-menu">
+                    <ul class="nav sidebar-inner " id="sidebar-menu">
                         <?php
                         if ($_SESSION['role_id'] == 1 || $_SESSION['role_id'] == 2) {
                         ?>
@@ -109,39 +125,40 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                                     <span>กรอกคะแนนในรายวิชา</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link dropdown-link-item align-middle ">
-                                    <i class=" fa fa-cog" aria-hidden="true"></i>
-                                    <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">เครื่องมือ</span></a>
-                                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                                    <li>
-                                        <a href="<?php echo base_url('Manage/ManageTypePerson') ?>" class="nav-link dropdown-link-item text-white">
-                                            <i class="fa fa-users" aria-hidden="true"></i>
-                                            <span class="mx-1">ประเภทบุคลากร</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('Manage/ManagePrename') ?>" class="nav-link dropdown-link-item text-white">
-                                            <i class="fa fa-tag" aria-hidden="true"></i>
-                                            <span class="mx-1">คำนำหน้า</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url('Manage/SubjectType') ?>" class="nav-link dropdown-link-item text-white">
-                                            <i class="fa fa-tag" aria-hidden="true"></i>
-                                            <span class="mx-1">หมวดวิชา</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- <li class="section-title text-white">
-                                ระบบ
-                            </li> -->
-                            <li>
-                                <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    <span class="nav-text">ออกจากระบบ</span>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="collapse" href="#submenu1" role="button" aria-expanded="false" aria-controls="submenu1">
+                                    <i class="fa fa-cog" aria-hidden="true"></i>
+                                    <span class="nav-text">เครื่องมือ</span>
                                 </a>
+                                <div class="collapse" id="submenu1">
+                                    <ul class="nav flex-column submenu">
+                                        <li class="nav-item">
+                                            <a href="<?php echo base_url('Manage/ManageTypePerson') ?>" class="nav-link dropdown-link-item text-white child">
+                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                <span class="mx-1">ประเภทบุคลากร</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?php echo base_url('Manage/ManagePrename') ?>" class="nav-link dropdown-link-item text-white child">
+                                                <i class="fa fa-tag" aria-hidden="true"></i>
+                                                <span class="mx-1">คำนำหน้า</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?php echo base_url('Manage/SubjectType') ?>" class="nav-link dropdown-link-item text-white child">
+                                                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                                <span class="mx-1">หมวดวิชา</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="<?php echo base_url('Manage/ManagesubjectCatagory') ?>" class="nav-link dropdown-link-item text-white child">
+                                                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                                <span class="mx-1">หมวดสาขาวิชา</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </li>
                         <?php
                         } else {
@@ -185,18 +202,18 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                             <?php
                             }
                             ?>
-                            <li>
-                                <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    <span class="nav-text">ออกจากระบบ</span>
-                                </a>
-                            </li>
+
                         <?php
                         }
                         ?>
-
-
+                        <li>
+                            <a class="dropdown-link-item" href="<?php echo base_url('logout') ?>">
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                <span class="nav-text">ออกจากระบบ</span>
+                            </a>
+                        </li>
                     </ul>
+
                 </div>
 
 

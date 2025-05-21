@@ -21,7 +21,7 @@ class ManageSubjectModel extends Model
     {
         $builder = $this->db->table('subject_group');
         $builder->set('group_name', $input['group_name']);
-        $builder->set('group_code', $input['group_code']);
+        // $builder->set('group_code', $input['group_code']);
         if (!empty($input['id'])) {
             $builder->where('id', $input['id']);
             $builder->update();

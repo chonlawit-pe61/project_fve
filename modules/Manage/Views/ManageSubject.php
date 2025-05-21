@@ -6,7 +6,6 @@
     <thead>
         <tr>
             <td style="width: 10%;">ลำดับ</td>
-            <td>รหัสวิชา</td>
             <td>หมวดวิชา</td>
             <td>เครื่องมือ</td>
         </tr>
@@ -23,20 +22,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $Subject['id']) {
-                            ?>
-                                <input type="text" name="group_code" class="form-control" value="<?php echo $Subject['group_code']  ?>">
-                            <?php
-                            } else {
-                            ?>
-                                <?php echo $Subject['group_code'] ?>
-                            <?php
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            if ($_GET['id'] == $Subject['id']) {
+                            if (@$_GET['id'] == $Subject['id']) {
                             ?>
                                 <input type="hidden" name="id" value="<?php echo $Subject['id'] ?>">
                                 <input type="text" name="group_name" class="form-control" value="<?php echo $Subject['group_name']  ?>">
@@ -50,7 +36,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $Subject['id']) {
+                            if (@$_GET['id'] == $Subject['id']) {
                             ?>
                                 <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                             <?php
@@ -71,9 +57,6 @@
         <form action="<?php echo base_url('Manage/SubmitFormSubject') ?>" method="post">
             <tr>
                 <td>&nbsp;</td>
-                <td>
-                    <input type="text" name="group_code" class="form-control">
-                </td>
                 <td>
                     <input type="text" name="group_name" class="form-control" value="">
                 </td>

@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="">อาจารย์ผู้สอน</label>
-                <input type="text" class="form-control" name="teacher_name" value="<?= $data['teacher_name'] ?>">
+                <input type="text" class="form-control" name="teacher_name" value="<?= @$data['teacher_name'] ?>">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="">หน่วยกิต</label>

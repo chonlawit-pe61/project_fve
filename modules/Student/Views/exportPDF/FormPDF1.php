@@ -18,8 +18,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-12 text-start">
-                        ชื่อ-นามสกุล <?php echo @$student['student_name_th'] . ' ' . @$student['student_lname_th'] ?> ชื่อเล่น <?php echo @$student['student_nickname']  ?>
-                    </div>
+                        ชื่อ-นามสกุล <?php echo @$student['student_name_th'] . ' ' . @$student['student_lname_th'] ?>                     </div>
                     <div class="col-lg-12 text-start">
                         ที่อยู่ <?php echo @$student['student_address'] . ' หมู่ ' . @$student['student_moo'] . ' จังหวัด ' . @$student['std_province'] . ' อำเภอ ' . @$student['std_district'] . ' จังหวัด ' . @$student['std_subdistrict']  ?>
                     </div>

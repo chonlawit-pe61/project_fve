@@ -50,12 +50,12 @@ class Auth extends BaseController
 
   public function logout()
   {
-      $session = session();
-      $session->set(array('name' => '', 'isLoggedIn' => FALSE));
-      // $session->destroy();
-      return redirect()->to(base_url('/'));
+    $session = session();
+    $session->set(array('name' => '', 'isLoggedIn' => FALSE));
+    // $session->destroy();
+    return redirect()->to(base_url('/'));
   }
-  
+
   public function test()
   {
     return view('Modules\Auth\Views\test.php');

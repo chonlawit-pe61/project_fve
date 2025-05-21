@@ -33,12 +33,12 @@ class ManageSubjectTeacher extends BaseController
     $item = $session->get();
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
     $subjectModel = new SubjectModel();
-    $data['subject_id'] = $_GET['id'];
+    $data['subject_id'] = @$_GET['id'];
     $data['term'] = $_GET['term'];
-    $data['year'] = $_GET['year'] != '' ? $_GET['year'] : date('Y');
+    $data['year'] =@$_GET['year'] != '' ? @$_GET['year'] : date('Y');
     $data['student'] = $ManageSubjectTeacherModel->getStudentInSubject($data['subject_id'], $data['term'], $data['year']);
 
-    $data['subject'] = $ManageSubjectTeacherModel->getSubjectById($_GET['id']);
+    $data['subject'] = $ManageSubjectTeacherModel->getSubjectById(@$_GET['id']);
     $data['getTeacherListAll'] = $subjectModel->getTeacherListAll();
     $data['plan_student'] = $ManageSubjectTeacherModel->getPlan_student($data['subject_id'], $data['term'], $data['year']);
     // echo '<pre>';
@@ -78,12 +78,12 @@ class ManageSubjectTeacher extends BaseController
     $this->response->setHeader('Content-Type', 'application/pdf');
 
     $ManageSubjectTeacherModel = new ManageSubjectTeacherModel();
-    $data['students'] = $ManageSubjectTeacherModel->getListStudents($_GET['subject_id_plan'], $_GET['term'], $_GET['year']);
+    $data['students'] = $ManageSubjectTeacherModel->getListStudents($_GET['subject_id_plan'], $_GET['term'], @$_GET['year']);
     $data['subject'] = $ManageSubjectTeacherModel->getSubjectById($_GET['subject_id_plan']);
     $data['teacher'] = $ManageSubjectTeacherModel->getTeacherById($data['subject']['teacher_id']);
     $data['teacher_consider'] = $ManageSubjectTeacherModel->getTeacherById($_GET['consider']);
     $data['teacher_prename_consider'] = $ManageSubjectTeacherModel->getPrenameById($data['teacher_consider']['prename_id']);
-    $data['plan_student'] = $ManageSubjectTeacherModel->getPlan_student($_GET['subject_id_plan'], $_GET['term'], $_GET['year']);
+    $data['plan_student'] = $ManageSubjectTeacherModel->getPlan_student($_GET['subject_id_plan'], $_GET['term'], @$_GET['year']);
     $data['teacher_org'] = $ManageSubjectTeacherModel->getDepartmentById($data['teacher']['department_id']);
 
 

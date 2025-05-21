@@ -15,6 +15,7 @@ class AuthModel extends Model
         $table = $this->db->table('users');
         $table->select('*');
         $table->where('username', $username);
+        // $table->where('password', $password);
         $data = $table->get()->getRowArray();
         return $data;
     }

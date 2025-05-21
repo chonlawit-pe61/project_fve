@@ -23,7 +23,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $Subject['id']) {
+                            if (@$_GET['id'] == $Subject['id']) {
                             ?>
                                 <input type="text" name="group_code" class="form-control" value="<?php echo $Subject['group_code']  ?>">
                             <?php
@@ -36,7 +36,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $Subject['id']) {
+                            if (@$_GET['id'] == $Subject['id']) {
                             ?>
                                 <input type="hidden" name="id" value="<?php echo $Subject['id'] ?>">
                                 <input type="text" name="group_name" class="form-control" value="<?php echo $Subject['group_name']  ?>">
@@ -50,7 +50,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $Subject['id']) {
+                            if (@$_GET['id'] == $Subject['id']) {
                             ?>
                                 <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                             <?php

@@ -16,13 +16,13 @@ class User extends BaseController
 
   public function index()
   {
-    return view('Modules\User\Views\index.php') ;
+    return view('Modules\User\Views\index.php');
   }
 
-  public function ajax_users ()
+  public function ajax_users()
   {
     $search = $this->request->getGet();
-    $data = $this->userModel->getUsers('', $search) ;
+    $data = $this->userModel->getUsers('', $search);
     return json_encode(
       [
         'draw' => $search['draw'],
@@ -34,7 +34,7 @@ class User extends BaseController
     );
   }
 
-  public function save() 
+  public function save()
   {
     // $data = [
     //     'username' => 'admin',
@@ -52,18 +52,20 @@ class User extends BaseController
     return redirect()->to(base_url('users'));
   }
 
-  public function manage ($id='') {
+  public function manage($id = '')
+  {
     $data['roles'] = $this->userModel->get_roles();
     $data['departments'] = $this->userModel->get_departments();
     $data['prenames'] = $this->userModel->get_preNames();
-    
-    if($id){
+
+    if ($id) {
       $data['data'] = $this->userModel->getUsers($id);
     }
-    return view('Modules\User\Views\manage.php', $data) ;
+    return view('Modules\User\Views\manage.php', $data);
   }
 
-  public function delete() {
+  public function delete()
+  {
     $id = $this->request->getPost('id');
     $responese = $this->userModel->deleteUser($id);
     return json_encode($responese);

@@ -20,6 +20,7 @@
                     <tr>
                         <th width="5%">#</th>
                         <th>ชื่อ-นามกสุล</th>
+                        <th>ตำแหน่ง</th>
                         <th width="30%">แผนก</th>
                         <th width="10%">สถานะ</th>
                         <?php
@@ -94,6 +95,9 @@
                 render: function(data, type, row, meta) {
                     return row.prefix_name + row.firstname + ' ' + row.lastname;
                 }
+            },
+            {
+                data: 'role_name',
             },
             {
                 data: 'department_name',

@@ -58,7 +58,7 @@
                                             <option value="<?php echo date('Y') ?>">เลือกปีการศึกษา</option>
                                             <?php
                                             for ($i = date('Y') + 10; $i >= date('Y') - 10; $i--) { ?>
-                                                <option <?php echo $_GET['year'] == $i ? 'selected' : '' ?> value="<?php echo $i ?>">ปีการศึกษา <?php echo $i + 543 ?></option>
+                                                <option <?php echo @$_GET['year'] == $i ? 'selected' : '' ?> value="<?php echo $i ?>">ปีการศึกษา <?php echo $i + 543 ?></option>
                                             <?php } ?>
                                         </select>
                                     </form>
@@ -539,8 +539,8 @@
                                                 <td colspan="3">
                                                     &nbsp;
                                                     <input type="hidden" name="plan_student_term" value="2">
-                                                    <input type="hidden" name="plan_student_year" value="<?php echo $plan2 ?>">
-                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                    <input type="hidden" name="plan_student_year" value="<?php echo @$plan2 ?>">
+                                                    <input type="hidden" name="users_id" value="<?php echo @$_GET['id'] ?>">
                                                 </td>
                                                 <td colspan="3">
                                                     <select name="subjects_id" class="form-select" aria-label="Default select example">
@@ -730,8 +730,8 @@
                                                 <td colspan="3">
                                                     &nbsp;
                                                     <input type="hidden" name="plan_student_term" value="2">
-                                                    <input type="hidden" name="plan_student_year" value="<?php echo $plan1 ?>">
-                                                    <input type="hidden" name="users_id" value="<?php echo $_GET['id'] ?>">
+                                                    <input type="hidden" name="plan_student_year" value="<?php echo @$plan1 ?>">
+                                                    <input type="hidden" name="users_id" value="<?php echo @$_GET['id'] ?>">
                                                 </td>
                                                 <td colspan="3">
                                                     <select name="subjects_id" class="form-select" aria-label="Default select example">

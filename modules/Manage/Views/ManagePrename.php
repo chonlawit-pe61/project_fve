@@ -22,7 +22,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $prename['prename_id']) {
+                            if (@$_GET['id'] == $prename['prename_id']) {
                             ?>
                                 <input type="hidden" name="prename_id" value="<?php echo $prename['prename_id'] ?>">
                                 <input type="text" name="prename" class="form-control" value="<?php echo $prename['prename_name']  ?>">
@@ -36,7 +36,7 @@
                         </td>
                         <td>
                             <?php
-                            if ($_GET['id'] == $prename['prename_id']) {
+                            if (@$_GET['id'] == $prename['prename_id']) {
                             ?>
                                 <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                             <?php
