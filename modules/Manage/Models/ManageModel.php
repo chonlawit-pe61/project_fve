@@ -46,6 +46,7 @@ class ManageModel extends Model
     {
         $builder = $this->db->table('subject_catagory_type');
         $builder->set('subject_catagory_name', $input['subject_catagory_name']);
+        $builder->set('subject_group_id', $input['subject_group_id']);
         if (!empty($input['subject_catagory_id'])) {
             $builder->where('subject_catagory_id', $input['subject_catagory_id']);
             $builder->update();
@@ -56,7 +57,14 @@ class ManageModel extends Model
     public function DeleteSubjectCatagoryType($input)
     {
         $builder = $this->db->table('subject_catagory_type');
-        $builder->where('subject_catagory_id', $input['subject_catagory_id']);
+        $builder->where('subject_catagory_id', $input['id']);
         $builder->delete();
+    }
+    public function getSubjectGroup()
+    {
+        $builder = $this->db->table('subject_group');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
     }
 }

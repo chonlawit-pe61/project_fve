@@ -19,7 +19,7 @@
                         <a target="_blank" href="<?php echo base_url('Student/exportProfileStudent') ?>" class="btn btn-success">PDF</a>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . $student['student_img']) ?>" alt="">
+                        <img class="img-fluid" src="<?php echo base_url('public/files/imgStd/' . @$student['student_img']) ?>" alt="">
                     </div>
                     <div class="col-lg-12 ">
                         <div class="container ">

@@ -11,13 +11,13 @@
             <table id="subjects-tbl" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th width="5%">#</th>
-                        <th width="15%">หมวดวิชา</th>
-                        <th>รหัสวิชา</th>
-                        <th width="30%">ชื่อวิชา</th>
-                        <th width="5%">หน่วยกิต</th>
-                        <th>ผู้สอน</th>
-                        <th width="10%">เครื่องมือ</th>
+                        <th width="5%" class="text-center">ลำดับ</th>
+                        <th width="15%" class="text-center">หมวดวิชา</th>
+                        <th class="text-center">รหัสวิชา</th>
+                        <th width="30%" class="text-center">ชื่อวิชา</th>
+                        <th width="5%" class="text-center">หน่วยกิต</th>
+                        <th class="text-center">ผู้สอน</th>
+                        <th width="10%" class="text-center">เครื่องมือ</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,7 @@
                         foreach ($Subject as $key => $sb) {
                     ?>
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     <?php echo $key + 1 ?>
                                 </td>
                                 <td>

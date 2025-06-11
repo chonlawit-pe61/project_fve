@@ -231,7 +231,7 @@ $Setting_1 =  array('ManageTypePerson', 'ManagePrename');
                             <li class="dropdown user-menu">
                                 <div class="text-center">
                                     <img src="<?php echo base_url('public/img/User.png') ?>" class="user-image rounded-circle" alt="User Image" />
-                                    <span class="d-none d-lg-inline-block"><?= session()->get('username') ?></span>
+                                    <span class="d-none d-lg-inline-block"><?= session()->get('name') . ' ' . session()->get('lname') ?></span>
                                 </div>
 
                             </li>

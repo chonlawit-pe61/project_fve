@@ -23,20 +23,20 @@ class Auth extends BaseController
     $AuthModel = new AuthModel();
 
     $user = $AuthModel->CheckLogin($username);
-
+    // echo '<pre>';
+    // print_r($user);
+    // die();
     if ($user) {
       $pass_hash = $user['password'];
-      $authenPassword = password_verify($password, $pass_hash);
-
-      if ($authenPassword) {
-
+      if ($password == $user['password']) {
         $ses_data = [
+          'name' => $user['firstname'],
+          'lname' => $user['lastname'],
           'user_id' => $user['id'],
           'username' => $user['username'],
           'role_id' => $user['role_id'],
           'isLoggedIn' => TRUE,
         ];
-
         $session->set($ses_data);
         return redirect()->to(base_url('home/'));
       } else {

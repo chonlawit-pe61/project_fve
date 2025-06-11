@@ -20,7 +20,7 @@ class ManageSubjectTeacherModel extends Model
     return $data;
   }
 
-  public function getListStudents($subjects_id = '', $plan_student_term = '', $plan_student_year = '')
+  public function getListStudents($subjects_id = '', $plan_student_term = '', $plan_student_year = '', $department_id = '')
   {
     $builder = $this->db->table('plan_student');
     $builder->select('*');
@@ -31,6 +31,7 @@ class ManageSubjectTeacherModel extends Model
     $builder->where('plan_student.subjects_id', $subjects_id);
     $builder->where('plan_student.plan_student_term', $plan_student_term);
     $builder->where('plan_student_year', $plan_student_year);
+    $builder->where('users.department_id', $department_id);
     $builder->where('users.is_active', 1);
     $data = $builder->get()->getResultArray();
 
@@ -38,11 +39,36 @@ class ManageSubjectTeacherModel extends Model
     // die();
     return $data;
   }
+  public function getListDepartment($subjects_id = '', $plan_student_term = '', $plan_student_year = '')
+  {
+    $builder = $this->db->table('department');
+    $builder->select('*');
+    $data = $builder->get()->getResultArray();
+    return $data;
+  }
   public function getSubjectById($id = '')
   {
     $builder = $this->db->table('subjects');
+    $builder->select('users.*,subjects.* , department.department_name as depart_ted');
+    $builder->join('users', 'users.id = subjects.teacher_id', 'left');
+    $builder->join('department', 'users.department_id = department.department_id', 'left');
+    $builder->where('subjects.id', $id);
+    $data = $builder->get()->getRowArray();
+    return $data;
+  }
+  public function getEducationLevel($id = '')
+  {
+    $builder = $this->db->table('vocational_certificate');
     $builder->select('*');
-    $builder->where('id', $id);
+    $builder->where('certificate_id', $id);
+    $data = $builder->get()->getRowArray();
+    return $data;
+  }
+  public function getYearStd($id = '')
+  {
+    $builder = $this->db->table('education_year');
+    $builder->select('*');
+    $builder->where('education_year_id', $id);
     $data = $builder->get()->getRowArray();
     return $data;
   }
@@ -102,21 +128,21 @@ class ManageSubjectTeacherModel extends Model
   }
   public function UpdateGradeStudent($input)
   {
-
     $builder = $this->db->table('plan_student');
     if (!empty($input)) {
       foreach ($input['student'] as $key => $row) {
-        $builder->set('affective', $row['affective']);
-        $builder->set('work', $row['work']);
-        $builder->set('max_affective', $input['max_affective']);
-        $builder->set('max_work', $input['max_work']);
-        $builder->set('max_test', $input['max_test']);
-        $builder->set('max_midterm_exam', $input['max_midterm_exam']);
-        $builder->set('max_final_exam', $input['max_final_exam']);
-        $builder->set('test', $row['test']);
-        $builder->set('midterm_exam', $row['midterm_exam']);
-        $builder->set('final_exam', $row['final_exam']);
+        $builder->set('affective', $row['affective'] ? $row['affective'] : 0);
+        $builder->set('work', $row['work'] ? $row['work'] : 0);
+        $builder->set('max_affective', $input['max_affective'] ? $input['max_affective'] : 0);
+        $builder->set('max_work', $input['max_work'] ? $input['max_work'] : 0);
+        $builder->set('max_test', $input['max_test'] ? $input['max_test'] : 0);
+        $builder->set('max_midterm_exam', $input['max_midterm_exam'] ? $input['max_midterm_exam'] : 0);
+        $builder->set('max_final_exam', $input['max_final_exam'] ? $input['max_final_exam'] : 0);
+        $builder->set('test', $row['test'] ? $row['test'] : 0);
+        $builder->set('midterm_exam', $row['midterm_exam'] ? $row['midterm_exam'] : 0);
+        $builder->set('final_exam', $row['final_exam'] ? $row['final_exam'] : 0);
         $builder->where('plan_student_id', $key);
+        $builder->where('plan_student_year', $input['year']);
         $builder->update();
       }
     }

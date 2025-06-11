@@ -5,9 +5,6 @@ namespace Modules\Manage\Controllers;
 use App\Controllers\BaseController;
 use Modules\Manage\Models\ManageModel;
 
-/**
- *
- */
 class Manage extends BaseController
 {
   public function ManagePrename()
@@ -35,10 +32,12 @@ class Manage extends BaseController
   {
     $ManageModel = new ManageModel();
     $data['subjectCatagory'] = $ManageModel->getSubjectCatagoryType();
+    $data['getSubjectGroup'] = $ManageModel->getSubjectGroup();
     return view('Modules\Manage\Views\ManagesubjectCatagory.php', $data);
   }
   public function SubmitSubjectCatagory()
   {
+
     $input = $this->request->getPost();
     $ManageModel = new ManageModel();
     $ManageModel->ManageSubjectCatagoryType($input);

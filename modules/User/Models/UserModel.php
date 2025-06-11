@@ -41,7 +41,7 @@ class UserModel extends Model
     {
         $builder = $this->db->table('users');
         $builder->set('username', $input['username']);
-        $builder->set('password', password_hash($input['password'], PASSWORD_DEFAULT));
+        $builder->set('password', $input['password']);
         $builder->set('prename_id', $input['prename_id']);
         $builder->set('firstname', $input['firstname']);
         $builder->set('lastname', $input['lastname']);

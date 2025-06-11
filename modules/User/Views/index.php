@@ -19,9 +19,9 @@
                 <thead>
                     <tr>
                         <th width="5%">#</th>
-                        <th>ชื่อ-นามกสุล</th>
-                        <th>ตำแหน่ง</th>
-                        <th width="30%">แผนก</th>
+                        <th width="30%">ชื่อ-นามกสุล</th>
+                        <th width="15%">ตำแหน่ง</th>
+                        <th width="15%">แผนก</th>
                         <th width="10%">สถานะ</th>
                         <?php
                         if ($_SESSION['role_id'] == 1 && $_SESSION['role_id'] != 2) {

@@ -182,6 +182,19 @@
                             </select>
                         </div>
                         <div class="col-lg-3">
+                            <label>ระดับการศึกษาปัจจุบัน</label>
+                            <select class="form-select" style="text-align: start;" name="certificate_id" id="certificate_id">
+                                <option value="0">กรุณาเลือกจบการศึกษาระดับ</option>
+                                <?php
+                                foreach ($vocationalCertificate as $cer) {
+                                ?>
+                                    <option <?php echo @$student['certificate_id'] == $cer['certificate_id'] ? 'selected' : ''  ?> value="<?php echo $cer['certificate_id'] ?>"><?php echo $cer['certificate_name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
                             <label>แผนกวิชา</label>
                             <select id="department" class="form-select" style="text-align: start;" name="department">
                                 <option value="0">กรุณาเลือกแผนกวิชา</option>

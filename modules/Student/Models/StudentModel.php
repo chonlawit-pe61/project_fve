@@ -135,6 +135,8 @@ class StudentModel extends Model
         $builderStd->set('student_guardian_district', $input['districtguardian']);
         $builderStd->set('student_guardian_subdistrict', $input['subdistrictguardian']);
         $builderStd->set('student_guardian_phone', $input['phoneguardian']);
+
+        $builderStd->set('certificate_id', $input['certificate_id']);
         if (!empty($input['student_id'])) {
             $builderStd->set('update_at', date('Y-m-d H:i:s'));
             $builderStd->where('student_id', $input['student_id']);
@@ -231,6 +233,13 @@ class StudentModel extends Model
     public function getEducationRoom()
     {
         $builder = $this->db->table('education_room');
+        $builder->select('*');
+        $data = $builder->get()->getResultArray();
+        return $data;
+    }
+    public function getVocationalCertificate()
+    {
+        $builder = $this->db->table('vocational_certificate');
         $builder->select('*');
         $data = $builder->get()->getResultArray();
         return $data;

@@ -2,7 +2,6 @@
 
 <?php $this->section('content'); ?>
 <div class="p-3 border shadow-sm mb-2">
-
     <div class="d-flex justify-content-between">
         <div>
             <h1 class="mt-0 mb-0"><u><b>รายชื่อนักศึกษา</b></u></h1>
@@ -10,7 +9,6 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             PDF
         </button>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -146,6 +144,7 @@
         <form action="<?php echo base_url('ManageSubjectTeacher/ManageGradeStudent') ?>" method="post">
             <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
             <input type="hidden" name="term" value="<?php echo $_GET['term'] ?>">
+            <input type="hidden" name="year" value="<?php echo $_GET['year'] ?  $_GET['year'] : date('Y') ?>">
             <table class="table">
                 <thead>
                     <tr>

@@ -44,6 +44,7 @@ class Student extends BaseController
     $data['prenames'] = $StudentModel->getPrename();
     $data['status_types'] = $StudentModel->getStatusType();
     $data['users'] = $StudentModel->getUserType2(3);
+    $data['vocationalCertificate'] = $StudentModel->getVocationalCertificate();
     if (!empty($id)) {
       $data['student'] = $StudentModel->getStudentById($id);
       $data['id'] = $id;
