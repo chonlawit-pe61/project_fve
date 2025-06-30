@@ -4,6 +4,7 @@ namespace Modules\SettingSubject\Controllers;
 
 use App\Controllers\BaseController;
 use Modules\SettingSubject\Models\SettingSubjectModel;
+use Modules\Subject\Models\SubjectModel;
 use Mpdf\Tag\Em;
 
 /**
@@ -20,7 +21,9 @@ class SettingSubject extends BaseController
   public function ManageSettingSubject($id = '')
   {
     $SettingSubjectModel = new SettingSubjectModel();
+    $SubjectModel = new SubjectModel();
     $data['subjects'] = $SettingSubjectModel->getSubjects();
+    $data['getTeacherListAll'] = $SubjectModel->getTeacherListAll();
     if (!empty($id)) {
       $data['id'] = $id;
       $data['plan_education'] = $SettingSubjectModel->getPlanEducation($id);
@@ -62,12 +65,15 @@ class SettingSubject extends BaseController
     return json_encode(1);
   }
 
-  
+
 
   public function CreateUpdateSettingSubject()
   {
     $SettingSubjectModel = new SettingSubjectModel();
     $input = $this->request->getPost();
+    // echo '<pre>';
+    // print_r($input);
+    // die();
     // echo 
     $SettingSubjectModel->CreateUpdateSettingSubject($input);
     return redirect()->to(base_url('/SettingSubject'));

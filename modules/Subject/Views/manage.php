@@ -35,7 +35,7 @@
                 <label for="">ชื่อวิชา</label>
                 <input type="text" id="name" name="name" class="form-control" value="<?= @$data['name'] ?>">
             </div>
-            <div class="col-md-3 mb-3">
+            <!-- <div class="col-md-3 mb-3">
                 <label for="">อาจารย์ผู้สอน</label>
                 <select class="form-select" name="teacher_id" aria-label="Default select example">
                     <option value="0">เลือกอาจารย์ผู้สอน</option>
@@ -52,7 +52,7 @@
                     }
                     ?>
                 </select>
-            </div>
+            </div> -->
             <div class="col-md-3 mb-3">
                 <label for="">หน่วยกิต</label>
                 <div class="input-group">

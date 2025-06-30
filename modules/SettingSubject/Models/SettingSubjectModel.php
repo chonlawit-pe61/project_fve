@@ -82,7 +82,16 @@ class SettingSubjectModel extends Model
                 $builderSubject->insert();
             }
         }
+        $builder_sb = $this->db->table('subjects');
+        if (!empty($input['teacher_id'])) {
+            foreach ($input['teacher_id'] as $key => $row) {
+                $builder_sb->set('teacher_id', $row);
+                $builder_sb->where('id', $key);
+                $builder_sb->update();
+            }
+        }
     }
+
     public function RemoveSubject($input)
     {
         $builder = $this->db->table('plan_subjects');

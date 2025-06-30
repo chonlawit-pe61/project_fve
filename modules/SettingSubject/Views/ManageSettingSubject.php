@@ -60,9 +60,22 @@
                                         <td>
                                             <?php echo $subject['name'] ?>
                                         </td>
-
                                         <td>
-                                            <?php echo $subject['prename_name'] . ' ' . $subject['firstname']  . ' ' . $subject['lastname'] ?>
+                                            <select class="form-select" name="teacher_id[<?= $subject['id_subject'] ?>]" require aria-label="Default select example">
+                                                <option value="">เลือกอาจารย์ผู้สอน</option>
+                                                <?php
+                                                if (!empty($getTeacherListAll)) {
+                                                    foreach ($getTeacherListAll as $teacher) {
+                                                ?>
+                                                        <option <?php echo @$subject['teacher_id'] == @$teacher['id'] ? 'selected' : '' ?> value="<?php echo @$teacher['id'] ?>">
+                                                            <?php echo @$teacher['firstname'] . ' ' . @$teacher['lastname'] ?>
+                                                        </option>
+
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
                                         </td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-danger" onclick="RemoveSubject(<?php echo $subject['plan_subjects_id'] ?>,<?php echo $key ?>)"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -79,6 +92,7 @@
                     <button type="submit" class="btn btn-success">
                         บันทึก
                     </button>
+                    <a href="<?= base_url('SettingSubject') ?>" class="btn btn-dark">ย้อนกลับ</a>
                 </div>
             </form>
 
@@ -192,12 +206,14 @@
         $(`#Subject${idx}`).remove();
     }
 
+    const teacherList = <?php echo json_encode($getTeacherListAll); ?>;
     const CheckSubject = () => {
         let arrayCheck = [];
 
         $('.ck_check:checked').each(function(idx) {
             arrayCheck.push(this.value)
         });
+
 
         $.ajax({
             url: "<?php echo base_url('SettingSubject/getSubjectToTable') ?>",
@@ -216,6 +232,11 @@
                     let json_res = JSON.parse(res);
                     $('#tbl_body').empty();
                     json_res.map((val, idx) => {
+                        let options = '<option value="">เลือกอาจารย์ผู้สอน</option>';
+                        teacherList.forEach(t => {
+                            let selected = (t.id == val.teacher_id) ? 'selected' : '';
+                            options += `<option value="${t.id}" ${selected}>${t.firstname} ${t.lastname}</option>`;
+                        });
                         let len = $('.Subject_len').length;
                         $('#tbl_body').append(`
                         <tr id="Subject${len+1}" class="Subject_len">
@@ -227,7 +248,11 @@
                                 ${val.name}
                                 </td>
                                 <td>${val.subjects_id}</td>
-                                <td>${val.prename_name  + ' ' + val.firstname + ' ' + val.lastname}</td>
+                                <td>
+                                <select class="form-select" name="teacher_id[${val.id_subject}]" required>
+                                    ${options}
+                                </select>
+                                </td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-danger" onclick="RemoveEl(${len+1})"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </td>
